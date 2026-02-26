@@ -1,0 +1,36 @@
+﻿<div class="breadcrumb-area" style="height: 400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_box text-center">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a>Conferences</li>
+                        </ul>
+                    </div>
+
+                    <h1 class="breadcrumb-title text-color-primary">@HeadingText</h1>
+                    <!-- breadcrumb-list start -->
+                    @if (IsAcceptingProposal)
+                    {
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="#">Submit your proposal for the upcoming conference on @ConferenceTittle</a></li>
+                            @* <li class="breadcrumb-item"><a href="index.html">Elements</a></li>
+                        <li class="breadcrumb-item active">timeline</li> *@
+                        </ul>
+                        <!-- breadcrumb-list end -->
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string HeadingText { get; set; }
+    [Parameter]
+    public bool IsAcceptingProposal { get; set; }
+    [Parameter]
+    public string? ConferenceTittle { get; set; }
+}

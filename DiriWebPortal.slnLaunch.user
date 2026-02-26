@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "DiriAPI\\DiriAPI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "DiriWebPortal\\DiriWebPortal.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

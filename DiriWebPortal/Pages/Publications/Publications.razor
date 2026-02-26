@@ -1,0 +1,109 @@
+﻿@layout _CommonPageLayout
+
+@using Domain.DBModels
+
+@page "/publications"
+
+<style>
+    .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    }
+
+    .popup-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    animation: popup-fade-in 0.3s ease-out;
+    }
+
+</style>
+
+<div class="breadcrumb-area" style="height: 400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="/">Home/</a>DIRI Publications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title section-space--mb_60 text-center">
+                    <h1 class="breadcrumb-title text-color-primary">DIRI Publications</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb-area end -->
+<div class="site-wrapper-reveal section-space--pt_100 section-space--pb_70" style="margin-top:-50px">
+    <div class="container">
+        @if (_lstBooks != null && _lstBooks.Count > 0)
+        {
+            @foreach (var i in Enumerable.Range(0, (_lstBooks.Count + 2) / 3))
+            {
+                <div class="row" style="margin-top:25px;">
+                    <div class="col-12">
+                        <div class="row ht-team-member-style-one">
+                            @foreach (var book in _lstBooks.Skip(i * 3).Take(3))
+                            {
+                                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                                    <a href="reader/@book.Id" class="projects-wrap style-01 wow move-up">
+                                        <div class="projects-image-box">
+                                            <div class="projects-image">
+                                                <img class="img-fluid" src="@book.ThumbnailLocation" alt="">
+                                            </div>
+                                            <div class="content">
+                                                <h6 class="heading">@book.BookNameEng</h6>
+                                                <div class="post-categories">@book.WritterName</div>
+                                                <div class="text">@book.ShortDescription</div>
+                                                <div class="box-projects-arrow">
+                                                    <span class="button-text">View in PDF</span>
+                                                    <i class="fa fa-long-arrow-right ml-1"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="section-under-heading text-center section-space--mt_40">
+            <a href="/DiriJournals">View DIRI Journals <i class="ml-1 button-icon far fa-long-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+@code{
+    string datafilterValue = ".cat--";
+    private bool showPopup = false;
+
+    void ShowPopup()
+    {
+        showPopup = true;
+    }
+
+    void ClosePopup()
+    {
+        showPopup = false;
+    }
+}

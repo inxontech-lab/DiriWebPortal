@@ -1,0 +1,274 @@
+﻿@layout _CommonPageLayout
+@page "/PhotoAward"
+
+@inject IJSRuntime JS
+
+<style type="text/css">
+    .member-card {
+        background-color: #f5f5f5; /* Slightly stronger grey than default */
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Default visible shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+
+        .member-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+        }
+
+    .view-profile-btn {
+        font-size: 0.85rem;
+        padding: 4px 14px; /* thinner height */
+        /* border-radius: 20px;*/
+        background-color: #0d31a3; /* Mitech primary blue */
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        .view-profile-btn:hover {
+            transform: scale(1.08); /* Slightly bigger */
+            background-color: #00306e; /* Keep the same color */
+            color: #fff !important;
+        }
+</style>
+
+
+@*  <div id="main-wrapper"> *@
+        @* <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                            <ul class="breadcrumb-list">
+                                <li class="breadcrumb-item"><a href="/">Home/</a>DIRI Committee Members</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title section-space--mb_60 text-center">
+                            <h3 class="heading">DIRI Committee Members</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        <!-- breadcrumb-area end -->
+
+@* <Breadcrumb HeadingText="Photo Awards" IsAcceptingProposal=false ConferenceTittle=false></Breadcrumb> *@
+
+<div class="breadcrumb-area" style="height: 400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_box text-center">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a>Photo Awards</li>
+                        </ul>
+                    </div>
+
+                    <h1 class="breadcrumb-title text-color-primary">Photo Awards</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-wrapper-reveal">
+   @*  <div class="flexible-image-slider-wrapper section-space--ptb_100 border-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-wrap text-center section-space--mb_60">
+                        <h3>Photos from Awards</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="flexible-image-slider-wrap">
+                        <div class="swiper-container three-flexible__container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/1.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/2.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/3.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/4.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/5.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/6.webp" alt="Slider 02">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/7.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/8.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/9.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                            </div>
+
+                            <!-- Add Arrows -->
+                            <div class="swiper-nav-button swiper-button-next"><i class="nav-button-icon"></i></div>
+                            <div class="swiper-nav-button swiper-button-prev"><i class="nav-button-icon"></i></div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-3 section-space--mt_50"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> *@
+
+
+    <div class="flexible-image-slider-wrapper section-space--ptb_120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-wrap text-center section-space--mb_60">
+                        <h4>Award Wining Photos</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 wow move-up">
+                    <div class="flexible-image-slider-wrap">
+                        <div class="swiper-container auto--pree-mode-flexible__container">
+                            <div class="swiper-wrapper auto-plexible-row">
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/1.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/2.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/3.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/4.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/5.webp" alt="Slider 01">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/6.webp" alt="Slider 02">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/7.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/8.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- Single flexible slider Start -->
+                                    <div class="single-flexible-slider">
+                                        <img class="img-fluid" src="PhotoAward/9.webp" alt="Slider 03">
+                                    </div>
+                                    <!-- Single flexible slider End -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-6 section-space--mt_50"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+ @* </div> *@
+
+<!--====================  scroll top ====================-->
+<a href="#" class="scroll-top" id="scroll-top">
+    <i class="arrow-top fal fa-long-arrow-up"></i>
+    <i class="arrow-bottom fal fa-long-arrow-up"></i>
+</a>
+<!--====================  End of scroll top  ====================-->
+@code {
+    private async Task ShowModal()
+    {
+        await JS.InvokeVoidAsync("bootstrapInterop.showModal", "#profileModal");
+    }
+}

@@ -1,0 +1,18 @@
+﻿@page "/"
+@namespace DiriWebPortal.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+
+<script>
+    const lang = localStorage.getItem("preferredLanguage");
+    if (lang) {
+        document.cookie = `.AspNetCore.Culture=c=${lang}|uic=${lang}; path=/`;
+    }
+</script>
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+@* <component type="typeof(App)" render-mode="Server" /> *@
+

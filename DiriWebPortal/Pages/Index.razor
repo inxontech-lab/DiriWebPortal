@@ -1,0 +1,489 @@
+﻿@page "/"
+@inject Microsoft.JSInterop.IJSRuntime JS
+
+
+<style>
+    .protected {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+    .member-card {
+    background-color: #f5f5f5; /* Slightly stronger grey than default */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Default visible shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    }
+
+    .member-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    }
+
+    .view-profile-btn {
+    font-size: 0.85rem;
+    padding: 4px 14px; /* thinner height */
+    /* border-radius: 20px;*/
+    background-color: #0d31a3; /* Mitech primary blue */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .view-profile-btn:hover {
+    transform: scale(1.08); /* Slightly bigger */
+    background-color: #00306e; /* Keep the same color */
+    color: #fff !important;
+    }
+
+    .shadowText{
+    color: #ffffff; /* white text */
+    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* glow for visibility */
+    }
+
+
+</style>
+
+
+<body class="protected">
+    <div class="preloader-activate preloader-active open_tm_preloader">
+        <div class="preloader-area-wrap">
+            <div class="spinner d-flex justify-content-center align-items-center h-100">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--====================  header area ====================-->
+    @* <HeaderAreaExpanded></HeaderAreaExpanded> *@
+    <HeaderArea></HeaderArea>
+    <!--====================  End of header area  ====================-->
+
+
+    <div id="main-wrapper">
+        <div class="site-wrapper-reveal">
+            <!--============ Machine learning Hero Start HomePage/HomePageBanner.jpg ============-->
+            @if (bannerText != null)
+            {
+                @* foreach (var val in bannerText)
+                {
+                    <div class="machine-learning-hero machine-learning-hero-bg" style="background-image:url(@val.BannerImageLocation)">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="machine-learning-hero-text wow move-up">
+                                        <h1 class="font-weight--reguler text-white mb-15 shadowText">@((MarkupString)val.TitleText)</h1>
+                                        <p class="shadowText">@((MarkupString)val.Subtitle)</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="hero-brand-wrap">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                } *@
+
+                <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    <div class="carousel-inner">
+                        @foreach (var val in bannerText.Select((item, index) => new { item, index }))
+                        {
+                            <div class="carousel-item @(val.index == 0 ? "active" : "")">
+                                <div class="machine-learning-hero machine-learning-hero-bg"
+                                     style="background-image:url('@val.item.BannerImageLocation')">
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-8 col-md-7">
+                                                <div class="machine-learning-hero-text wow move-up">
+                                                    <h1 class="font-weight--reguler text-white mb-15 shadowText">
+                                                        @((MarkupString)val.item.TitleText)
+                                                    </h1>
+                                                    <p class="shadowText">
+                                                        @((MarkupString)val.item.Subtitle)
+                                                    </p>
+                                                </div>
+                                              @*   <div class="hero-button mt-30">
+                                                    <a href="#" class="btn btn--secondary">About Syed Ahmad Ullah Maizbhandari</a>
+                                                    <div class="hero-popup-video video-popup">
+                                                        
+                                                    </div>
+                                                </div> *@
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="hero-brand-wrap"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            }  
+            
+
+
+
+            <!--============ Infotechno Hero End ============-->
+            <!--=========== fun fact Wrapper Start ==========-->
+            @if (numericDashboard != null)
+            {
+                <div class="fun-fact-wrapper bg-theme-three section-space--pt_40">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 wow move-up">
+                                <div class="fun-fact--five text-center">
+                                    <div class="fun-fact__count counter">@numericDashboard.TotalJournal</div>
+                                    <h6 class="fun-fact__text">Journals published</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 wow move-up">
+                                <div class="fun-fact--five text-center">
+                                    <div class="fun-fact__count counter">@numericDashboard.ResearchTittle</div>
+                                    <h6 class="fun-fact__text">Reasearch tittles</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 wow move-up">
+                                <div class="fun-fact--five text-center">
+                                    <div class="fun-fact__count counter">@numericDashboard.UniversityInvolved</div>
+                                    <h6 class="fun-fact__text">Universities involved</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 wow move-up">
+                                <div class="fun-fact--five text-center">
+                                    <div class="fun-fact__count counter">@numericDashboard.Conference</div>
+                                    <h6 class="fun-fact__text">Intl. Conference</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <div class="testimonials-area infotechno-contact-us-bg" id="about-us">
+                <div class="container" style="padding-top:30px">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="section-title section-space--mb_60">
+                                    @if (aboutUs != null)
+                                    {
+                                        <h3 class="heading">@aboutUs.AboutUsTitle</h3> @* <span class="text-color-primary">experience </span> experts *@
+                                        <p class="text mt-30">@aboutUs.AbouUsText</p>
+
+                                        <div class="sider-title-button-box mt-30">
+                                            <a href="@aboutUsLink" class="btn-text font-weight--bold small-mt__20">View details <i class="ml-1 button-icon far fa-long-arrow-right"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class ="col-lg-7">
+                            @if(founderInfo != null && managingTrusteeInfo != null)
+                            {
+                                @* <div class="team-member-wrapper section-space--pt_100 section-space--pb_70"> *@
+                                @* <div class="container"> *@
+                                <div class="row ht-team-member-style-one">
+                                    <div class="col-lg-6 col-md-4 col-sm-6 mb-4">
+                                        <div class="card h-100 text-center member-card bg-light border-0">
+                                            <img src="@founderInfo.FounderImagePath" class="card-img-top rounded-top" style="object-fit: cover; height: 350px;">
+                                            <div class="card-body">
+                                                <h6 class="card-title mb-1" style="font-weight: 600; color: #333;">@founderInfo.FounderName</h6>
+                                                <p class="card-text text-muted" style="font-size: 0.9rem;">Trustee and Founder</p>
+                                                <a href="/Founder" class="view-profile-btn">View Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-4 col-sm-6 mb-4">
+                                        <div class="card h-100 text-center member-card bg-light border-0">
+                                            <img src="@managingTrusteeInfo.ManagingTrusteeImagePath" class="card-img-top rounded-top" style="object-fit: cover; height: 350px;">
+                                            <div class="card-body">
+                                                <h6 class="card-title mb-1" style="font-weight: 600; color: #333;">@managingTrusteeInfo.ManagingTrusteeName</h6>
+                                                <p class="card-text text-muted" style="font-size: 0.9rem;">Managing Trustee and Chairman</p>
+                                                <a href="/ManagingTrustee" class="view-profile-btn">View Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* </div> *@
+                                @*  </div> *@
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--=========== fun fact Wrapper End ==========-->
+
+            <!--=========== About Conference start ==========-->
+            @if (highlightedEvent != null)
+            {
+                <div class="machine-learning-about-company-area machine-learning-about-bg section-space--ptb_120" id="conference">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">                                
+                                <div class="section-title-wrap text-left section-space--mb_30">
+                                    <h4 class="heading">@((MarkupString)highlightedEvent.Heading1)</h4>
+                                    @* <h2 class="heading">
+                                        @((MarkupString)highlightedEvent.Heading2)
+                                    </h2> *@
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="image-inner-video-section">
+                                    <div class="main-video-box video-popup">
+                                        <a href="" class="video-link  mt-30">
+                                            <div class="single-popup-wrap">
+                                                <img class="img-fluid border-radus-5" src="@highlightedEvent.ImagePath" alt="">                                                
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="machine-learning-mark-text mt-30">
+                                        @((MarkupString)highlightedEvent.ImageDescription)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 ms-auto mt-30">
+                                <div class="machine-learning-about-content">
+                                    <div class="section-title mb-20">
+                                        <h4>@((MarkupString)highlightedEvent.Heading3)</h4>
+                                        <p class="dec-text mt-20">
+                                            @highlightedEvent.Description
+                                        </p>
+                                       @*  <div class="button-box mt-30">
+                                            <a href="/upcoming-conference/4" class="ht-btn ht-btn-md">More details about upcoming conference</a>
+                                        </div> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!--=========== About Conference End ==========-->
+
+            <!--=========== Publications start ==========-->
+            <div class="projects-wrapper machine-learning-project-bg section-space--ptb_100" id="publications">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- section-title-wrap Start -->
+                            <div class="section-title-wrap text-center section-space--mb_40">
+                                <h4 class="section-sub-title mb-20">Journals and Publications</h4>
+                                @* <h3 class="heading">Our publications make us proud</h3> *@
+                            </div>
+                            <!-- section-title-wrap Start -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="projects-wrap swiper-container projects-slider__container">
+                                <div class="swiper-wrapper">
+
+                                    @if (_lstBooks != null && _lstBooks.Count > 0)
+                                    {
+                                        @foreach (var book in _lstBooks)
+                                        {
+                                            <div class="swiper-slide">
+                                                <a href="reader/@book.Id" class="projects-wrap style-01 wow move-up">
+                                                    <div class="projects-image-box">
+                                                        <div class="projects-image">
+                                                            <img class="img-fluid" src="@book.ThumbnailLocation" alt="">
+                                                        </div>
+                                                        <div class="content">
+                                                            <h6 class="heading">@book.BookNameEng</h6>
+                                                            <div class="post-categories">@book.WritterName</div>
+                                                            <div class="text">
+                                                                @book.ShortDescription
+                                                            </div>
+                                                            <div class="box-projects-arrow">
+                                                                <span class="button-text">View in PDF</span>
+                                                                <i class="fa fa-long-arrow-right ml-1"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>                                            
+                                        }
+                                    }
+                                </div>
+                                <div class="swiper-pagination swiper-pagination-project mt_20"></div>
+                            </div>
+
+                            <div class="section-under-heading text-center section-space--mt_40"> 
+                                <a href="/DiriJournals">View all journals <i class="ml-1 button-icon far fa-long-arrow-right"></i></a>
+                                <br/>
+                                <a href="/publications">View all publications <i class="ml-1 button-icon far fa-long-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--=========== Publications End ==========-->
+
+            <!--=========== Academics Start ==========-->
+            <div class="machine-learning-about-company-area machine-learning-about-bg section-space--ptb_120" id="academics">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- section-title-wrap Start -->
+                            <div class="section-title-wrap text-center section-space--mb_30">
+                                @* <h6 class="section-sub-title mb-20">OUR ACADEMIC COURSES</h6> *@
+                                <h6 class="section-sub-title mb-20">OUR ACADEMIC COURSES</h6>
+                                <h3 class="heading">Our customized academic courses<br> for <span class="text-color-primary">your needs</span></h3>
+                            </div>
+                            <!-- section-title-wrap Start -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="feature-images__five">
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-6 wow move-up">
+                                        <!-- ht-box-icon Start -->
+                                        <div class="ht-box-images style-05">
+                                            <div class="image-box-wrap">
+                                                <div class="box-image">
+                                                    <div class="default-image">
+                                                        <img class="img-fulid" src="assets/images/icons/soft-s1-01-120x120.webp" alt="">
+                                                    </div>
+                                                    <div class="hover-images">
+                                                        <img class="img-fulid" src="assets/images/icons/soft-s1-01-120x120.webp" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="heading">Online courses</h5>
+                                                    <div class="text">DIRI online courses</div>
+                                                    @* <div class="box-images-arrow">
+                                                        <a href="#">
+                                                            <span class="button-text">Discover now</span>
+                                                            <i class="far fa-long-arrow-right"></i>
+                                                        </a>
+
+                                                    </div> *@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ht-box-icon End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 wow move-up">
+                                        <!-- ht-box-icon Start -->
+                                        <div class="ht-box-images style-05">
+                                            <div class="image-box-wrap">
+                                                <div class="box-image">
+                                                    <div class="default-image">
+                                                        <img class="img-fulid" src="assets/images/icons/soft-s1-03-120x120.webp" alt="">
+                                                    </div>
+                                                    <div class="hover-images">
+                                                        <img class="img-fulid" src="assets/images/icons/soft-s1-03-120x120.webp" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="heading">Research methodology</h5>
+                                                    <div class="text">Courses on research methodology</div>
+                                                    @* <div class="box-images-arrow">
+                                                        <a href="#">
+                                                            <span class="button-text">Discover now</span>
+                                                            <i class="far fa-long-arrow-right"></i>
+                                                        </a>
+
+                                                    </div> *@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ht-box-icon End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 wow move-up">
+                                        <!-- ht-box-icon Start -->
+                                        <div class="ht-box-images style-05">
+                                            <div class="image-box-wrap">
+                                                <div class="box-image">
+                                                    <div class="default-image">
+                                                        <img class="img-fulid" src="assets/images/icons/n-icon-3.webp" alt="">
+                                                    </div>
+                                                    <div class="hover-images">
+                                                        <img class="img-fulid" src="assets/images/icons/n-icon-3-white.webp" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="heading">Arabic language</h5>
+                                                    <div class="text">Arabic language course</div>
+                                                    @* <div class="box-images-arrow">
+                                                        <a href="#">
+                                                            <span class="button-text">Discover now</span>
+                                                            <i class="far fa-long-arrow-right"></i>
+                                                        </a>
+
+                                                    </div> *@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ht-box-icon End -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--=========== Academics End ==========-->
+        </div>
+
+        <!--====================  footer area ====================-->        
+            <FooterArea></FooterArea>        
+        <!--====================  End of footer area  ====================-->
+    </div>
+    <!--====================  scroll top ====================-->
+    <a href="#" class="scroll-top" id="scroll-top">
+        <i class="arrow-top fal fa-long-arrow-up"></i>
+        <i class="arrow-bottom fal fa-long-arrow-up"></i>
+    </a>
+    <!--====================  End of scroll top  ====================-->
+
+    <!--====================  mobile menu overlay ====================-->
+    <MobileMenu></MobileMenu>
+    <!--====================  End of mobile menu overlay  ====================-->    
+</body>
+
+@code{
+    string GetHref(string idName) => "#" + idName;
+    string aboutUsLink = "/AboutDiri";
+
+    protected async Task OnAfterRenderAsyn()
+    {
+        await JS.InvokeVoidAsync("DisableCopyPaste", "body");
+    }    
+}
+ 

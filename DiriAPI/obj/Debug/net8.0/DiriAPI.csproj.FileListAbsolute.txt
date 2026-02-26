@@ -1,0 +1,160 @@
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\appsettings.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.staticwebassets.endpoints.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.exe
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.deps.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.runtimeconfig.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.pdb
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Dapper.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\MsSqlHelpers.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Runtime.Caching.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DataAccess.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Domain.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DataAccess.pdb
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Domain.pdb
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.AssemblyReference.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.AssemblyInfoInputs.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.AssemblyInfo.cs
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.CoreCompileInputs.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\scopedcss\bundle\DiriAPI.styles.css
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.Up2Date
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\refint\DiriAPI.dll
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.pdb
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.genruntimeconfig.cache
+C:\Users\midris\OneDrive - PHC\Workspace\Darbar\DIRI\DIRI New Website\DiriWebPortal\DiriAPI\obj\Debug\net8.0\ref\DiriAPI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\appsettings.Development.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\appsettings.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.staticwebassets.endpoints.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.exe
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.deps.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.runtimeconfig.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DiriAPI.pdb
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Dapper.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\MsSqlHelpers.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DataAccess.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Domain.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\DataAccess.pdb
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\bin\Debug\net8.0\Domain.pdb
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.AssemblyReference.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.AssemblyInfoInputs.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.AssemblyInfo.cs
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.CoreCompileInputs.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\scopedcss\bundle\DiriAPI.styles.css
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.development.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\swae.build.ex.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.csproj.Up2Date
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\refint\DiriAPI.dll
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.pdb
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\DiriAPI.genruntimeconfig.cache
+D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriAPI\obj\Debug\net8.0\ref\DiriAPI.dll

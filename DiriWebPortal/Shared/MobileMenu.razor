@@ -1,0 +1,79 @@
+﻿<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <div class="mobile-menu-overlay__inner">
+        <div class="mobile-menu-overlay__header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8">
+                        <!-- logo -->
+                        <div class="logo">
+                            <a href="#">
+                                <img src="assets/images/diri.webp" width="100" height="48" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-4">
+                        <!-- mobile menu content -->
+                        <div class="mobile-menu-content text-end">
+                            <span class="mobile-navigation-close-icon" id="mobile-menu-close-trigger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay__body">
+            <nav class="offcanvas-navigation">
+                <ul>
+                    <li class="has-children">
+                        <a href="#"><span>About Us</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/Founder"><span>Message From Trustee & Founder</span></a></li>
+                            <li><a href="/ManagingTrustee"><span>Message From Managing Trustee & Chairman</span></a></li>
+                            <li><a href="/AboutDiri"><span>DIRI At a Glance</span></a></li>
+                            <li><a href="/test"><span>Our Vision</span></a></li>
+                            <li><a href="/DiriCommittee"><span>DIRI Committee</span></a></li>
+                            <li><a href="/ResearchCell"><span>DIRI Research Cell</span></a></li>
+                            <li><a href="/Collaboration"><span>Collaborations</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-children">
+                        <a href="#"><span>Conferences</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/conference"><span>DIRI International Conference</span></a></li>
+                            <li><a href="/proceedings"><span>Conference Proceedings</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-children">
+                        <a href="/DiriJournals"><span>Journals</span></a>
+                        <!-- mega menu -->
+                    </li>
+                    <li class="has-children">
+                        <a href="#"><span>Publications</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/publications"><span>DIRI Publications</span></a></li>
+                            <li><a href="/publication-articles"><span>About Maizbhandari Tarika</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-children has-children--multilevel-submenu">
+                        <a href="@GetHref("academics")"><span>Academics</span></a>
+                    </li>
+                    <li class="has-children has-children--multilevel-submenu">
+                        <a href="/PhotoAward"><span>Photo Award</span></a>
+                    </li>
+                    <li class="has-children has-children--multilevel-submenu">
+                        <a href=""><span>Maizbhandari Sufi Song</span></a>
+                    </li>
+                    <li>
+                        <a href="/photogallery"><span>Gallery</span></a>
+                    </li>
+                    <li>
+                        <a href="@GetHref("contact-us")"><span>Contact Us</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+@code {
+    string GetHref(string idName) => "#" + idName;
+}

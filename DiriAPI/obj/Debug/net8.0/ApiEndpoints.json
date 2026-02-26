@@ -1,0 +1,606 @@
+[
+  {
+    "ContainingType": "DiriAPI.Controller.AboutUsController",
+    "Method": "GetAboutUsDetails",
+    "RelativePath": "api/AboutUs/GetAboutUsDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.AboutUsPageRespDTO.AboutUsDetailsRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ConferenceSchema.ConfCommitteeDesignationController",
+    "Method": "GetAllConfCommDesignationList",
+    "RelativePath": "api/ConfCommitteeDesignation/GetAllConfCommDesignationList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.ConferenceSchemaRespDTO.ConfCommitteeDesignationRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ConferenceSchema.ConferenceController",
+    "Method": "GetAllConferenceList",
+    "RelativePath": "api/Conference/GetAllConferenceList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.ConferenceSchemaRespDTO.ConferenceMasterRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ConferenceSchema.ConferenceController",
+    "Method": "GetUpcomingConferenceDetails",
+    "RelativePath": "api/Conference/GetUpcomingConferenceDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.ConferenceSchemaRespDTO.UpcomingConferenceRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.CountryController",
+    "Method": "GetAllCountryList",
+    "RelativePath": "api/Country/GetAllCountryList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.CountryRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.DepartmentController",
+    "Method": "GetAllDepartmentList",
+    "RelativePath": "api/Department/GetAllDepartmentList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.DepartmentRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.execCommitteeDesignationController",
+    "Method": "GetAllExecDesignationList",
+    "RelativePath": "api/execCommitteeDesignation/GetAllExecDesignationList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.ExecutiveCommitteeDesignationRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GeAboutUsSummary",
+    "RelativePath": "api/HomePage/GeAboutUsSummary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.AboutUsRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetContactUsData",
+    "RelativePath": "api/HomePage/GetContactUsData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.OrganizationDataDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetFounderInfo",
+    "RelativePath": "api/HomePage/GetFounderInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.FounderInfoRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetHighlightedEvent",
+    "RelativePath": "api/HomePage/GetHighlightedEvent",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.HighlightedEventRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetHomePageBanner",
+    "RelativePath": "api/HomePage/GetHomePageBanner",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.BannerTextDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetManagingTrusteeInfo",
+    "RelativePath": "api/HomePage/GetManagingTrusteeInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.ManagingTrusteeInfoRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.HomePageController",
+    "Method": "GetNumericDashboard",
+    "RelativePath": "api/HomePage/GetNumericDashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.DBModels.NumericDashboard",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.JournalSchema.JournalsController",
+    "Method": "GetAllJournalList",
+    "RelativePath": "api/Journals/GetAllJournalList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.JournalSchemaRespDTO.JournalMasterRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.JournalSchema.JournalsController",
+    "Method": "GetJournalDetailsByVolumeId",
+    "RelativePath": "api/Journals/GetJournalDetailsByVolumeId/{VolumeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "VolumeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.JournalSchemaRespDTO.JournalDetailsRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ManagingTrusteeController",
+    "Method": "GetManagingTrusteeArticles",
+    "RelativePath": "api/ManagingTrustee/GetManagingTrusteeArticles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.AboutUsPageRespDTO.ManagingTrusteeArticlesRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ManagingTrusteeController",
+    "Method": "GetManagingTrusteeDesignation",
+    "RelativePath": "api/ManagingTrustee/GetManagingTrusteeDesignation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.AboutUsPageRespDTO.ManagingTusteeDesigRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ManagingTrusteeController",
+    "Method": "GetManagingTrusteePublications",
+    "RelativePath": "api/ManagingTrustee/GetManagingTrusteePublications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.AboutUsPageRespDTO.ManagingTrusteePubRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterInfoController",
+    "Method": "GetFounderInfo",
+    "RelativePath": "api/MasterInfo/GetFounderInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.FounderInfoRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterInfoController",
+    "Method": "GetManagingTrusteeInfo",
+    "RelativePath": "api/MasterInfo/GetManagingTrusteeInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.HomepageRespDTO.ManagingTrusteeInfoRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.OccDesignationController",
+    "Method": "GetAllOccDesignationList",
+    "RelativePath": "api/OccDesignation/GetAllOccDesignationList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.OccupationaleDesignationRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.ConferenceSchema.PlatformController",
+    "Method": "GetAllPlatformList",
+    "RelativePath": "api/Platform/GetAllPlatformList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.ConferenceSchemaRespDTO.ConferencePlatformRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.PublicationSchema.PublicationsController",
+    "Method": "GetAllBooks",
+    "RelativePath": "api/Publications/GetAllBooks/{PublicationTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PublicationTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.PublicationsRespDTO.BookMasterRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.PublicationSchema.PublicationsController",
+    "Method": "GetAllPublicationType",
+    "RelativePath": "api/Publications/GetAllPublicationType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.PublicationsRespDTO.PublicationTypeMasterRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.PublicationSchema.PublicationsController",
+    "Method": "GetBookDetails",
+    "RelativePath": "api/Publications/GetBookDetails/{BookId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BookId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.PublicationsRespDTO.BookDetailsRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.PublicationSchema.PublicationsController",
+    "Method": "GetPublicationArticleList",
+    "RelativePath": "api/Publications/GetPublicationArticleList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.PublicationsRespDTO.PublicationArticlesRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.UniversityController",
+    "Method": "GetAllUniversityByCountry",
+    "RelativePath": "api/University/GetAllUniversityByCountry/{country}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "country",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.UniversityInstituteRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiriAPI.Controller.MasterSchema.UniversityController",
+    "Method": "GetAllUniversityInstitute",
+    "RelativePath": "api/University/GetAllUniversityInstitute",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.RespDTO.MasterSchemaRespDTO.UniversityInstituteRespDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

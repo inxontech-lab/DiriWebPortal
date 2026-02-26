@@ -1,0 +1,190 @@
+﻿@layout _CommonPageLayout
+@page "/ResearchCell"
+
+@inject IJSRuntime JS
+
+<style type="text/css">
+    .member-card {
+        background-color: #f5f5f5; /* Slightly stronger grey than default */
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Default visible shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+
+        .member-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+        }
+
+    .view-profile-btn {
+        font-size: 0.85rem;
+        padding: 4px 14px; /* thinner height */
+        /* border-radius: 20px;*/
+        background-color: #0d31a3; /* Mitech primary blue */
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        .view-profile-btn:hover {
+            transform: scale(1.08); /* Slightly bigger */
+            background-color: #00306e; /* Keep the same color */
+            color: #fff !important;
+        }
+</style>
+
+
+@*  <div id="main-wrapper"> *@
+@* <div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="/">Home/</a>DIRI Research Cell</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title section-space--mb_60 text-center">
+                    <h3 class="heading">DIRI Research Cell</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<Breadcrumb HeadingText="DIRI Research Cell" IsAcceptingProposal=false ConferenceTittle=false></Breadcrumb>
+
+<!-- breadcrumb-area end -->
+
+<div class="site-wrapper-reveal">
+    <!-- ============ Team Member Wrapper Start =============== -->
+    <div class="team-member-wrapper section-space--pt_100 section-space--pb_70">
+        <div class="container">
+            <div class="row ht-team-member-style-three">
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="Homepage/Patron.jpg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Shajada Syed Irfanul Hoque</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Managing Trustee & Chairman
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="ResearchCell/Asif Mahbub.jpeg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Professor Dr. Asif Mahbub Karim</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Dean, Binary Graduate School, Binary University of Management and Entrepreneurship , Malaysia
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="ResearchCell/Sirajul Islam.jpeg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Dr. Md Sirajul Islam</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Principal, Vidya Bhavana (Dean, Institute of Humanities & Social Sciences)
+                                Professor and Head, Department of Philosophy and Comparative Religions, 
+                                Visva-Bharati (A Central University), Shantiniketan, West Bengal, India
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row ht-team-member-style-three">
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="ResearchCell/Saiful Aspia.jpeg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Kazi Md. Siful Aspea</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Assistant Professor & Formal Head, Deprtment of English,
+                                Chittagong Independent University
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="ResearchCell/Mejbaul Alam.jpeg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Mejbaul Alam Bhuiyan </h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Assistant Professor, Department of Managment,  Nanupur Laila Kabir College,  Farikchhari, Chattogram
+                                PhD Researcher, University of Dhaka
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center member-card bg-light border-0">
+                        <img src="ResearchCell/Ali Asgor.jpeg" class="card-img-top rounded-top" alt="Member Photo" style="object-fit: cover; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1" style="font-weight: 600; color: #333;">Muhammad Ali Asgor</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">
+                                Lecturer, Islamic Stydies, Dilowara Jahan Memorial College,  Bakalia, Chattogram.
+                                PhD Researcher, Department of World Religions and Cultures, University of Dhaka
+                            </p>
+                            <a href="#" class="view-profile-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* <ViewProfileDialog></ViewProfileDialog> *@
+    <!-- ✅ Bootstrap Modal HTML -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Name:</strong> Syed Emdadul Hoque Maizbhandari</p>
+                    <p><strong>Role:</strong> Trustee and Founder</p>
+                    <p>This is a modal showing more detailed profile information using Bootstrap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@* </div> *@
+
+<!--====================  scroll top ====================-->
+<a href="#" class="scroll-top" id="scroll-top">
+    <i class="arrow-top fal fa-long-arrow-up"></i>
+    <i class="arrow-bottom fal fa-long-arrow-up"></i>
+</a>
+<!--====================  End of scroll top  ====================-->
+@code {
+    private async Task ShowModal()
+    {
+        await JS.InvokeVoidAsync("bootstrapInterop.showModal", "#profileModal");
+    }
+}

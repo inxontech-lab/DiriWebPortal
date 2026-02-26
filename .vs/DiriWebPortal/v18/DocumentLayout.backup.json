@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|d:\\darbar\\applications\\darul irfan research institute\\diriwebportal\\diriwebportal\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|solutionrelative:diriwebportal\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|d:\\darbar\\applications\\darul irfan research institute\\diriwebportal\\diriwebportal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|solutionrelative:diriwebportal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|d:\\darbar\\applications\\darul irfan research institute\\diriwebportal\\diriwebportal\\data\\aboutuspagedataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|solutionrelative:diriwebportal\\data\\aboutuspagedataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|d:\\darbar\\applications\\darul irfan research institute\\diriwebportal\\diriwebportal\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|solutionrelative:diriwebportal\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|d:\\darbar\\applications\\darul irfan research institute\\diriwebportal\\diriwebportal\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}|DiriWebPortal\\DiriWebPortal.csproj|solutionrelative:diriwebportal\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.razor",
+              "DocumentMoniker": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Pages\\Index.razor",
+              "RelativeDocumentMoniker": "DiriWebPortal\\Pages\\Index.razor",
+              "ToolTip": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Pages\\Index.razor",
+              "RelativeToolTip": "DiriWebPortal\\Pages\\Index.razor",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAAAA0BAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-22T06:51:28.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\appsettings.json",
+              "RelativeDocumentMoniker": "DiriWebPortal\\appsettings.json",
+              "ToolTip": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\appsettings.json",
+              "RelativeToolTip": "DiriWebPortal\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-21T07:53:31.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AboutUsPageDataService.cs",
+              "DocumentMoniker": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Data\\AboutUsPageDataService.cs",
+              "RelativeDocumentMoniker": "DiriWebPortal\\Data\\AboutUsPageDataService.cs",
+              "ToolTip": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Data\\AboutUsPageDataService.cs",
+              "RelativeToolTip": "DiriWebPortal\\Data\\AboutUsPageDataService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T07:53:25.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Program.cs",
+              "RelativeDocumentMoniker": "DiriWebPortal\\Program.cs",
+              "ToolTip": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\Program.cs",
+              "RelativeToolTip": "DiriWebPortal\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T07:52:53.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.razor",
+              "DocumentMoniker": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\App.razor",
+              "RelativeDocumentMoniker": "DiriWebPortal\\App.razor",
+              "ToolTip": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriWebPortal\\App.razor",
+              "RelativeToolTip": "DiriWebPortal\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-21T07:52:49.397Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

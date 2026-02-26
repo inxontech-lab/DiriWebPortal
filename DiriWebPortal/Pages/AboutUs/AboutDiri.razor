@@ -1,0 +1,96 @@
+﻿@layout _CommonPageLayout
+
+@page "/AboutDiri"
+
+<body>
+
+@* 
+    <div class="preloader-activate preloader-active open_tm_preloader">
+        <div class="preloader-area-wrap">
+            <div class="spinner d-flex justify-content-center align-items-center h-100">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div> *@
+
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a>About Us</li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        @if (aboutUsDetails != null)
+                        {
+                            <div class="col-lg-12">
+                                <div class="section-title section-space--mb_60">
+                                    <div class="team-info ">
+                                        <h5 class="name">About DIRI</h5>
+                                        <p class="text mt-30" style="color:black"> @((MarkupString)aboutUsDetails.AboutUsDetails)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+    <div class="site-wrapper-reveal">
+            <!--====================  Blog Area Start ====================-->
+            <div class="blog-pages-wrapper section-space--pt_100 section-space--pb_70">
+                <div class="container masonry-activation">
+                    <div class="row clearfix masonry-wrap">
+                        <div class="col-lg-4 col-md-6 masonary-item wow move-up">
+                            <!--======= Single Blog Item Start ========-->
+                            <div class="single-blog-item blog-masonry">
+                            </div>
+                            <!--===== Single Blog Item End =========-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====================  Blog Area End  ====================-->
+        </div>
+
+
+
+    <!--====================  search overlay ====================-->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-overlay__header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6 ms-auto col-4">
+                        <!-- search content -->
+                        <div class="search-content text-end">
+                            <span class="mobile-navigation-close-icon" id="search-close-trigger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-overlay__inner">
+            <div class="search-overlay__body">
+                <div class="search-overlay__form">
+                    <form action="#">
+                        <input type="text" placeholder="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of search overlay  ====================-->
+</body>
+
+
+<!-- Mirrored from template.hasthemes.com/mitech/blog-grid-masonry.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Dec 2021 17:21:34 GMT -->
+@code {
+
+}

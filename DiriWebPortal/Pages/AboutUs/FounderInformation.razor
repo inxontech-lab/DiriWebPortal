@@ -1,0 +1,75 @@
+﻿@layout _CommonPageLayout
+
+@page "/Founder1"
+
+<body>    
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a>Founder & Trustee</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="row">
+                        @if(founderInfo != null){
+                            <div class="col-lg-9">
+                                <div class="section-title section-space--mb_60">
+                                    <div class="team-info ">
+                                        <h5 class="name">About Founder and Trustee</h5>
+                                        <p class="text mt-30" style="color:black">@founderInfo.AboutFounder</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="grid-item">
+                                    <div class="ht-team-member">
+                                        <div class="team-image">
+                                            <img class="img-fluid" src="@founderInfo.FounderImagePath" alt="">
+                                            <div class="social-networks">
+                                                <div class="inner">
+                                                    <p style="color:white">Founder & Trustee of DIRI</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="team-info ">
+                                            <h5 class="name">@founderInfo.FounderName</h5>
+                                            <div class="position">Founder & Trustee</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+
+    <FooterArea></FooterArea>
+
+
+    <!--====================  scroll top ====================-->
+    <a href="#" class="scroll-top" id="scroll-top">
+        <i class="arrow-top fal fa-long-arrow-up"></i>
+        <i class="arrow-bottom fal fa-long-arrow-up"></i>
+    </a>
+    <!--====================  End of scroll top  ====================-->
+    
+    <!--====================  mobile menu overlay ====================-->
+    <MobileMenu></MobileMenu>
+    <!--====================  End of mobile menu overlay  ====================-->
+</body>
+
+
+<!-- Mirrored from template.hasthemes.com/mitech/blog-grid-masonry.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Dec 2021 17:21:34 GMT -->
+
+
+@code {
+
+}

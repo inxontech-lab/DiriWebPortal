@@ -1,0 +1,137 @@
+﻿<style type="text/css">
+    .header-top-bar-info {
+        position: sticky;
+        top: 0;
+        z-index: 1100; /* higher than menu */
+    }
+
+    .header__logo img {
+        width: 140px !important;
+        height: 70px !important;
+        object-fit: contain;
+    }
+
+    .navigation-menu.primary--menu > ul > li > a {
+        font-size: 14px; /* adjust size as needed */
+        font-weight: 500; /* optional: control thickness */
+        line-height: 1.2; /* keeps it compact */
+    }
+
+    .navigation-menu.primary--menu > ul > li {
+        margin: 0 6px;
+    }
+
+    .submenu > li > a {
+        display: block;
+        font-size: 14px;
+        padding: 2px 30px;
+        color: #ababab;
+    }
+</style>
+
+<div class="header-area header-area--absolute">
+    <div class="header-bottom-wrap header-sticky">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="header-top-bar-info bg-gray d-lg-block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-center top-message"><a href="/upcoming-conference/4">Upcoming International Conference: Perfected Humanity and Syed Ahmad Ullah's Maizbhandari Tariqa. 21 January, 2026 </a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="header default-menu-style position-relative">
+                        <div class="col-1 col-lg-1col-1 col-lg-1">
+                            @* <div class="header__logo">
+                                <a href="/">
+                                    <img src="assets/images/diri.png" class="img-fluid" alt="">
+                                </a>
+                            </div> *@
+                        </div>
+                        <div class="col-8 col-lg-10">
+                            <div class="header-midle-box">
+                                <div class="header-bottom-wrap d-md-block d-none">
+                                    <div class="header-bottom-inner">
+                                        <div class="header-bottom-left-wrap">
+                                            <!-- navigation menu -->
+                                            <div class="header__navigation d-none d-xl-block">
+                                                <nav class="navigation-menu primary--menu">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="header__logo">
+                                                                <a href="/">
+                                                                    <img src="assets/images/diri.webp" class="img-fluid" alt="">
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                        <li class="has-children has-children--multilevel-submenu">
+                                                            <a href="#"><span>About Us</span></a>
+                                                            <ul class="submenu">
+                                                                <li><a href="/Founder"><span>Message From Trustee & Founder</span></a></li>
+                                                                <li><a href="/ManagingTrustee"><span>Message From Managing Trustee & Chairman</span></a></li>
+                                                                <li><a href="/AboutDiri"><span>DIRI At a Glance</span></a></li>
+                                                                <li><a href="/test"><span>Our Vision</span></a></li>
+                                                                <li><a href="/DiriCommittee"><span>DIRI Committee</span></a></li>
+                                                                <li><a href="/ResearchCell"><span>DIRI Research Cell</span></a></li>
+                                                                <li><a href="/Collaboration"><span>Collaborations</span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="has-children has-children--multilevel-submenu">
+                                                           @*  <a href="@GetHref("conference")"><span>Conferences</span></a> *@
+                                                            <ul class="submenu">
+                                                                <li><a href="/conference"><span>DIRI International Conference</span></a></li>
+                                                                <li><a href="/proceedings"><span>Conference Proceedings</span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/DiriJournals"><span>Journals</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/publications"><span>Publications</span></a>
+                                                        </li>
+                                                        <li>
+                                                           @*  <a href="@GetHref("academics")"><span>Academics</span></a> *@
+                                                        </li>
+                                                        <li>
+                                                            <a href="/PhotoAward"><span>Photo Award</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href=""><span>Maizbhandari Sufi Song</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/photogallery"><span>Gallery</span></a>
+                                                        </li>
+                                                        <li>
+                                                            @* <a href="@GetHref("contact-us")"><span>Contact Us</span></a> *@
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 col-lg-1 text-end" style="height:40px; padding-top:10px;padding-bottom:10px">
+                            <div class="header-right-box">
+                                <div class="header-right-inner" id="hidden-icon-wrapper">
+                                </div>
+
+                                <!-- mobile menu -->
+                                <div class="mobile-navigation-icon d-block d-xl-none" id="mobile-menu-trigger">
+                                    <i></i>
+                                </div>
+                                <!-- hidden icons menu -->
+                                <div class="hidden-icons-menu d-block d-md-none" id="hidden-icon-trigger">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

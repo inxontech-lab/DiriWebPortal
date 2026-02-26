@@ -1,0 +1,2911 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DiriAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/AboutUs/GetAboutUsDetails": {
+      "get": {
+        "tags": [
+          "AboutUs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsDetailsRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsDetailsRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsDetailsRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ConfCommitteeDesignation/GetAllConfCommDesignationList": {
+      "get": {
+        "tags": [
+          "ConfCommitteeDesignation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfCommitteeDesignationRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfCommitteeDesignationRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfCommitteeDesignationRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Conference/GetAllConferenceList": {
+      "get": {
+        "tags": [
+          "Conference"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferenceMasterRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferenceMasterRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferenceMasterRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Conference/GetUpcomingConferenceDetails": {
+      "get": {
+        "tags": [
+          "Conference"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpcomingConferenceRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpcomingConferenceRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpcomingConferenceRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Country/GetAllCountryList": {
+      "get": {
+        "tags": [
+          "Country"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Department/GetAllDepartmentList": {
+      "get": {
+        "tags": [
+          "Department"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/execCommitteeDesignation/GetAllExecDesignationList": {
+      "get": {
+        "tags": [
+          "execCommitteeDesignation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutiveCommitteeDesignationRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutiveCommitteeDesignationRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutiveCommitteeDesignationRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetHomePageBanner": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerTextDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerTextDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannerTextDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetNumericDashboard": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NumericDashboard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NumericDashboard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NumericDashboard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetContactUsData": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationDataDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationDataDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationDataDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GeAboutUsSummary": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutUsRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetFounderInfo": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetManagingTrusteeInfo": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HomePage/GetHighlightedEvent": {
+      "get": {
+        "tags": [
+          "HomePage"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighlightedEventRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighlightedEventRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighlightedEventRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Journals/GetAllJournalList": {
+      "get": {
+        "tags": [
+          "Journals"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalMasterRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalMasterRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalMasterRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Journals/GetJournalDetailsByVolumeId/{VolumeId}": {
+      "get": {
+        "tags": [
+          "Journals"
+        ],
+        "parameters": [
+          {
+            "name": "VolumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalDetailsRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalDetailsRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalDetailsRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ManagingTrustee/GetManagingTrusteeDesignation": {
+      "get": {
+        "tags": [
+          "ManagingTrustee"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTusteeDesigRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTusteeDesigRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTusteeDesigRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ManagingTrustee/GetManagingTrusteeArticles": {
+      "get": {
+        "tags": [
+          "ManagingTrustee"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeArticlesRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeArticlesRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeArticlesRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ManagingTrustee/GetManagingTrusteePublications": {
+      "get": {
+        "tags": [
+          "ManagingTrustee"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteePubRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteePubRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteePubRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MasterInfo/GetFounderInfo": {
+      "get": {
+        "tags": [
+          "MasterInfo"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FounderInfoRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MasterInfo/GetManagingTrusteeInfo": {
+      "get": {
+        "tags": [
+          "MasterInfo"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagingTrusteeInfoRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/OccDesignation/GetAllOccDesignationList": {
+      "get": {
+        "tags": [
+          "OccDesignation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccupationaleDesignationRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccupationaleDesignationRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccupationaleDesignationRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Platform/GetAllPlatformList": {
+      "get": {
+        "tags": [
+          "Platform"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferencePlatformRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferencePlatformRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConferencePlatformRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Publications/GetPublicationArticleList": {
+      "get": {
+        "tags": [
+          "Publications"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationArticlesRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationArticlesRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationArticlesRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Publications/GetAllPublicationType": {
+      "get": {
+        "tags": [
+          "Publications"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationTypeMasterRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationTypeMasterRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationTypeMasterRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Publications/GetAllBooks/{PublicationTypeId}": {
+      "get": {
+        "tags": [
+          "Publications"
+        ],
+        "parameters": [
+          {
+            "name": "PublicationTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookMasterRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookMasterRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookMasterRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Publications/GetBookDetails/{BookId}": {
+      "get": {
+        "tags": [
+          "Publications"
+        ],
+        "parameters": [
+          {
+            "name": "BookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDetailsRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDetailsRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDetailsRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/University/GetAllUniversityInstitute": {
+      "get": {
+        "tags": [
+          "University"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/University/GetAllUniversityByCountry/{country}": {
+      "get": {
+        "tags": [
+          "University"
+        ],
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversityInstituteRespDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AboutU": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "aboutUsTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "abouUsText": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AboutUsDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "heading1": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading2": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading3": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading4": {
+            "type": "string",
+            "nullable": true
+          },
+          "aboutUsDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "yearsOfJourney": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AboutUsDetailsRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "aboutUsDetails": {
+            "$ref": "#/components/schemas/AboutUsDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AboutUsRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "aboutUs": {
+            "$ref": "#/components/schemas/AboutU"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArticleAttachmentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attachmentLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachmentTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachmentSerial": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArticleDTO": {
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "volumeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "abstract": {
+            "type": "string",
+            "nullable": true
+          },
+          "doi": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "keywords": {
+            "type": "string",
+            "nullable": true
+          },
+          "pages": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResearcherDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BannerText": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bannerImageLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleText": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BannerTextDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "bannerData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BannerText"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookDetailsDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicationTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bookNameEng": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookNameBn": {
+            "type": "string",
+            "nullable": true
+          },
+          "writterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "publisherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstPublishedYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnailLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "attachmentLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachmentTittle": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachmentSerial": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookDetailsRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookDetailsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookMaster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicationTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bookNameEng": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookNameBn": {
+            "type": "string",
+            "nullable": true
+          },
+          "writterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "publisherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstPublishedYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentEditionNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "thumbnailLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookMasterRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookMaster"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfCommitteeDesignation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "committeeDesignation": {
+            "type": "string",
+            "nullable": true
+          },
+          "seniority": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfCommitteeDesignationRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConfCommitteeDesignation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConferenceDetailsDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "conferenceTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "conferenceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "confrenceFromDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "conferenceTodate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mainThemeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "vanueLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy1": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy2": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy3": {
+            "type": "string",
+            "nullable": true
+          },
+          "bannerImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "heroImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "callForPaperPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "conferenceScheduleFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainTheme": {
+            "type": "string",
+            "nullable": true
+          },
+          "subThemes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "importantDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportantDateDTO"
+            },
+            "nullable": true
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "instructions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstructionDTO"
+            },
+            "nullable": true
+          },
+          "organizers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizerDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConferenceMaster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "conferenceYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "confrenceFromDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "conferenceTodate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mainThemeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "conferenceTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "conferenceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "platform": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "vanueLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy1": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy2": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizedBy3": {
+            "type": "string",
+            "nullable": true
+          },
+          "bannerImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "heroImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAcceptingProposal": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "callForPaperPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "conferenceScheduleFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "highlightSwitch": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConferenceMasterRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConferenceMaster"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConferencePlatformRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlatformMaster"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactU": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organizationTittle": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "division": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "string",
+            "nullable": true
+          },
+          "policeStation": {
+            "type": "string",
+            "nullable": true
+          },
+          "postOffice": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "email1": {
+            "type": "string",
+            "nullable": true
+          },
+          "email2": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile1": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile2": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationMap": {
+            "type": "string",
+            "nullable": true
+          },
+          "logoLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "twitterLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "facebookLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkedinLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Country": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "countryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CountryRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Country"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Department": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departmentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Department"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutiveCommitteeDesignation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "seniority": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutiveCommitteeDesignationRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExecutiveCommitteeDesignation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FounderInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "founderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderTittle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderTittle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "aboutFounder": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FounderInfoRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderInfo": {
+            "$ref": "#/components/schemas/FounderInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HighlightedEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "heading1": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading2": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading3": {
+            "type": "string",
+            "nullable": true
+          },
+          "heading4": {
+            "type": "string",
+            "nullable": true
+          },
+          "imagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HighlightedEventRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "highlightedEvent": {
+            "$ref": "#/components/schemas/HighlightedEvent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImportantDateDTO": {
+        "type": "object",
+        "properties": {
+          "actionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstructionDTO": {
+        "type": "object",
+        "properties": {
+          "instructionTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalDTO": {
+        "type": "object",
+        "properties": {
+          "journalId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instituteId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "journalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "issn": {
+            "type": "string",
+            "nullable": true
+          },
+          "publisherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "volume": {
+            "$ref": "#/components/schemas/VolumeDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalDetailsRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "journalDTO": {
+            "$ref": "#/components/schemas/JournalDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalMasterRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalVolumeDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalVolumeDTO": {
+        "type": "object",
+        "properties": {
+          "journalId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instituteId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "journalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "issn": {
+            "type": "string",
+            "nullable": true
+          },
+          "publisherName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "volumeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "volumeNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "issueNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "publicationYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "publicationMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "volumeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "doI_Prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "volumePdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "volumeThumbnail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteeArticle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "articleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "articleLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteeArticlesRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeArticle": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ManagingTrusteeArticle"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteeDesignation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "designationDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteeInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "managingTrusteeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeNameTittle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeNameTittle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "aboutManagingTrustee": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteeInfoRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeInfo": {
+            "$ref": "#/components/schemas/ManagingTrusteeInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteePubRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteePublications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ManagingTrusteePublication"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTrusteePublication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicationLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManagingTusteeDesigRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "managingTrusteeDesignation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ManagingTrusteeDesignation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NumericDashboard": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalJournal": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "researchTittle": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "universityInvolved": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "conference": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OccupationalDesignation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "occupationalDesignationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OccupationaleDesignationRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OccupationalDesignation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationDataDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactU": {
+            "$ref": "#/components/schemas/ContactU"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizerDTO": {
+        "type": "object",
+        "properties": {
+          "organizerNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizerNameBn": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizerNameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressBn": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformMaster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "confPlatform": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicationArticlesRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "_lstPublicationsArticles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicationsArticlesDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicationTypeMaster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicationTypeDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicationTypeMasterRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicationTypeMaster"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicationsArticlesDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "articleNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "articleDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullArticle": {
+            "type": "string",
+            "nullable": true
+          },
+          "publisher": {
+            "type": "string",
+            "nullable": true
+          },
+          "doi": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "articleTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "articleTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "writers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WriterDto"
+            },
+            "nullable": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleAttachmentDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResearcherDTO": {
+        "type": "object",
+        "properties": {
+          "researcherId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "affiliation": {
+            "type": "string",
+            "nullable": true
+          },
+          "orcid": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "biography": {
+            "type": "string",
+            "nullable": true
+          },
+          "photoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "authorOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCorrespondingAuthor": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UniversityInstitute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "universityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UniversityInstituteRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "lstData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UniversityInstitute"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpcomingConferenceRespDTO": {
+        "type": "object",
+        "properties": {
+          "responsE_CODE": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsE_DESCRPTION": {
+            "type": "string",
+            "nullable": true
+          },
+          "_lstConferenceDetailsDTO": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConferenceDetailsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VolumeDTO": {
+        "type": "object",
+        "properties": {
+          "volumeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "journalId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "volumeNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "issueNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "publicationYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "publicationMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "editorialBoard": {
+            "type": "string",
+            "nullable": true
+          },
+          "editorial": {
+            "type": "string",
+            "nullable": true
+          },
+          "doI_Prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "articles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WriterDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "writerNameEn": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

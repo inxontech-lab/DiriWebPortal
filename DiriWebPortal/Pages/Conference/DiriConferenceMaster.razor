@@ -1,0 +1,153 @@
+﻿@layout _CommonPageLayout
+
+@page "/conference"
+
+@if (conferenceMaster != null)
+{
+    if (conferenceMaster.Where(x => x.IsAcceptingProposal == 1).Count() > 0)
+    {
+        conferenceTittle = conferenceMaster.Where(x => x.IsAcceptingProposal == 1).Select(x => x.ConferenceTitle).FirstOrDefault();
+        isAcceptingProposal = true;
+    }
+    else
+    {
+        isAcceptingProposal = false;
+    }
+}
+<Breadcrumb HeadingText="DIRI International Conference" IsAcceptingProposal=@isAcceptingProposal ConferenceTittle=@conferenceTittle></Breadcrumb>
+
+
+
+
+
+
+
+@* <div id="main-wrapper"> *@
+    <div class="site-wrapper-reveal">
+
+        @if (highlightedEvent != null)
+        {
+            <div class="timeline-area section-space--ptb_60" id="conference">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title-wrap text-left section-space--mb_30">
+                                <h4 class="heading">@((MarkupString)highlightedEvent.Heading1)</h4>
+                                @* <h2 class="heading">
+                                            @((MarkupString)highlightedEvent.Heading2)
+                                        </h2> *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="image-inner-video-section">
+                                <div class="main-video-box video-popup">
+                                    <a href="" class="video-link  mt-30">
+                                        <div class="single-popup-wrap">
+                                            <img class="img-fluid border-radus-5" src="@highlightedEvent.ImagePath" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                               @*  <div class="machine-learning-mark-text mt-30">
+                                    @((MarkupString)highlightedEvent.ImageDescription)
+                                </div> *@
+                            </div>
+                        </div>
+                        <div class="col-lg-5 ms-auto mt-30">
+                            <div class="machine-learning-about-content">
+                                <div class="section-title mb-20">
+                                    <h4>@((MarkupString)highlightedEvent.Heading3)</h4>
+                                    <p class="dec-text mt-20">
+                                        @highlightedEvent.Description
+                                    </p>
+                                    <div class="button-box mt-30">
+                                        <a href="/upcoming-conference/4" class="ht-btn ht-btn-md">More details about upcoming conference</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div class="machine-learning-about-company-area machine-learning-about-bg section-space--ptb_120">
+                <div class="container">
+                    <div class="row">
+                        @if (conferenceMaster != null)
+                            {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title-wrap text-center section-space--mb_30">
+                                <h4 class="heading">Previous Conferences</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="ht-timeline style-01">
+
+                            <ul class="tm-timeline-list ht-animation-queue">
+                                <li class="line"></li>
+                                @foreach (var conf in conferenceMaster)
+                                {
+                                    <li class="item animate">
+                                        <div class="dots">
+                                            <div class="middle-dot"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 timeline-col left timeline-feature">
+                                                <div class="inner">
+                                                    <div class="date-wrap">
+                                                        <h2 class="year">@conf.ConferenceYear</h2>
+                                                    </div>
+
+                                                    <div class="photo">
+                                                        <img src="@conf.BannerImagePath" alt="timeline-image-01" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 timeline-col right timeline-info">
+                                                <div class="inner">
+                                                    <div class="content-wrap">
+                                                        <div class="content-body">
+                                                            <h6 class="heading">@conf.ConferenceTitle</h6>
+
+                                                            <div class="text">
+                                                                @* @conf.ShortDescription *@
+                                                            </div>
+                                                            <div class="sider-title-button-box mt-30">
+                                                                @*  <a href="/conference-details" class="btn-text font-weight--bold small-mt__20">View details <i class="ml-1 button-icon far fa-long-arrow-right"></i></a> *@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                            }
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+    @* <FooterArea></FooterArea> *@
+@* </div> *@
+
+@code{
+    private bool isAcceptingProposal {get; set;}
+    private string? conferenceTittle { get; set; }
+}
+
+
+
+  
+
+
+

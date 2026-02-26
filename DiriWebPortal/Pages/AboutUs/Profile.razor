@@ -1,0 +1,31 @@
+﻿ge "/profile"
+@inject IJSRuntime JS
+
+<div class="text-center">
+    <h3>View Member</h3>
+    <button class="btn btn-primary" @onclick="ShowModal">View Profile</button>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profileModalLabel">Profile Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Name:</strong> Syed Emdadul Hoque Maizbhandari</p>
+                <p><strong>Role:</strong> Trustee and Founder</p>
+                <p>This modal works with Bootstrap and Blazor together ✅</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task ShowModal()
+    {
+        await JS.InvokeVoidAsync("bootstrapInterop.showModal", "#profileModal");
+    }
+}

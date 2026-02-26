@@ -1,0 +1,136 @@
+﻿@layout _CommonPageLayout
+
+@page "/reader/{BookId:int}"
+
+<style>
+    .protected {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+    .member-card {
+    background-color: #f5f5f5; /* Slightly stronger grey than default */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Default visible shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    }
+
+    .member-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    }
+
+</style>
+
+@if (_lstBookDetailsDTO != null && _lstBookDetailsDTO.Count() > 0)
+{
+    <div class="breadcrumb-area" style="height: 400px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a><a href="/publications">DIRI Publications/</a>@_lstBookDetailsDTO.FirstOrDefault().BookNameEng</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title section-space--mb_60 text-center">
+                        <h2 class="breadcrumb-title text-color-primary">DIRI Publications</h2>
+                        <h4 class="breadcrumb-title text-color-primary">@_lstBookDetailsDTO.FirstOrDefault().BookNameEng</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-wrapper-reveal section-space--pt_60 section-space--pb_70">
+        <div class="container">
+            @if (_lstBookDetailsDTO != null && _lstBookDetailsDTO.Count() > 0)
+            {
+                <div class="row" style="margin-top:25px;">
+                    <div class="col-lg-4">
+                        <div class="section-title section-space--mb_60">
+                            <div class="card h-100 text-center member-card bg-light border-0">
+                                <img src="@_lstBookDetailsDTO.FirstOrDefault().ThumbnailLocation" class="card-img-top rounded-top"
+                                        style="object-fit: cover; height: 350px;">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-1" style="font-weight: 600; color: #333;">@_lstBookDetailsDTO.FirstOrDefault().BookNameEng</h6>
+                                    <p class="card-text text-muted" style="font-size: 0.9rem;">@_lstBookDetailsDTO.FirstOrDefault().WritterName</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 ht-team-member-style-one">
+                       <div class="portfolio-details-content">
+                            <div class="portfolio-details-table section-space--mt_60">
+                                <table class="">
+                                    <tbody>
+                                        @foreach (var lst in _lstBookDetailsDTO)
+                                        {
+                                             <tr class="portfolio-details-tags">
+                                                <td class="label">@lst.AttachmentTittle</td>
+                                                <td><a href="@lst.AttachmentLocation" target="_blank" rel="tag">Click Here</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="breadcrumb-area" style="height: 400px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_box text-center" style="margin-bottom:20px">
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="/">Home/</a><a href="/publications">DIRI Publications/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title section-space--mb_60 text-center">
+                        <h2 class="breadcrumb-title text-color-primary">DIRI Publications</h2>
+                        <h4 class="breadcrumb-title text-color-primary"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-wrapper-reveal section-space--pb_70">
+        <div class="container">
+            <div class="row" style="margin-top:25px;">
+                <div class="col-lg-8 ht-team-member-style-one">
+                    <div class="portfolio-details-content">
+                        <div class="portfolio-details-table section-space--mt_60">
+                            <table class="">
+                                <tbody>
+                                    <tr class="portfolio-details-tags">
+                                        <td class="label">Book details not fouond</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+}

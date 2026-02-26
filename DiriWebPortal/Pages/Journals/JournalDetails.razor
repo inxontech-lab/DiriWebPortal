@@ -1,0 +1,186 @@
+﻿@layout _CommonPageLayout
+
+@* @page "/journal-details" *@
+@page "/journal-details/{VolumeId:int}"
+
+<style>
+    .protected {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+    .member-card {
+    /* background-color: #f5f5f5; */ /* Slightly stronger grey than default */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Default visible shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    }
+
+    .member-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    }
+
+</style>
+
+
+@if (VolumeId > 0)
+{
+    <div id="main-wrapper">
+        <div class="breadcrumb-area" style="height: 330px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_box text-center">
+                            <div class="breadcrumb_box text-center">
+                                <ul class="breadcrumb-list">
+                                    <li class="breadcrumb-item"><a href="/">Home/</a><a href="/DiriJournals">Journals/</a>@_JournalDTO?.JournalName Volume: @_JournalDTO?.Volume?.VolumeNumber</li>
+                                </ul>
+                            </div>
+
+                            <h1 class="breadcrumb-title text-color-primary">DIRI Journals</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-wrapper-reveal section-space--pt_60" style="margin-top:-50px">
+            <div class="projects-wrapper projectinfotechno-bg section-space--pt_60 section-space--ptb_100">
+                <div class="container">
+                    @if (_JournalDTO != null)
+                    {
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="section-title section-space--mb_60">
+                                    <div class="card h-100 text-center member-card bg-light border-0">
+                                        <img src="@_JournalDTO?.Volume?.Thumbnail" class="card-img-top rounded-top"
+                                        style="object-fit: cover; ">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 ht-team-member-style-one">
+                                <div class="portfolio-details-content">
+                                    <div class="text mb-30">
+                                        <b>@_JournalDTO?.JournalName</b> <br>
+                                        <i>@_JournalDTO?.Description</i> <br />
+                                        <b>ISSN: @_JournalDTO?.ISSN</b>
+                                    </div>
+                                    <div class="portfolio-details-table">
+                                        <ul class="check-list section-space--mb_40">
+                                            <li class="list-item">Volume: @_JournalDTO?.Volume?.VolumeNumber</li>
+                                            <li class="list-item">Issue: @_JournalDTO?.Volume?.IssueNumber</li>
+                                            <li class="list-item">Publication Year: @_JournalDTO?.Volume?.PublicationYear </li>
+                                            <li class="list-item">Publisher: @_JournalDTO?.PublisherName</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="portfolio-details-content">
+                                    <div class="text mb-30">
+                                        <a href="@_JournalDTO?.PdfUrl" target="_blank" rel="tag" class="ht-btn ht-btn-sm" style="margin-top:-20px">Download Full Volume</a>
+                                    </div>
+                                    <ul class="footer-widget__list">
+                                        <li>
+                                            @if (@_JournalDTO?.Volume?.EditorialBoard != null)
+                                            {
+                                                <a href="@_JournalDTO?.Volume?.EditorialBoard" target="_blank" class="hover-style-link">
+                                                    View Editorial Board
+                                                </a>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (@_JournalDTO?.Volume?.Editorial != null)
+                                            {
+                                                <a href="@_JournalDTO?.Volume?.Editorial" target="_blank" class="hover-style-link">
+                                                    Read Volume Editorial
+                                                </a>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- section-title-wrap Start -->
+                                <div class="section-title-wrap text-start section-space--mb_15">
+                                    <h3 class="heading">Articles</h3>
+                                </div>
+                                <!-- section-title-wrap Start -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="projects-wrap swiper-container projects-slider__container">
+                                    <ol class="comment-list">
+                                        @if (_JournalDTO?.Volume?.Articles != null)
+                                        {
+                                            @foreach (var val in _JournalDTO?.Volume?.Articles)
+                                            {
+                                                <li class="comment border-bottom">
+                                                    <div class="meta">
+                                                        <h6 class="fn">
+                                                            <a href="@val.PDFUrl" target="_blank" rel="tag">
+                                                                @val.Title
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p>Keywords: @val.Keywords</p>
+                                                    </div>
+
+                                                    <div class="comment-actions">
+                                                        <div class="comment-reply-link">
+                                                            @{
+                                                                int i = 1;
+                                                                string authors = "";
+                                                            }
+                                                            @foreach (var newVal in val.Authors)
+                                                            {
+                                                                if (i == 1) {
+                                                                    authors = newVal?.FullName;
+                                                                }
+                                                                else
+                                                                {
+                                                                    authors = authors + ", " + newVal?.FullName;
+                                                                }
+                                                                i++;
+                                                            }
+                                                            <p>@authors</p>
+                                                        </div>|
+                                                        <div class="comment-reply-link"> Language: @val.Language </div>|
+                                                        <div class="comment-reply-link"> Published: @val.PublishedDate?.ToString("MMMM d, yyyy")</div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                    </ol>
+
+                                </div>
+
+                                <div class="section-under-heading text-center section-space--mt_40">Back To <a href="/DiriJournals">Journals</a></div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+
+@code {
+
+}

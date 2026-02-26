@@ -1,0 +1,9 @@
+CorrelationId: 0cbb5748-2fc5-46c5-b20f-69a068c4d8e1
+UTC DateTime: 01/21/2026 07:15:40
+
+The following files/folders have not been downloaded
+0. DiriJournal/obj/Debug/net8.0/DiriJour.54F63AD8.Up2Date
+1. DiriJournal/obj/Debug/net8.0/DiriJournal.MvcApplicationPartsAssemblyInfo.cache
+2. DiriJournal/obj/Debug/net8.0/staticwebassets.references.upToDateCheck.txt
+3. DiriJournal/obj/Debug/net8.0/staticwebassets.removed.txt
+4. DiriJournal/obj/Debug/net8.0/swae.build.ex.cache

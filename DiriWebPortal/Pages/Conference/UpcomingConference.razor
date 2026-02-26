@@ -1,0 +1,440 @@
+﻿@page "/upcoming-conference/{ConferenceId:int}"
+
+
+<style type="text/css">
+    /* Custom conference tweaks */
+    .conference-hero {
+    background: linear-gradient(120deg, #0a1f44, #1665c1);
+    color: #fff;
+    padding: 180px 0 150px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    }
+
+    .conference-hero .title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    }
+
+    .conference-hero .subtitle {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    opacity: 0.9;
+    }
+
+    .conference-section {
+    padding: 80px 0;
+    }
+
+    .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--theme-color-primary, #1665c1);
+    }
+
+    .conf-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    }
+
+    .conf-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    }
+
+    .conf-table tr:last-child td {
+    border-bottom: none;
+    }
+
+    .speaker-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 30px;
+    transition: all 0.3s ease;
+    }
+
+    .speaker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .speaker-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    }
+
+    .conf-btn {
+    background: var(--theme-color-primary, #1665c1);
+    color: #fff;
+    border-radius: 50px;
+    padding: 12px 30px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+    }
+
+    .conf-btn:hover {
+    background: #0d4a93;
+    color: #fff;
+    }
+
+    .speaker-card img.no-round {
+    border-radius: 10% !important;
+    height: 100px;
+    width: auto;
+    /*object-fit: contain !important;
+    width: 100%;
+    height: 20%;
+    background: none; */
+    }
+</style>
+
+
+<body>
+    <div id="main-wrapper">
+        <HeaderAreaDefault></HeaderAreaDefault>
+        @if (ConferenceDetails != null)
+        {
+            <div class="conference-hero" style="background-image: url(@ConferenceDetails.HeroImagePath); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                <div class="container">
+                    <h1 class="title wow fadeInUp" data-wow-delay="0.2s">
+                        @ConferenceDetails.ConferenceTitle
+                    </h1>
+
+                    <p class="subtitle wow fadeInUp text-color-primary" data-wow-delay="0.4s">
+                        <b>@ConferenceDetails.ConferenceCode</b>
+                    </p>
+                    <a href="@ConferenceDetails.CallForPaperPath" target="_blank" rel="tag" class="conf-btn mt-4 wow fadeInUp" data-wow-delay="0.6s">View Call for Paper</a>
+                </div>
+            </div>
+
+            @if (ConferenceDetails.Organizers?.Any() == true)
+            {
+                <div id="Founder" class="conference-section section-space--ptb60">
+                    <div class="container text-center">
+                        <div class="row text-center">
+                            <h2 class="section-title">Jointly Organized By</h2>
+                            @foreach (var i in Enumerable.Range(0, (ConferenceDetails.Organizers.Count + 1) / 2))
+                            {
+                                @foreach (var organizer in ConferenceDetails.Organizers.Skip(i * 2).Take(2))
+                                {
+                                    <div class="col-lg-6 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                                        <div class="wow fadeInUp" data-wow-delay="0.3s">
+                                            <div class="speaker-card">
+                                                <img class="no-round" src="@organizer.Logo" alt="@organizer.OrganizerNameEn">
+                                                <h5 class="mt-3 mb-1">@organizer.OrganizerNameEn</h5>
+                                                <p>@organizer.AddressEn</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- About -->
+            @* <div id="about" class="conference-section section-space--ptb_120">
+                <div class="container text-center">
+                    <h2 class="section-title">About Maizbhandari Tariqa</h2>
+                    <p class="wow fadeInUp" data-wow-delay="0.3s">
+                        @((MarkupString)ConferenceDetails.ShortDescription)
+                        The conference explores the spiritual and philosophical foundations of Perfected Humanity through
+                        the Maizbhandari Sufi tradition. Organized by
+                        <strong>Darul Irfan Research Institute (DIRI)</strong>,
+                        it aims to foster unity, dialogue, and understanding across cultures and faiths.
+                    </p>
+                </div>
+            </div> *@
+
+            <!-- Founder -->
+            @* <div id="Founder" class="conference-section bg-gray section-space--ptb60">
+                <div class="container text-center">
+                    <div class="row text-center">
+                        <div class="col-lg-6 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <h2 class="section-title">Chief Patron</h2>
+                            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="speaker-card">
+                                    <img src="@founderInfo.FounderImagePath" alt="@founderInfo.FounderName">
+                                    <h5 class="mt-3 mb-1">@founderInfo.FounderName</h5>
+                                    <p>Chief Patron</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <h2 class="section-title">Patron</h2>
+                            <div class="wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="speaker-card">
+                                    <img src="@managingTrusteeInfo.ManagingTrusteeImagePath" alt="@managingTrusteeInfo.ManagingTrusteeName">
+                                    <h5 class="mt-3 mb-1">@managingTrusteeInfo.ManagingTrusteeName</h5>
+                                    <p>Patron</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> *@
+
+
+            <!-- Themes -->
+            <div id="themes" class="conference-section bg-gray">
+                <div class="container text-center">
+                    <h2 class="section-title">Main Theme</h2>
+                    <h5 class="wow fadeInUp" data-wow-delay="0.3s">
+                        @ConferenceDetails.MainTheme
+                    </h5>
+                </div>
+            </div>
+
+            <!-- Sub Themes -->
+            <div id="subthemes" class="conference-section">
+                <div class="container">
+                    <h2 class="section-title text-center">Sub Theme</h2>
+                    <table class="conf-table wow fadeInUp text-start" data-wow-delay="0.3s">
+                        <tbody>
+                            @if (ConferenceDetails.SubThemes != null && ConferenceDetails.SubThemes.Count() > 0)
+                            {
+                                int i = 1;
+                                @foreach (var val in ConferenceDetails.SubThemes)
+                                {
+                                    <tr>
+                                        <td><b>@i.</b></td>
+                                        <td>@val</td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (ConferenceDetails?.Instructions != null)
+            {
+                @* var sanitizer = new HtmlSanitizer(); *@
+                var themeIndex = 0;
+                @foreach (var group in ConferenceDetails.Instructions)
+                {
+                    // alternate outer div class
+                    var outerClass = (themeIndex % 2 == 0) ? "conference-section bg-gray" : "conference-section";
+                    themeIndex++;
+
+                    <div id="themes" class="@outerClass">
+                        <div class="container text-center">
+                            <h2 class="section-title">@group.InstructionTitle</h2>
+
+                            @if (group.Details != null && group.Details.Any())
+                            {
+                                var counter = 1; // serial number for inner details
+                                var contactCount = 1;
+                                @foreach (var detail in group.Details.Select((d, index) => new { Detail = d, Index = index }))
+                                {
+                                    if (group.InstructionTitle != null)
+                                    {
+
+                                        if (group.InstructionTitle.Equals("Contact"))
+                                        {
+                                            if (contactCount == 1)
+                                            {
+                                                @((MarkupString)string.Join("<br />", ConferenceDetails.Instructions.Where(x => x.InstructionTitle == "Contact").SelectMany(x => x.Details)))
+                                            }
+                                            contactCount++;
+                                        }
+                                        else if (group.InstructionTitle.Equals("Important Dates"))
+                                        {
+                                            <!-- Important Dates -->
+                                            <div id="dates" class="conference-section section-space--ptb_120">
+                                                <div class="container">
+                                                    <table class="conf-table wow fadeInUp text-start" data-wow-delay="0.3s">
+                                                        <tbody>
+                                                            @if (ConferenceDetails.ImportantDates != null && ConferenceDetails.ImportantDates.Count() > 0)
+                                                            {
+                                                                @foreach (var val in ConferenceDetails.ImportantDates)
+                                                                {
+                                                                    <tr>
+                                                                        <td><b>@val.ActionDescription</b></td>
+                                                                        <td><b>@(val.ActionDate.HasValue ? val.ActionDate.Value.ToString("dd MMMM yyyy") : "---")</b></td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        }
+                                        else if (group.InstructionTitle.Equals("Language"))
+                                        {
+                                            if (ConferenceDetails.Languages.Any())
+                                            {
+                                                @foreach (var val in ConferenceDetails.Languages)
+                                                {
+                                                    @val
+                                                    @* <div class="instruction-div1">
+                                                        @string.Join(", ", val)
+                                                    </div> *@
+                                                }
+                                            }
+                                           
+                                        }
+                                        else
+                                        {
+                                            if (group.Details.Count() == 1)
+                                            {
+                                                if (detail.Index % 2 == 0)
+                                                {
+                                                    <div class="instruction-div1">
+                                                        @((MarkupString)sanitizer.Sanitize(detail.Detail))
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="instruction-div2">
+                                                        @((MarkupString)sanitizer.Sanitize(detail.Detail))
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (detail.Index % 2 == 0)
+                                                {
+                                                    <div class="instruction-div1">
+                                                        <b>@counter.</b> @((MarkupString)detail.Detail)
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="instruction-div2">
+                                                        <b>@counter.</b> @((MarkupString)detail.Detail)
+                                                    </div>
+                                                }
+                                            }
+                                            counter++;
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- Venue -->
+            <div id="venue" class="conference-section section-space--ptb_120">
+                <div class="container text-center">
+                    <h2 class="section-title">Venue</h2>
+                    <p>Chattogram, Bangladesh</p>
+                    <div class="mt-4" style="max-width:800px;margin:auto;">
+                        <iframe src="https://www.google.com/maps?q=Chattogram,Bangladesh&output=embed" width="100%" height="400" style="border:0;" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+           @*  <div id="contact" class="conference-section">
+                <div class="container text-center">
+                    <h2 class="section-title">Contact</h2>
+                    @if (@ConferenceDetails.Instructions != null)
+                    {
+                        <p>
+                            @((MarkupString)string.Join("<br />",
+                                ConferenceDetails.Instructions
+                                .Where(x => x.InstructionTitle == "Contact")
+                                .SelectMany(x => x.Details)))
+                        </p>
+                    }
+                </div>
+            </div> *@
+        }
+        else
+        {
+            <div id="contact" class="conference-section bg-gray section-space--ptb_120">
+                <div class="conference-hero">
+                    <div class="container">
+                        <h1 class="title wow fadeInUp" data-wow-delay="0.2s">
+                            No Upcoming Conference Details Found!
+                        </h1>
+                        <a href="#" class="conf-btn mt-4 wow fadeInUp" data-wow-delay="0.6s">Back to Home Page</a>
+                    </div>
+                </div>
+            </div>
+           
+        }
+
+    
+
+@*     <FooterArea></FooterArea> *@
+
+
+</div>
+
+    <a href="#" class="scroll-top" id="scroll-top">
+        <i class="arrow-top fal fa-long-arrow-up"></i>
+        <i class="arrow-bottom fal fa-long-arrow-up"></i>
+    </a>
+    <MobileMenu></MobileMenu>
+
+
+    <!-- Modernizer JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- jQuery JS -->
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+
+    <!-- Plugins JS (Please remove the comment from below plugins.min.js for better website load performance and remove plugin js files from avobe) -->
+
+    @* <script src="assets/js/plugins/plugins.min.js"></script> *@
+
+
+
+
+    <!-- JS -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/wow.min.js"></script>
+    <script src="assets/js/plugins/aos.js"></script>
+    <script>
+        new WOW().init();
+        AOS.init({ duration: 1000 });
+    </script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').bind('cut copy paste', function (event) {
+                event.preventDefault();
+            });
+        });
+    </script>
+    <script src="_framework/blazor.server.js"></script>
+    <script>
+        window.bootstrapInterop = {
+            showModal: function (selector) {
+                const modalEl = document.querySelector(selector);
+                if (modalEl) {
+                    const modal = new bootstrap.Modal(modalEl);
+                    modal.show();
+                }
+            }
+        };
+    </script>
+</body>
+
+@code {
+
+}
