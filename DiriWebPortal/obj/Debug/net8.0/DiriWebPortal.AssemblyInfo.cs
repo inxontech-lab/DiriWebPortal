@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiriWebPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa89d5166ca6f074fd06935d01d481e38d0789a9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec38a10304e089f326c6c6f96aa32f194b1cdef7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiriWebPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiriWebPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
