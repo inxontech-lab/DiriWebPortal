@@ -1,9 +1,0 @@
-CorrelationId: 97f3193c-3e95-458b-b227-34ab836584f7
-UTC DateTime: 01/21/2026 07:16:55
-
-The following files/folders have not been downloaded
-0. DiriWebAdmin/obj/Debug/net6.0/DiriWebA.9385D2F0.Up2Date
-1. DiriWebAdmin/obj/Debug/net6.0/DiriWebAdmin.MvcApplicationPartsAssemblyInfo.cache
-2. DiriWebAdmin/obj/Debug/net6.0/staticwebassets.references.upToDateCheck.txt
-3. DiriWebAdmin/obj/Debug/net6.0/staticwebassets.removed.txt
-4. DiriWebAdmin/obj/Debug/net6.0/swae.build.ex.cache
