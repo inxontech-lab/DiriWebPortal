@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiriJournal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+689708254d82f0b27a828796165f91a81a4c8c6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiriJournal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiriJournal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

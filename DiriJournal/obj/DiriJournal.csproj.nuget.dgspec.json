@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj": {}
+    "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj": {}
   },
   "projects": {
-    "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj": {
+    "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj",
+        "projectUniqueName": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj",
         "projectName": "DiriJournal",
-        "projectPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj",
-        "packagesPath": "C:\\Users\\midris\\.nuget\\packages\\",
-        "outputPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\obj\\",
+        "projectPath": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\DiriJournal.csproj",
+        "packagesPath": "C:\\Users\\bangl\\.nuget\\packages\\",
+        "outputPath": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\DiriJournal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Installation directory\\Visual studio 2022 shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\midris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bangl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj"
+              "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj"
               }
             }
           }
@@ -47,8 +48,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -78,24 +78,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj": {
+    "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\midris\\.nuget\\packages\\",
-        "outputPath": "D:\\Darbar\\Applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\obj\\",
+        "projectPath": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\bangl\\.nuget\\packages\\",
+        "outputPath": "D:\\Darbar\\Darbar applications\\Darul Irfan Research Institute\\DiriWebPortal\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Installation directory\\Visual studio 2022 shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\midris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bangl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -104,6 +104,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,8 +122,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -167,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

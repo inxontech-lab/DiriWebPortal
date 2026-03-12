@@ -1,7 +1,5 @@
 is_global = true
 build_property.TargetFramework = net6.0
-build_property.TargetFrameworkIdentifier = .NETCoreApp
-build_property.TargetFrameworkVersion = v6.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
@@ -11,41 +9,39 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DiriWebAdmin
 build_property.RootNamespace = DiriWebAdmin
-build_property.ProjectDir = D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriWebAdmin\
+build_property.ProjectDir = D:\Darbar\Darbar applications\Darul Irfan Research Institute\DiriWebPortal\DiriWebAdmin\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Darbar\Applications\Darul Irfan Research Institute\DiriWebPortal\DiriWebAdmin
+build_property.MSBuildProjectDirectory = D:\Darbar\Darbar applications\Darul Irfan Research Institute\DiriWebPortal\DiriWebAdmin
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 6.0
-build_property.EnableCodeStyleSeverity = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Error.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Index.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Privacy.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/_ViewImports.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/_ViewStart.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Darbar/Applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Shared/_Layout.cshtml]
+[D:/Darbar/Darbar applications/Darul Irfan Research Institute/DiriWebPortal/DiriWebAdmin/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fwel4qn29t
