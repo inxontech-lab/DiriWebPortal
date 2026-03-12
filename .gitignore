@@ -6,5 +6,5 @@
 *.sln.docstates
 
 # Build output
-bin/
-obj/
+**/bin/
+**/obj/
