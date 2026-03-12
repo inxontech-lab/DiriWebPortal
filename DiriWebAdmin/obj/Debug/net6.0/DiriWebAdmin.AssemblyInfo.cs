@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiriWebAdmin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec38a10304e089f326c6c6f96aa32f194b1cdef7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+514cf9d243a85b369951c3f5773deb3495f02442")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiriWebAdmin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiriWebAdmin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
