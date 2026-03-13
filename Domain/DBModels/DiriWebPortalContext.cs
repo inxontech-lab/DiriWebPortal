@@ -67,8 +67,6 @@ namespace Domain.DBModels
         public virtual DbSet<MenuLink> MenuLinks { get; set; } = null!;
         public virtual DbSet<NumericDashboard> NumericDashboards { get; set; } = null!;
         public virtual DbSet<OccupationalDesignation> OccupationalDesignations { get; set; } = null!;
-        public virtual DbSet<Organizer> Organizers { get; set; } = null!;
-        public virtual DbSet<OrganizerMaster> OrganizerMasters { get; set; } = null!;
         public virtual DbSet<OrganizingMemberMaster> OrganizingMemberMasters { get; set; } = null!;
         public virtual DbSet<ParticipantsMaster> ParticipantsMasters { get; set; } = null!;
         public virtual DbSet<PlatformMaster> PlatformMasters { get; set; } = null!;
@@ -79,9 +77,12 @@ namespace Domain.DBModels
         public virtual DbSet<ResearchSubCategory> ResearchSubCategories { get; set; } = null!;
         public virtual DbSet<ResearchSubject> ResearchSubjects { get; set; } = null!;
         public virtual DbSet<Researcher> Researchers { get; set; } = null!;
+        public virtual DbSet<RoleMaster> RoleMasters { get; set; } = null!;
         public virtual DbSet<SubTheme> SubThemes { get; set; } = null!;
         public virtual DbSet<UniversityDepartmentMap> UniversityDepartmentMaps { get; set; } = null!;
         public virtual DbSet<UniversityInstitute> UniversityInstitutes { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<VideoMessage> VideoMessages { get; set; } = null!;
         public virtual DbSet<VideoPresenterCategoryMaster> VideoPresenterCategoryMasters { get; set; } = null!;
         public virtual DbSet<Volume> Volumes { get; set; } = null!;
@@ -91,13 +92,14 @@ namespace Domain.DBModels
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Server=167.86.90.42;Database=DiriWebPortal;Trusted_Connection=True;Integrated Security=false;User Id=sa;Password=DiriWeb;TrustServerCertificate=True");
-                optionsBuilder.UseSqlServer("Server=localhost;Database=DiriWebPortal;Trusted_Connection=True;Integrated Security=false;User Id=sa;Password=123;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=DiriWebPortal;Trusted_Connection=True;User Id=sa;Password=123;TrustServerCertificate=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
             modelBuilder.Entity<AboutU>(entity =>
             {
                 entity.ToTable("AboutUs", "HomePage");
@@ -754,36 +756,6 @@ namespace Domain.DBModels
                 entity.Property(e => e.OccupationalDesignationName).HasMaxLength(100);
             });
 
-            modelBuilder.Entity<Organizer>(entity =>
-            {
-                entity.ToTable("Organizers", "Conference");
-            });
-
-            modelBuilder.Entity<OrganizerMaster>(entity =>
-            {
-                entity.ToTable("OrganizerMaster", "Conference");
-
-                entity.Property(e => e.AddressAr).HasMaxLength(100);
-
-                entity.Property(e => e.AddressBn).HasMaxLength(100);
-
-                entity.Property(e => e.AddressEn).HasMaxLength(100);
-
-                entity.Property(e => e.Email).HasMaxLength(50);
-
-                entity.Property(e => e.Logo).HasMaxLength(200);
-
-                entity.Property(e => e.OrganizerNameAr).HasMaxLength(100);
-
-                entity.Property(e => e.OrganizerNameBn).HasMaxLength(100);
-
-                entity.Property(e => e.OrganizerNameEn).HasMaxLength(100);
-
-                entity.Property(e => e.Phone).HasMaxLength(50);
-
-                entity.Property(e => e.Website).HasMaxLength(50);
-            });
-
             modelBuilder.Entity<OrganizingMemberMaster>(entity =>
             {
                 entity.ToTable("OrganizingMemberMaster", "Conference");
@@ -947,6 +919,31 @@ namespace Domain.DBModels
                 entity.Property(e => e.Website).HasMaxLength(300);
             });
 
+            modelBuilder.Entity<RoleMaster>(entity =>
+            {
+                entity.HasKey(e => e.RoleId)
+                    .HasName("PK__RoleMast__8AFACE1A88B12D71");
+
+                entity.ToTable("RoleMaster", "admin");
+
+                entity.HasIndex(e => e.RoleCode, "UQ__RoleMast__D62CB59C9B10C32F")
+                    .IsUnique();
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(100);
+
+                entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(100);
+
+                entity.Property(e => e.RoleCode).HasMaxLength(50);
+
+                entity.Property(e => e.RoleName).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<SubTheme>(entity =>
             {
                 entity.ToTable("SubTheme", "Conference");
@@ -978,6 +975,58 @@ namespace Domain.DBModels
                 entity.Property(e => e.UniversityName).HasMaxLength(200);
 
                 entity.Property(e => e.Website).HasMaxLength(150);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("Users", "admin");
+
+                entity.HasIndex(e => e.LoginId, "UQ__Users__4DDA28193EBD1C3B")
+                    .IsUnique();
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(100);
+
+                entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Email).HasMaxLength(150);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.IsLocked).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.LoginId).HasMaxLength(100);
+
+                entity.Property(e => e.MobileNo).HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(100);
+
+                entity.Property(e => e.PasswordHash).HasMaxLength(500);
+
+                entity.Property(e => e.UserName).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.ToTable("UserRoles", "admin");
+
+                entity.HasIndex(e => new { e.UserId, e.RoleId }, "UQ_UserRole")
+                    .IsUnique();
+
+                entity.Property(e => e.AssignedBy).HasMaxLength(100);
+
+                entity.Property(e => e.AssignedDate).HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.UserRoles)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserRoles_Role");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserRoles)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserRoles_User");
             });
 
             modelBuilder.Entity<VideoMessage>(entity =>
