@@ -15,7 +15,7 @@
             <div class="brand">Diri Admin</div>
             <nav class="nav flex-column">
                 <a class="nav-link" asp-page="/Index">Dashboard</a>
-                <a class="nav-link" asp-page="/RoleMaster/Index">Role Master</a>
+                <a class="nav-link" asp-page="/MasterForms/RoleMaster">Role Master</a>
                 <a class="nav-link" asp-page="/Privacy">Privacy</a>
             </nav>
         </aside>
@@ -34,6 +34,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    <script src="_framework/blazor.server.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

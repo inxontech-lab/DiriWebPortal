@@ -1,0 +1,135 @@
+@page "/masterforms/rolemaster"
+@using RoleMasterModel = Domain.DBModels.RoleMaster
+@using Radzen
+@using Radzen.Blazor
+@inject DiriWebAdmin.Services.RoleMasterApiClient RoleMasterApiClient
+
+<RadzenCard class="rz-p-4">
+    <h3>Role Master CRUD</h3>
+
+    <RadzenTemplateForm TItem="RoleMasterModel" Data="RoleForm" Submit="SaveAsync" class="rz-mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <RadzenLabel Text="Role Name" Component="RoleName" />
+                <RadzenTextBox Name="RoleName" @bind-Value="RoleForm.RoleName" Style="width: 100%;" />
+            </div>
+            <div class="col-md-3">
+                <RadzenLabel Text="Role Code" Component="RoleCode" />
+                <RadzenTextBox Name="RoleCode" @bind-Value="RoleForm.RoleCode" Style="width: 100%;" />
+            </div>
+            <div class="col-md-3">
+                <RadzenLabel Text="Description" Component="Description" />
+                <RadzenTextBox Name="Description" @bind-Value="RoleForm.Description" Style="width: 100%;" />
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <RadzenCheckBox Name="IsActive" @bind-Value="RoleForm.IsActive" TValue="bool?" />
+                <RadzenLabel Text="Active" class="rz-ml-2" />
+            </div>
+        </div>
+
+        <div class="rz-mt-3">
+            <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@(RoleForm.RoleId > 0 ? \"Update\" : \"Create\")" class="rz-mr-2" />
+            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="refresh" Text="Reset" Click="@(_ => ResetForm())" />
+        </div>
+    </RadzenTemplateForm>
+
+    @if (!string.IsNullOrWhiteSpace(StatusMessage))
+    {
+        <RadzenAlert AlertStyle="AlertStyle.Info" class="rz-mb-2">@StatusMessage</RadzenAlert>
+    }
+
+    <RadzenDataGrid Data="Roles" TItem="RoleMasterModel" AllowPaging="true" PageSize="10">
+        <Columns>
+            <RadzenDataGridColumn TItem="RoleMasterModel" Property="RoleId" Title="ID" />
+            <RadzenDataGridColumn TItem="RoleMasterModel" Property="RoleName" Title="Name" />
+            <RadzenDataGridColumn TItem="RoleMasterModel" Property="RoleCode" Title="Code" />
+            <RadzenDataGridColumn TItem="RoleMasterModel" Property="Description" Title="Description" />
+            <RadzenDataGridColumn TItem="RoleMasterModel" Title="Status">
+                <Template Context="role">
+                    @(role.IsActive == true ? "Active" : "Inactive")
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RoleMasterModel" Title="Actions" Width="180px">
+                <Template Context="role">
+                    <RadzenButton Size="ButtonSize.Small" Text="Edit" Icon="edit" class="rz-mr-1" Click="@(_ => EditRole(role))" />
+                    <RadzenButton Size="ButtonSize.Small" Text="Delete" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(_ => DeleteRoleAsync(role.RoleId))" />
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</RadzenCard>
+
+@code {
+    private List<RoleMasterModel> Roles { get; set; } = new();
+
+    private RoleMasterModel RoleForm { get; set; } = new()
+    {
+        IsActive = true
+    };
+
+    private string StatusMessage { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private async Task SaveAsync()
+    {
+        if (string.IsNullOrWhiteSpace(RoleForm.RoleName))
+        {
+            StatusMessage = "Role name is required.";
+            return;
+        }
+
+        if (RoleForm.RoleId > 0)
+        {
+            RoleForm.ModifiedBy ??= "Admin";
+            var result = await RoleMasterApiClient.UpdateAsync(RoleForm);
+            StatusMessage = result?.RESPONSE_DESCRPTION ?? "Role updated.";
+        }
+        else
+        {
+            RoleForm.CreatedBy ??= "Admin";
+            var result = await RoleMasterApiClient.CreateAsync(RoleForm);
+            StatusMessage = result?.RESPONSE_DESCRPTION ?? "Role created.";
+        }
+
+        ResetForm();
+        await LoadDataAsync();
+    }
+
+    private void EditRole(RoleMasterModel role)
+    {
+        RoleForm = new RoleMasterModel
+        {
+            RoleId = role.RoleId,
+            RoleName = role.RoleName,
+            RoleCode = role.RoleCode,
+            Description = role.Description,
+            IsActive = role.IsActive,
+            CreatedBy = role.CreatedBy,
+            ModifiedBy = role.ModifiedBy
+        };
+    }
+
+    private async Task DeleteRoleAsync(int roleId)
+    {
+        await RoleMasterApiClient.DeleteAsync(roleId);
+        StatusMessage = "Role deleted.";
+        await LoadDataAsync();
+    }
+
+    private void ResetForm()
+    {
+        RoleForm = new RoleMasterModel
+        {
+            IsActive = true
+        };
+    }
+
+    private async Task LoadDataAsync()
+    {
+        Roles = await RoleMasterApiClient.GetAllAsync();
+    }
+}
