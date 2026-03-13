@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.6.33723.286
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11605.240 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiriWebPortal", "DiriWebPortal\DiriWebPortal.csproj", "{3A1C1186-DB2B-433C-8FD9-057E897AE8DC}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiriAPI", "DiriAPI\DiriAPI.csproj", "{762A41B0-1271-4933-AAFA-475D1F84EE46}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CD27C404-A21A-4E06-B7D0-927309FCA8F0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiriJournal", "DiriJournal\DiriJournal.csproj", "{831EF4EB-ED34-454E-B036-7C019792CB61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{CD27C404-A21A-4E06-B7D0-927309FCA8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD27C404-A21A-4E06-B7D0-927309FCA8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD27C404-A21A-4E06-B7D0-927309FCA8F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{831EF4EB-ED34-454E-B036-7C019792CB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{831EF4EB-ED34-454E-B036-7C019792CB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{831EF4EB-ED34-454E-B036-7C019792CB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{831EF4EB-ED34-454E-B036-7C019792CB61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
