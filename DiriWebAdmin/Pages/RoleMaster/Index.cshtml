@@ -1,0 +1,97 @@
+@page
+@model DiriWebAdmin.Pages.RoleMaster.IndexModel
+@{
+    ViewData["Title"] = "Role Master";
+}
+
+<div class="page-header">
+    <h2>Role Master CRUD</h2>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="post" asp-page-handler="Save" class="row g-3">
+            <input type="hidden" asp-for="RoleForm.RoleId" />
+
+            <div class="col-md-4">
+                <label asp-for="RoleForm.RoleName" class="form-label">Role Name</label>
+                <input asp-for="RoleForm.RoleName" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <label asp-for="RoleForm.RoleCode" class="form-label">Role Code</label>
+                <input asp-for="RoleForm.RoleCode" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <label asp-for="RoleForm.Description" class="form-label">Description</label>
+                <input asp-for="RoleForm.Description" class="form-control" />
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <div class="form-check">
+                    <input asp-for="RoleForm.IsActive" class="form-check-input" type="checkbox" />
+                    <label asp-for="RoleForm.IsActive" class="form-check-label">Active</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">@(Model.RoleForm.RoleId > 0 ? "Update" : "Create")</button>
+                <a asp-page="/RoleMaster/Index" class="btn btn-outline-secondary ms-2">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+{
+    <div class="alert alert-info">@Model.StatusMessage</div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Roles</h5>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th style="width: 170px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @if (Model.Roles.Any())
+                {
+                    @foreach (var role in Model.Roles)
+                    {
+                        <tr>
+                            <td>@role.RoleId</td>
+                            <td>@role.RoleName</td>
+                            <td>@role.RoleCode</td>
+                            <td>@role.Description</td>
+                            <td>@(role.IsActive == true ? "Active" : "Inactive")</td>
+                            <td>
+                                <a asp-page="/RoleMaster/Index" asp-route-EditId="@role.RoleId" class="btn btn-sm btn-warning">Edit</a>
+                                <form method="post" asp-page-handler="Delete" class="d-inline">
+                                    <input type="hidden" name="roleId" value="@role.RoleId" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this role?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No roles found.</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
