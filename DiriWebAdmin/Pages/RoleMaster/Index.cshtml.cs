@@ -14,10 +14,10 @@ namespace DiriWebAdmin.Pages.RoleMaster
             _roleMasterApiClient = roleMasterApiClient;
         }
 
-        public List<RoleMaster> Roles { get; set; } = new();
+        public List<Domain.DBModels.RoleMaster> Roles { get; set; } = new();
 
         [BindProperty]
-        public RoleMaster RoleForm { get; set; } = new()
+        public Domain.DBModels.RoleMaster RoleForm { get; set; } = new()
         {
             IsActive = true
         };
@@ -36,7 +36,7 @@ namespace DiriWebAdmin.Pages.RoleMaster
                 var selected = Roles.FirstOrDefault(x => x.RoleId == EditId.Value);
                 if (selected != null)
                 {
-                    RoleForm = new RoleMaster
+                    RoleForm = new Domain.DBModels.RoleMaster
                     {
                         RoleId = selected.RoleId,
                         RoleName = selected.RoleName,

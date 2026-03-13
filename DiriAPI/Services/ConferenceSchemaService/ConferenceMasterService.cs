@@ -59,7 +59,7 @@ namespace DiriAPI.Services.ConferenceSchemaService
             _lstConferenceDetailsDTO = new();
             try
             {
-                _lstConferenceDetailsDTO = await _diriContextDataRepo.GetUpcomingConferenceDetails();
+                //_lstConferenceDetailsDTO = await _diriContextDataRepo.GetUpcomingConferenceDetails();
                 if (_lstConferenceDetailsDTO != null && _lstConferenceDetailsDTO.Count() > 0)
                 {
                     _ConferenceDetailsDTO.RESPONSE_CODE = ConfigClass.SUCCESS;

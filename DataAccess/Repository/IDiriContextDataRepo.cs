@@ -10,7 +10,7 @@ namespace DataAccess.Repository
 {
     public interface IDiriContextDataRepo : IDisposable
     {
-        Task<List<ConferenceDetailsDTO>> GetUpcomingConferenceDetails();
+        //Task<List<ConferenceDetailsDTO>> GetUpcomingConferenceDetails();
         Task<List<PublicationsArticlesDTO>> GetPublicationArticleList();
     }
 }
