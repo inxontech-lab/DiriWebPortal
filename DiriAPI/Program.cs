@@ -32,6 +32,9 @@ builder.Services.AddScoped<ConfCommitteeDesignationService>();
 builder.Services.AddScoped<ConferenceMasterService>();
 builder.Services.AddScoped<PublicationsSchemaService>();
 builder.Services.AddScoped<JournalSchemaService>();
+builder.Services.AddScoped<RoleMasterService>();
+builder.Services.AddScoped<UsersService>();
+builder.Services.AddScoped<UserRolesService>();
 
 var app = builder.Build();
 
