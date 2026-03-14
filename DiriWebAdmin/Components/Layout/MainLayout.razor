@@ -39,8 +39,9 @@
             </RadzenColumn>
             <RadzenColumn Size="2">
                 <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
-                    <RadzenProfileMenu>
+                    <RadzenProfileMenu Click="@ProfileMenuClick">
                         <ChildContent>
+                            <RadzenProfileMenuItem Text="User" Value="User" Icon="account_circle" />
                             <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
                         </ChildContent>
                         <Template>
@@ -97,7 +98,13 @@
 
     protected void ProfileMenuClick(RadzenProfileMenuItem args)
     {
-        if (args.Value == "Logout")
+        if (args.Value?.ToString() == "User")
+        {
+            NavigationManager.NavigateTo("/User");
+            return;
+        }
+
+        if (args.Value?.ToString() == "Logout")
         {
             NavigationManager.NavigateTo("Account/Logout", true);
         }
