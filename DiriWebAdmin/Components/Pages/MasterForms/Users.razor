@@ -1,0 +1,71 @@
+@page "/User"
+
+<PageTitle>User Master</PageTitle>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-light">
+        <h5 class="mb-0">User Details</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" for="firstName">First Name</label>
+                <InputText id="firstName" class="form-control" @bind-Value="FirstName" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="lastName">Last Name</label>
+                <InputText id="lastName" class="form-control" @bind-Value="LastName" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <InputText id="email" type="email" class="form-control" @bind-Value="Email" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="phoneNumber">Phone Number</label>
+                <InputText id="phoneNumber" class="form-control" @bind-Value="PhoneNumber" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="userName">Username</label>
+                <InputText id="userName" class="form-control" @bind-Value="UserName" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="role">Role</label>
+                <InputSelect id="role" class="form-select" @bind-Value="Role">
+                    <option value="">Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Editor">Editor</option>
+                    <option value="User">User</option>
+                </InputSelect>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="password">Password</label>
+                <InputText id="password" type="password" class="form-control" @bind-Value="Password" />
+            </div>
+
+            <div class="col-md-6 d-flex align-items-end">
+                <div class="form-check">
+                    <InputCheckbox id="isActive" class="form-check-input" @bind-Value="IsActive" />
+                    <label class="form-check-label" for="isActive">Active User</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? UserName { get; set; }
+    public string? Role { get; set; }
+    public string? Password { get; set; }
+    public bool IsActive { get; set; }
+}
