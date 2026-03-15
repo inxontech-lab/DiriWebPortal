@@ -5,6 +5,18 @@
     --diri-logo-green-dark: #4d8a22;
 }
 
+.role-master-page .role-form-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.role-master-page .role-form-card:hover {
+    box-shadow: 8px 8px 18px rgba(10, 94, 168, 0.2);
+    transform: translateY(-1px);
+}
+
 .role-master-page .role-form-card .card-header {
     background: linear-gradient(135deg, var(--diri-logo-blue) 0%, #1f8fd5 100%);
     color: #ffffff;
@@ -49,10 +61,14 @@
     box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
 }
 
-.role-master-page ::deep .role-master-grid .rz-datatable-data tr {
-    transition: background-color 0.2s ease, transform 0.2s ease;
+.role-master-page ::deep .role-master-grid .rz-datatable-table tbody tr,
+.role-master-page ::deep .role-master-grid .rz-grid-table tbody tr,
+.role-master-page ::deep .role-master-grid table tbody tr {
+    transition: background-color 0.2s ease;
 }
 
-.role-master-page ::deep .role-master-grid .rz-datatable-data tr:hover {
-    background-color: rgba(31, 143, 213, 0.12);
+.role-master-page ::deep .role-master-grid .rz-datatable-table tbody tr:hover,
+.role-master-page ::deep .role-master-grid .rz-grid-table tbody tr:hover,
+.role-master-page ::deep .role-master-grid table tbody tr:hover {
+    background-color: rgba(31, 143, 213, 0.12) !important;
 }

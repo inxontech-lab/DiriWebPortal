@@ -7,7 +7,7 @@
 
 <div class="row g-3 role-master-page">
     <div class="col-lg-8">
-        <RadzenDataGrid class="role-master-grid" Data="roles" TItem="DiriWebAdmin.Data.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true">
+        <RadzenDataGrid class="role-master-grid" Data="roles" TItem="DiriWebAdmin.Data.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
             <Columns>
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Property="RoleId" Title="Role Id" Width="100px" />
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Property="RoleName" Title="Role Name" />
