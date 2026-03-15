@@ -1,30 +1,44 @@
+.role-master-page {
+    --diri-logo-blue: #0a5ea8;
+    --diri-logo-blue-dark: #074a84;
+    --diri-logo-green: #64b32d;
+    --diri-logo-green-dark: #4d8a22;
+}
+
 .role-master-page .role-form-card .card-header {
-    background-color: #007c8f;
+    background: linear-gradient(135deg, var(--diri-logo-blue) 0%, #1f8fd5 100%);
     color: #ffffff;
+    font-weight: 600;
 }
 
-.role-master-page .role-save-btn,
-.role-master-page .role-action-edit {
-    background-color: #007c8f !important;
-    border-color: #007c8f !important;
+.role-master-page ::deep button.role-save-btn,
+.role-master-page ::deep button.role-action-edit {
+    background-color: var(--diri-logo-blue) !important;
+    border-color: var(--diri-logo-blue) !important;
     color: #ffffff !important;
 }
 
-.role-master-page .role-save-btn:hover,
-.role-master-page .role-action-edit:hover {
-    background-color: #006979 !important;
-    border-color: #006979 !important;
+.role-master-page ::deep button.role-save-btn:hover,
+.role-master-page ::deep button.role-action-edit:hover,
+.role-master-page ::deep button.role-save-btn:focus,
+.role-master-page ::deep button.role-action-edit:focus {
+    background-color: var(--diri-logo-blue-dark) !important;
+    border-color: var(--diri-logo-blue-dark) !important;
+    color: #ffffff !important;
 }
 
-.role-master-page .role-action-delete,
+.role-master-page ::deep button.role-action-delete,
 .role-master-page .role-clear-btn {
-    background-color: #6abf4b !important;
-    border-color: #6abf4b !important;
+    background-color: var(--diri-logo-green) !important;
+    border-color: var(--diri-logo-green) !important;
     color: #ffffff !important;
 }
 
-.role-master-page .role-action-delete:hover,
-.role-master-page .role-clear-btn:hover {
-    background-color: #589f3f !important;
-    border-color: #589f3f !important;
+.role-master-page ::deep button.role-action-delete:hover,
+.role-master-page ::deep button.role-action-delete:focus,
+.role-master-page .role-clear-btn:hover,
+.role-master-page .role-clear-btn:focus {
+    background-color: var(--diri-logo-green-dark) !important;
+    border-color: var(--diri-logo-green-dark) !important;
+    color: #ffffff !important;
 }
