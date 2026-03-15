@@ -1,20 +1,13 @@
 @page "/masterforms/rolemaster"
 @page "/RoleMaster"
-@inject DiriWebAdmin.Data.RoleMasterApiClient RoleMasterApiClient
-@inject DialogService DialogService
 
 <PageTitle>Role Master</PageTitle>
 
 <h3 class="mb-3">Role Master</h3>
 
-@if (!string.IsNullOrWhiteSpace(statusMessage))
-{
-    <div class="alert @statusClass" role="alert">@statusMessage</div>
-}
-
-<div class="row g-3">
+<div class="row g-3 role-master-page">
     <div class="col-lg-8">
-        <RadzenDataGrid Data="roles" TItem="DiriWebAdmin.Data.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true">
+        <RadzenDataGrid class="role-master-grid" Data="roles" TItem="DiriWebAdmin.Data.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
             <Columns>
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Property="RoleId" Title="Role Id" Width="100px" />
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Property="RoleName" Title="Role Name" />
@@ -28,12 +21,13 @@
                         <RadzenButton Icon="edit"
                                       ButtonStyle="ButtonStyle.Primary"
                                       Size="ButtonSize.Small"
-                                      class="me-2"
+                                      class="me-2 role-action-edit"
                                       Click="() => EditRole(role)"
                                       aria-label="Edit role" />
                         <RadzenButton Icon="delete"
                                       ButtonStyle="ButtonStyle.Danger"
                                       Size="ButtonSize.Small"
+                                      class="role-action-delete"
                                       Click="() => DeleteRoleAsync(role)"
                                       aria-label="Delete role" />
                     </Template>
@@ -46,7 +40,7 @@
         <EditForm Model="roleForm" OnValidSubmit="SaveRoleAsync">
             <DataAnnotationsValidator />
 
-            <div class="card">
+            <div class="card role-form-card">
                 <div class="card-header">@(isEditMode ? "Edit Role" : "Create Role")</div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -70,128 +64,11 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <RadzenButton Icon="save" Text="Save" ButtonStyle="ButtonStyle.Success" ButtonType="ButtonType.Submit" />
-                        <button class="btn btn-secondary" type="button" @onclick="ResetForm">Clear</button>
+                        <RadzenButton Icon="save" Text="Save" ButtonStyle="ButtonStyle.Success" class="role-save-btn" ButtonType="ButtonType.Submit" />
+                        <button class="btn role-clear-btn" type="button" @onclick="ResetForm">Clear</button>
                     </div>
                 </div>
             </div>
         </EditForm>
     </div>
 </div>
-
-@code {
-    private List<DiriWebAdmin.Data.RoleMasterDto> roles = new();
-    private DiriWebAdmin.Data.RoleMasterDto roleForm = new() { IsActive = true };
-    private bool isEditMode;
-    private string? statusMessage;
-    private string statusClass = "alert-info";
-
-    private bool isActiveValue
-    {
-        get => roleForm.IsActive ?? false;
-        set => roleForm.IsActive = value;
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadRolesAsync();
-    }
-
-    private async Task LoadRolesAsync()
-    {
-        roles = await RoleMasterApiClient.GetAllAsync();
-    }
-
-    private void EditRole(DiriWebAdmin.Data.RoleMasterDto role)
-    {
-        roleForm = new DiriWebAdmin.Data.RoleMasterDto
-        {
-            RoleId = role.RoleId,
-            RoleName = role.RoleName,
-            RoleCode = role.RoleCode,
-            Description = role.Description,
-            IsActive = role.IsActive,
-            CreatedBy = role.CreatedBy,
-            CreatedDate = role.CreatedDate,
-            ModifiedBy = role.ModifiedBy,
-            ModifiedDate = role.ModifiedDate
-        };
-        isEditMode = true;
-        statusMessage = null;
-    }
-
-    private async Task SaveRoleAsync()
-    {
-        var confirmed = await DialogService.Confirm(
-            isEditMode ? "Do you want to update this role?" : "Do you want to save this role?",
-            "Confirmation",
-            new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
-
-        if (confirmed != true)
-        {
-            return;
-        }
-
-        try
-        {
-            if (isEditMode)
-            {
-                roleForm.ModifiedDate = DateTime.Now;
-                await RoleMasterApiClient.UpdateAsync(roleForm);
-                statusMessage = "Role updated successfully.";
-            }
-            else
-            {
-                roleForm.CreatedDate = DateTime.Now;
-                await RoleMasterApiClient.CreateAsync(roleForm);
-                statusMessage = "Role created successfully.";
-            }
-
-            statusClass = "alert-success";
-            await LoadRolesAsync();
-            ResetForm();
-        }
-        catch (Exception ex)
-        {
-            statusMessage = $"Unable to save role. {ex.Message}";
-            statusClass = "alert-danger";
-        }
-    }
-
-    private async Task DeleteRoleAsync(DiriWebAdmin.Data.RoleMasterDto role)
-    {
-        var confirmed = await DialogService.Confirm(
-            $"Delete role '{role.RoleName}'?",
-            "Confirmation",
-            new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
-
-        if (confirmed != true)
-        {
-            return;
-        }
-
-        try
-        {
-            await RoleMasterApiClient.DeleteAsync(role.RoleId);
-            statusMessage = "Role deleted successfully.";
-            statusClass = "alert-success";
-
-            await LoadRolesAsync();
-            if (isEditMode && roleForm.RoleId == role.RoleId)
-            {
-                ResetForm();
-            }
-        }
-        catch (Exception ex)
-        {
-            statusMessage = $"Unable to delete role. {ex.Message}";
-            statusClass = "alert-danger";
-        }
-    }
-
-    private void ResetForm()
-    {
-        roleForm = new DiriWebAdmin.Data.RoleMasterDto { IsActive = true };
-        isEditMode = false;
-    }
-}
