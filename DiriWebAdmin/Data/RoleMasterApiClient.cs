@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiriWebAdmin.Data;
 
@@ -45,8 +46,13 @@ public class RoleMasterApiClient
 public class RoleMasterDto
 {
     public int RoleId { get; set; }
+
+    [Required(ErrorMessage = "Role Name is required.")]
     public string RoleName { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Role Code is required.")]
     public string? RoleCode { get; set; }
+
     public string? Description { get; set; }
     public bool? IsActive { get; set; } = true;
     public DateTime? CreatedDate { get; set; }
