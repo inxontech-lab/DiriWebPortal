@@ -1,0 +1,58 @@
+.role-master-page {
+    --diri-logo-blue: #0a5ea8;
+    --diri-logo-blue-dark: #074a84;
+    --diri-logo-green: #64b32d;
+    --diri-logo-green-dark: #4d8a22;
+}
+
+.role-master-page .role-form-card .card-header {
+    background: linear-gradient(135deg, var(--diri-logo-blue) 0%, #1f8fd5 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.role-master-page ::deep button.role-save-btn,
+.role-master-page ::deep button.role-action-edit {
+    background-color: var(--diri-logo-blue) !important;
+    border-color: var(--diri-logo-blue) !important;
+    color: #ffffff !important;
+}
+
+.role-master-page ::deep button.role-save-btn:hover,
+.role-master-page ::deep button.role-action-edit:hover,
+.role-master-page ::deep button.role-save-btn:focus,
+.role-master-page ::deep button.role-action-edit:focus {
+    background-color: var(--diri-logo-blue-dark) !important;
+    border-color: var(--diri-logo-blue-dark) !important;
+    color: #ffffff !important;
+}
+
+.role-master-page ::deep button.role-action-delete,
+.role-master-page .role-clear-btn {
+    background-color: var(--diri-logo-green) !important;
+    border-color: var(--diri-logo-green) !important;
+    color: #ffffff !important;
+}
+
+.role-master-page ::deep button.role-action-delete:hover,
+.role-master-page ::deep button.role-action-delete:focus,
+.role-master-page .role-clear-btn:hover,
+.role-master-page .role-clear-btn:focus {
+    background-color: var(--diri-logo-green-dark) !important;
+    border-color: var(--diri-logo-green-dark) !important;
+    color: #ffffff !important;
+}
+
+.role-master-page ::deep .role-master-grid {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+}
+
+.role-master-page ::deep .role-master-grid .rz-datatable-data tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.role-master-page ::deep .role-master-grid .rz-datatable-data tr:hover {
+    background-color: rgba(31, 143, 213, 0.12);
+}
