@@ -935,7 +935,9 @@ namespace Domain.DBModels
 
                 entity.Property(e => e.Description).HasMaxLength(250);
 
-                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(100);
 
