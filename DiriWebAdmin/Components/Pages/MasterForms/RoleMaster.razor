@@ -1,6 +1,7 @@
 @page "/masterforms/rolemaster"
+@page "/RoleMaster"
 @inject DiriWebAdmin.Data.RoleMasterApiClient RoleMasterApiClient
-@inject IJSRuntime JS
+@inject DialogService DialogService
 
 <PageTitle>Role Master</PageTitle>
 
@@ -22,10 +23,19 @@
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Title="Active" Width="100px">
                     <Template Context="role">@(role.IsActive == true ? "Yes" : "No")</Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Title="Actions" Width="180px">
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.RoleMasterDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
                     <Template Context="role">
-                        <button class="btn btn-sm btn-primary me-2" @onclick="() => EditRole(role)">Edit</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteRoleAsync(role)">Delete</button>
+                        <RadzenButton Icon="edit"
+                                      ButtonStyle="ButtonStyle.Primary"
+                                      Size="ButtonSize.Small"
+                                      class="me-2"
+                                      Click="() => EditRole(role)"
+                                      aria-label="Edit role" />
+                        <RadzenButton Icon="delete"
+                                      ButtonStyle="ButtonStyle.Danger"
+                                      Size="ButtonSize.Small"
+                                      Click="() => DeleteRoleAsync(role)"
+                                      aria-label="Delete role" />
                     </Template>
                 </RadzenDataGridColumn>
             </Columns>
@@ -60,7 +70,7 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button class="btn btn-success" type="submit">Save</button>
+                        <RadzenButton Icon="save" Text="Save" ButtonStyle="ButtonStyle.Success" ButtonType="ButtonType.Submit" />
                         <button class="btn btn-secondary" type="button" @onclick="ResetForm">Clear</button>
                     </div>
                 </div>
@@ -112,11 +122,12 @@
 
     private async Task SaveRoleAsync()
     {
-        var confirmed = await JS.InvokeAsync<bool>("confirm", isEditMode
-            ? "Do you want to update this role?"
-            : "Do you want to save this role?");
+        var confirmed = await DialogService.Confirm(
+            isEditMode ? "Do you want to update this role?" : "Do you want to save this role?",
+            "Confirmation",
+            new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
 
-        if (!confirmed)
+        if (confirmed != true)
         {
             return;
         }
@@ -149,8 +160,12 @@
 
     private async Task DeleteRoleAsync(DiriWebAdmin.Data.RoleMasterDto role)
     {
-        var confirmed = await JS.InvokeAsync<bool>("confirm", $"Delete role '{role.RoleName}'?");
-        if (!confirmed)
+        var confirmed = await DialogService.Confirm(
+            $"Delete role '{role.RoleName}'?",
+            "Confirmation",
+            new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+
+        if (confirmed != true)
         {
             return;
         }
