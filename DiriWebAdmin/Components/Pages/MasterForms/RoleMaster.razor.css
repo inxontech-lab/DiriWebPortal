@@ -42,3 +42,17 @@
     border-color: var(--diri-logo-green-dark) !important;
     color: #ffffff !important;
 }
+
+.role-master-page ::deep .role-master-grid {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+}
+
+.role-master-page ::deep .role-master-grid .rz-datatable-data tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.role-master-page ::deep .role-master-grid .rz-datatable-data tr:hover {
+    background-color: rgba(31, 143, 213, 0.12);
+}
