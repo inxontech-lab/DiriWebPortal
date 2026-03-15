@@ -33,11 +33,10 @@
 <RadzenTooltip />
 <RadzenLayout>
     <RadzenHeader>
-        <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
+        @* <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
             <RadzenColumn Size="10">
                 <RadzenStack AlignItems="AlignItems.Start" Orientation="Orientation.Horizontal">
                     <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
-                    @* <h1>Easy Transport</h1> *@
                 </RadzenStack>
             </RadzenColumn>
             <RadzenColumn Size="2">
@@ -52,8 +51,37 @@
                     </RadzenProfileMenu>
                 </RadzenStack>
             </RadzenColumn>
+        </RadzenRow> *@
+
+        <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0" class="topbar-row">
+            <RadzenColumn Size="8" SizeMD="8" SizeLG="8">
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" Gap="0.75rem" class="topbar-brand-wrap">
+                    <RadzenSidebarToggle Click="@SidebarToggleClick" class="topbar-toggle"></RadzenSidebarToggle>
+                    <RadzenStack AlignItems="AlignItems.Start" Gap="0" class="topbar-brand-text">
+                        <RadzenText Text="DIRI Admin Panel" class="app-subtitle" Style="font-size:large; font-weight:bold" />
+                    </RadzenStack>
+                </RadzenStack>
+            </RadzenColumn>
+            <RadzenColumn Size="4" SizeMD="4" SizeLG="4">
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.6rem" class="topbar-actions">
+                   @*@if (!string.IsNullOrWhiteSpace(UserBadgeText))
+                    {
+                        <RadzenText Text="@UserBadgeText" class="app-user-badge" />
+                    } *@
+                    <RadzenText Text="Username" class="app-user-badge" />
+                    <RadzenProfileMenu Click="@ProfileMenuClick" class="topbar-profile-menu">
+                        <ChildContent>
+                            <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
+                        </ChildContent>
+                        <Template>
+                        </Template>
+                    </RadzenProfileMenu>
+                </RadzenStack>
+            </RadzenColumn>
         </RadzenRow>
     </RadzenHeader>
+
+
     <RadzenBody>
         @Body
     </RadzenBody>
