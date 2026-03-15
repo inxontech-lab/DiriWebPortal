@@ -1,0 +1,30 @@
+.role-master-page .role-form-card .card-header {
+    background-color: #007c8f;
+    color: #ffffff;
+}
+
+.role-master-page .role-save-btn,
+.role-master-page .role-action-edit {
+    background-color: #007c8f !important;
+    border-color: #007c8f !important;
+    color: #ffffff !important;
+}
+
+.role-master-page .role-save-btn:hover,
+.role-master-page .role-action-edit:hover {
+    background-color: #006979 !important;
+    border-color: #006979 !important;
+}
+
+.role-master-page .role-action-delete,
+.role-master-page .role-clear-btn {
+    background-color: #6abf4b !important;
+    border-color: #6abf4b !important;
+    color: #ffffff !important;
+}
+
+.role-master-page .role-action-delete:hover,
+.role-master-page .role-clear-btn:hover {
+    background-color: #589f3f !important;
+    border-color: #589f3f !important;
+}
