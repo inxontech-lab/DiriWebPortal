@@ -94,7 +94,6 @@ namespace DiriAPI.Services.MasterSchemaServices
                 }
 
                 existing.UserName = user.UserName;
-                existing.LoginId = user.LoginId;
                 existing.Email = user.Email;
                 existing.MobileNo = user.MobileNo;
                 existing.PasswordHash = user.PasswordHash;

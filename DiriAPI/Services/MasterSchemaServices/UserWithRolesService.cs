@@ -78,7 +78,6 @@ namespace DiriAPI.Services.MasterSchemaServices
                 var user = new User
                 {
                     UserName = dto.UserName,
-                    LoginId = dto.LoginId,
                     Email = dto.Email,
                     MobileNo = dto.MobileNo,
                     PasswordHash = dto.PasswordHash,
@@ -130,7 +129,6 @@ namespace DiriAPI.Services.MasterSchemaServices
                 }
 
                 user.UserName = dto.UserName;
-                user.LoginId = dto.LoginId;
                 user.Email = dto.Email;
                 user.MobileNo = dto.MobileNo;
                 user.PasswordHash = dto.PasswordHash;
@@ -214,7 +212,6 @@ namespace DiriAPI.Services.MasterSchemaServices
             {
                 UserId = user.UserId,
                 UserName = user.UserName,
-                LoginId = user.LoginId,
                 Email = user.Email,
                 MobileNo = user.MobileNo,
                 PasswordHash = user.PasswordHash,

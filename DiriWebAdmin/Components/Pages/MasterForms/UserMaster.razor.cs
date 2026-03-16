@@ -50,7 +50,6 @@ public partial class UserMaster : ComponentBase
         {
             UserId = user.UserId,
             UserName = user.UserName,
-            LoginId = user.LoginId,
             Email = user.Email,
             MobileNo = user.MobileNo,
             PasswordHash = user.PasswordHash,

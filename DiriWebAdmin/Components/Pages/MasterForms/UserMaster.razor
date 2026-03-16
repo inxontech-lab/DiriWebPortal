@@ -11,7 +11,6 @@
             <Columns>
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserId" Title="User Id" Width="90px" />
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserName" Title="User Name" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="LoginId" Title="Login Id" />
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="Email" Title="Email" />
                 <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Roles">
                     <Template Context="user">@string.Join(", ", GetRoleNames(user.RoleIds))</Template>
@@ -40,12 +39,6 @@
                         <label class="form-label">User Name <span class="text-danger">*</span></label>
                         <InputText class="form-control" @bind-Value="userForm.UserName" />
                         <ValidationMessage For="@(() => userForm.UserName)" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Login Id <span class="text-danger">*</span></label>
-                        <InputText class="form-control" @bind-Value="userForm.LoginId" />
-                        <ValidationMessage For="@(() => userForm.LoginId)" />
                     </div>
 
                     <div class="mb-3">

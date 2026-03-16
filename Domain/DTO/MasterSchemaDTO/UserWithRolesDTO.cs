@@ -9,8 +9,6 @@ namespace Domain.DTO.MasterSchemaDTO
         [Required(ErrorMessage = "User Name is required.")]
         public string UserName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Login Id is required.")]
-        public string LoginId { get; set; } = string.Empty;
 
         [EmailAddress(ErrorMessage = "Email is not valid.")]
         public string? Email { get; set; }
