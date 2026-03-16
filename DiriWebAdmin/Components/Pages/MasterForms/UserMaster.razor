@@ -1,0 +1,99 @@
+@page "/masterforms/usermaster"
+@page "/UserMaster"
+
+<PageTitle>User Master</PageTitle>
+
+<h3 class="mb-3">User Master</h3>
+
+<div class="row g-3 user-master-page">
+    <div class="col-lg-8">
+        <RadzenDataGrid class="user-master-grid" Data="users" TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
+            <Columns>
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserId" Title="User Id" Width="90px" />
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserName" Title="User Name" />
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="LoginId" Title="Login Id" />
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="Email" Title="Email" />
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Roles">
+                    <Template Context="user">@string.Join(", ", GetRoleNames(user.RoleIds))</Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Active" Width="90px">
+                    <Template Context="user">@(user.IsActive == true ? "Yes" : "No")</Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                    <Template Context="user">
+                        <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="me-2 user-action-edit" Click="() => EditUser(user)" />
+                        <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" Size="ButtonSize.Small" class="user-action-delete" Click="() => DeleteUserAsync(user)" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+
+    <div class="col-lg-4">
+        <EditForm Model="userForm" OnValidSubmit="SaveUserAsync">
+            <DataAnnotationsValidator />
+
+            <div class="card user-form-card">
+                <div class="card-header">@(isEditMode ? "Edit User" : "Create User")</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">User Name <span class="text-danger">*</span></label>
+                        <InputText class="form-control" @bind-Value="userForm.UserName" />
+                        <ValidationMessage For="@(() => userForm.UserName)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Login Id <span class="text-danger">*</span></label>
+                        <InputText class="form-control" @bind-Value="userForm.LoginId" />
+                        <ValidationMessage For="@(() => userForm.LoginId)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password <span class="text-danger">*</span></label>
+                        <InputText class="form-control" type="password" @bind-Value="userForm.PasswordHash" />
+                        <ValidationMessage For="@(() => userForm.PasswordHash)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <InputText class="form-control" @bind-Value="userForm.Email" />
+                        <ValidationMessage For="@(() => userForm.Email)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Mobile No</label>
+                        <InputText class="form-control" @bind-Value="userForm.MobileNo" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Roles <span class="text-danger">*</span></label>
+                        <RadzenDropDown Data="availableRoles"
+                                        TValue="IEnumerable<int>"
+                                        TextProperty="RoleName"
+                                        ValueProperty="RoleId"
+                                        Multiple="true"
+                                        Placeholder="Select role(s)"
+                                        class="w-100"
+                                        @bind-Value="selectedRoleIds" />
+                        <ValidationMessage For="@(() => userForm.RoleIds)" />
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <InputCheckbox class="form-check-input" @bind-Value="isActiveValue" />
+                        <label class="form-check-label">Is Active</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <InputCheckbox class="form-check-input" @bind-Value="isLockedValue" />
+                        <label class="form-check-label">Is Locked</label>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <RadzenButton Icon="save" Text="Save" ButtonStyle="ButtonStyle.Success" class="user-save-btn" ButtonType="ButtonType.Submit" />
+                        <button class="btn user-clear-btn" type="button" @onclick="ResetForm">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
