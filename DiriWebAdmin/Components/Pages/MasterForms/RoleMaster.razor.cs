@@ -1,4 +1,4 @@
-using DiriWebAdmin.Data;
+using DiriWebAdmin.Data.MasterService;
 using Microsoft.AspNetCore.Components;
 using Radzen;
 
