@@ -35,6 +35,7 @@ builder.Services.AddScoped<JournalSchemaService>();
 builder.Services.AddScoped<RoleMasterService>();
 builder.Services.AddScoped<UsersService>();
 builder.Services.AddScoped<UserRolesService>();
+builder.Services.AddScoped<UserWithRolesService>();
 
 var app = builder.Build();
 

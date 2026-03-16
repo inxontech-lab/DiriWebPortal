@@ -1,5 +1,5 @@
 using DiriWebAdmin.Components;
-using DiriWebAdmin.Data;
+using DiriWebAdmin.Data.MasterService;
 using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +11,11 @@ builder.Services.AddRadzenComponents();
 
 var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5128/";
 builder.Services.AddHttpClient<RoleMasterApiClient>(client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+});
+
+builder.Services.AddHttpClient<UserWithRolesApiClient>(client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
 });
