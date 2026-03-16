@@ -1,0 +1,74 @@
+.user-master-page {
+    --diri-logo-blue: #0a5ea8;
+    --diri-logo-blue-dark: #074a84;
+    --diri-logo-green: #64b32d;
+    --diri-logo-green-dark: #4d8a22;
+}
+
+.user-master-page .user-form-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.user-master-page .user-form-card:hover {
+    box-shadow: 8px 8px 18px rgba(10, 94, 168, 0.2);
+    transform: translateY(-1px);
+}
+
+.user-master-page .user-form-card .card-header {
+    background: linear-gradient(135deg, var(--diri-logo-blue) 0%, #1f8fd5 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.user-master-page ::deep button.user-save-btn,
+.user-master-page ::deep button.user-action-edit {
+    background-color: var(--diri-logo-blue) !important;
+    border-color: var(--diri-logo-blue) !important;
+    color: #ffffff !important;
+}
+
+.user-master-page ::deep button.user-save-btn:hover,
+.user-master-page ::deep button.user-action-edit:hover,
+.user-master-page ::deep button.user-save-btn:focus,
+.user-master-page ::deep button.user-action-edit:focus {
+    background-color: var(--diri-logo-blue-dark) !important;
+    border-color: var(--diri-logo-blue-dark) !important;
+    color: #ffffff !important;
+}
+
+.user-master-page ::deep button.user-action-delete,
+.user-master-page .user-clear-btn {
+    background-color: var(--diri-logo-green) !important;
+    border-color: var(--diri-logo-green) !important;
+    color: #ffffff !important;
+}
+
+.user-master-page ::deep button.user-action-delete:hover,
+.user-master-page ::deep button.user-action-delete:focus,
+.user-master-page .user-clear-btn:hover,
+.user-master-page .user-clear-btn:focus {
+    background-color: var(--diri-logo-green-dark) !important;
+    border-color: var(--diri-logo-green-dark) !important;
+    color: #ffffff !important;
+}
+
+.user-master-page ::deep .user-master-grid {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+}
+
+.user-master-page ::deep .user-master-grid .rz-datatable-table tbody tr,
+.user-master-page ::deep .user-master-grid .rz-grid-table tbody tr,
+.user-master-page ::deep .user-master-grid table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.user-master-page ::deep .user-master-grid .rz-datatable-table tbody tr:hover,
+.user-master-page ::deep .user-master-grid .rz-grid-table tbody tr:hover,
+.user-master-page ::deep .user-master-grid table tbody tr:hover {
+    background-color: rgba(31, 143, 213, 0.12) !important;
+}
