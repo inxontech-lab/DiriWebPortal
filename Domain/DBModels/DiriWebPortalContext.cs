@@ -983,9 +983,6 @@ namespace Domain.DBModels
             {
                 entity.ToTable("Users", "admin");
 
-                entity.HasIndex(e => e.LoginId, "UQ__Users__4DDA28193EBD1C3B")
-                    .IsUnique();
-
                 entity.Property(e => e.CreatedBy).HasMaxLength(100);
 
                 entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
@@ -995,8 +992,6 @@ namespace Domain.DBModels
                 entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.IsLocked).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.LoginId).HasMaxLength(100);
 
                 entity.Property(e => e.MobileNo).HasMaxLength(50);
 

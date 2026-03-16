@@ -12,7 +12,6 @@ namespace Domain.DBModels
 
         public int UserId { get; set; }
         public string UserName { get; set; } = null!;
-        public string LoginId { get; set; } = null!;
         public string? Email { get; set; }
         public string? MobileNo { get; set; }
         public string PasswordHash { get; set; } = null!;
