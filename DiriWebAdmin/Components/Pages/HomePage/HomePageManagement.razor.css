@@ -46,10 +46,26 @@
     background: transparent;
 }
 
+.homepage-single-form {
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-form-shell {
+    width: 100%;
+    max-width: 980px;
+}
+
 .homepage-admin-page .homepage-form-card {
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.homepage-admin-page .homepage-form-card:hover {
+    box-shadow: 8px 8px 18px rgba(10, 94, 168, 0.2);
+    transform: translateY(-1px);
 }
 
 .homepage-admin-page .homepage-form-card .card-header {
@@ -59,13 +75,21 @@
 }
 
 .homepage-admin-page ::deep .homepage-grid {
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.12);
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
 }
 
+.homepage-admin-page ::deep .homepage-grid .rz-datatable-table tbody tr,
+.homepage-admin-page ::deep .homepage-grid .rz-grid-table tbody tr,
+.homepage-admin-page ::deep .homepage-grid table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.homepage-admin-page ::deep .homepage-grid .rz-datatable-table tbody tr:hover,
+.homepage-admin-page ::deep .homepage-grid .rz-grid-table tbody tr:hover,
 .homepage-admin-page ::deep .homepage-grid table tbody tr:hover {
-    background-color: rgba(31, 143, 213, 0.1) !important;
+    background-color: rgba(31, 143, 213, 0.12) !important;
 }
 
 .homepage-admin-page ::deep button.homepage-save-btn,
@@ -85,7 +109,8 @@
 }
 
 .homepage-admin-page ::deep button.homepage-action-delete,
-.homepage-admin-page .homepage-clear-btn {
+.homepage-admin-page .homepage-clear-btn,
+.homepage-admin-page .homepage-action-view {
     background-color: var(--diri-logo-green) !important;
     border-color: var(--diri-logo-green) !important;
     color: #ffffff !important;
@@ -94,12 +119,62 @@
 .homepage-admin-page ::deep button.homepage-action-delete:hover,
 .homepage-admin-page ::deep button.homepage-action-delete:focus,
 .homepage-admin-page .homepage-clear-btn:hover,
-.homepage-admin-page .homepage-clear-btn:focus {
+.homepage-admin-page .homepage-clear-btn:focus,
+.homepage-admin-page .homepage-action-view:hover,
+.homepage-admin-page .homepage-action-view:focus {
     background-color: var(--diri-logo-green-dark) !important;
     border-color: var(--diri-logo-green-dark) !important;
     color: #ffffff !important;
 }
 
-.homepage-admin-page :is(input, textarea) {
+.homepage-admin-page .homepage-action-view {
+    border-radius: 0.375rem;
+}
+
+.homepage-admin-page :is(input, textarea, select) {
     border-radius: 10px;
+}
+
+.homepage-admin-page .file-selection-note {
+    color: #6b7280;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.homepage-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.65);
+}
+
+.homepage-popup-card {
+    width: min(900px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+}
+
+.homepage-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(10, 94, 168, 0.12);
+}
+
+.homepage-popup-body {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.homepage-popup-body img {
+    max-width: 100%;
+    max-height: 75vh;
 }
