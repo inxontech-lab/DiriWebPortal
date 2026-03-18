@@ -10,10 +10,12 @@ namespace DiriWebPortal.Shared
         private HomePageDataService _HomePageDataService { get; set; }
 
         protected ContactU contactUs { get; set; }
+        protected List<OurWebsite> ourWebsites { get; set; } = new();
 
         protected async override Task OnInitializedAsync()
         {
             contactUs = await _HomePageDataService.GetOrganizationalData();
+            ourWebsites = await _HomePageDataService.GetOurWebsites();
         }
     }
 }
