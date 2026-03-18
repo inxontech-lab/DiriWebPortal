@@ -37,6 +37,8 @@
     color: rgba(246, 255, 253, 0.86);
 }
 
+<<<<<<< codex/fix-password-hashing-in-create-user-gr55tp
+=======
 .admin-home-actions {
     display: flex;
     flex-direction: column;
@@ -56,6 +58,7 @@
     border: 1px solid rgba(255, 255, 255, 0.22) !important;
 }
 
+>>>>>>> main
 .admin-home-card {
     height: 100%;
     padding: 1.5rem;
@@ -108,8 +111,11 @@
     .admin-home-hero {
         flex-direction: column;
     }
+<<<<<<< codex/fix-password-hashing-in-create-user-gr55tp
+=======
 
     .admin-home-actions {
         align-items: flex-start;
     }
+>>>>>>> main
 }

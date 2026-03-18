@@ -100,3 +100,18 @@ main {
     right: 1rem;
     left: auto;
 }
+
+::deep .topbar-dashboard-btn {
+    border-radius: 999px !important;
+    background: rgba(19, 144, 136, 0.14) !important;
+    color: #0d5f5d !important;
+    border: 1px solid rgba(13, 95, 93, 0.14) !important;
+    box-shadow: 0 10px 22px rgba(8, 59, 60, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+::deep .topbar-dashboard-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(19, 144, 136, 0.2) !important;
+    box-shadow: 0 14px 28px rgba(8, 59, 60, 0.12);
+}
