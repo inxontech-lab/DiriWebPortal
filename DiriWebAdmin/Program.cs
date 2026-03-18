@@ -3,6 +3,7 @@ using DiriWebAdmin.Services;
 using Shared.AdminClientService.MasterService;
 using Radzen;
 using Shared.AdminClientService.HomePage;
+using Shared.AdminClientService.AboutUs;
 using Shared.AdminClientService.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,11 @@ builder.Services.AddHttpClient<UserWithRolesApiClient>(client =>
 });
 
 builder.Services.AddHttpClient<HomePageApiClient>(client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+});
+
+builder.Services.AddHttpClient<AboutUsApiClient>(client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
 });
