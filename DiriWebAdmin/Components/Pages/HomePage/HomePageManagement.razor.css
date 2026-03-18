@@ -133,6 +133,96 @@
 
 .homepage-admin-page :is(input, textarea, select) {
     border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ced4da;
+}
+
+.homepage-admin-page .file-selection-note {
+    color: #6b7280;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.homepage-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.65);
+}
+
+.homepage-popup-card {
+    width: min(900px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+}
+
+.homepage-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(10, 94, 168, 0.12);
+}
+
+.homepage-popup-body {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.homepage-popup-body img {
+    max-width: 100%;
+    max-height: 75vh;
+}
+
+.homepage-admin-page .file-selection-note {
+    color: #6b7280;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.homepage-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.65);
+}
+
+.homepage-popup-card {
+    width: min(900px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+}
+
+.homepage-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(10, 94, 168, 0.12);
+}
+
+.homepage-popup-body {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.homepage-popup-body img {
+    max-width: 100%;
+    max-height: 75vh;
 }
 
 .homepage-admin-page .file-selection-note {
