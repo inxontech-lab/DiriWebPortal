@@ -169,50 +169,64 @@
             </RadzenTabsItem>
 
             <RadzenTabsItem Text="About Us">
-                <div class="row g-3 mt-1">
-                    <div class="col-lg-8">
-                        <RadzenDataGrid class="homepage-grid" Data="aboutUsItems" TItem="AboutU" AllowPaging="true" PageSize="8" AllowSorting="true">
-                            <Columns>
-                                <RadzenDataGridColumn TItem="AboutU" Property="Id" Title="Id" Width="70px" />
-                                <RadzenDataGridColumn TItem="AboutU" Property="AboutUsTitle" Title="Title" />
-                                <RadzenDataGridColumn TItem="AboutU" Property="AbouUsText" Title="Description" />
-                                <RadzenDataGridColumn TItem="AboutU" Title="Active" Width="90px">
-                                    <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
-                                </RadzenDataGridColumn>
-                                <RadzenDataGridColumn TItem="AboutU" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
-                                    <Template Context="item">
-                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditAboutUs(item)" />
-                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteAboutUsAsync(item)" />
-                                    </Template>
-                                </RadzenDataGridColumn>
-                            </Columns>
-                        </RadzenDataGrid>
-                    </div>
-                    <div class="col-lg-4">
-                        <EditForm Model="aboutUsForm" OnSubmit="SaveAboutUsAsync">
-                            <div class="card homepage-form-card">
-                                <div class="card-header">@(isAboutUsEditMode ? "Edit About Us" : "Create About Us")</div>
-                                <div class="card-body">
-                                    <div class="mb-3">
+                <div class="homepage-single-form mt-3">
+                    <EditForm Model="aboutUsForm" OnSubmit="SaveAboutUsAsync">
+                        <div class="card homepage-form-card homepage-form-shell">
+                            <div class="card-header">@(isAboutUsEditMode || isAboutUsDetailEditMode ? "Edit About Us" : "Create About Us")</div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
                                         <label class="form-label">Title</label>
                                         <InputText class="form-control" @bind-Value="aboutUsForm.AboutUsTitle" />
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Years Of Journey</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.YearsOfJourney" />
+                                    </div>
+                                    <div class="col-12">
                                         <label class="form-label">Description</label>
-                                        <InputTextArea class="form-control" @bind-Value="aboutUsForm.AbouUsText" />
+                                        <InputTextArea class="form-control" rows="4" @bind-Value="aboutUsForm.AbouUsText" />
                                     </div>
-                                    <div class="form-check mb-3">
-                                        <InputCheckbox class="form-check-input" @bind-Value="aboutUsActiveValue" />
-                                        <label class="form-check-label">Active</label>
+                                    <div class="col-12">
+                                        <label class="form-label">About Us Details</label>
+                                        <InputTextArea class="form-control" rows="6" @bind-Value="aboutUsDetailForm.AboutUsDetails" />
                                     </div>
-                                    <div class="d-flex gap-2">
-                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
-                                        <button class="btn homepage-clear-btn" type="button" @onclick="OnResetAboutUsClicked">Clear</button>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 1</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading1" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 2</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading2" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 3</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading3" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 4</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading4" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <InputCheckbox class="form-check-input" @bind-Value="aboutUsActiveValue" />
+                                            <label class="form-check-label">Homepage About Us Active</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <InputCheckbox class="form-check-input" @bind-Value="aboutUsDetailActiveValue" />
+                                            <label class="form-check-label">About Us Details Active</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="d-flex gap-2 mt-3">
+                                    <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                    <button class="btn homepage-clear-btn" type="button" @onclick="OnResetAboutUsClicked">Clear</button>
+                                </div>
                             </div>
-                        </EditForm>
-                    </div>
+                        </div>
+                    </EditForm>
                 </div>
             </RadzenTabsItem>
 

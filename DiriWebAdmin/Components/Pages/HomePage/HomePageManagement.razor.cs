@@ -1,10 +1,10 @@
-using System.Text.RegularExpressions;
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting;
 using Radzen;
+using Shared.AdminClientService.AboutUs;
 using Shared.AdminClientService.HomePage;
 
 namespace DiriWebAdmin.Components.Pages.HomePage;
@@ -13,6 +13,7 @@ public partial class HomePageManagement : ComponentBase
 {
     private const long MaxUploadSize = 10 * 1024 * 1024;
 
+    [Inject] private AboutUsApiClient AboutUsApiClient { get; set; } = default!;
     [Inject] private HomePageApiClient HomePageApiClient { get; set; } = default!;
     [Inject] private DialogService DialogService { get; set; } = default!;
     [Inject] private NotificationService NotificationService { get; set; } = default!;
@@ -21,12 +22,14 @@ public partial class HomePageManagement : ComponentBase
     private List<BannerText> bannerTexts = new();
     private List<NumericDashboard> numericDashboards = new();
     private List<AboutU> aboutUsItems = new();
+    private List<AboutUsDetail> aboutUsDetails = new();
     private List<FounderInfo> founderInfos = new();
     private List<ManagingTrusteeInfo> managingTrusteeInfos = new();
 
     private BannerText bannerForm = CreateBannerForm();
     private NumericDashboard numericDashboardForm = CreateNumericDashboardForm();
     private AboutU aboutUsForm = CreateAboutUsForm();
+    private AboutUsDetail aboutUsDetailForm = CreateAboutUsDetailForm();
     private FounderInfo founderInfoForm = CreateFounderInfoForm();
     private ManagingTrusteeInfo managingTrusteeInfoForm = CreateManagingTrusteeInfoForm();
 
@@ -41,6 +44,7 @@ public partial class HomePageManagement : ComponentBase
     private bool isBannerEditMode;
     private bool isNumericDashboardEditMode;
     private bool isAboutUsEditMode;
+    private bool isAboutUsDetailEditMode;
     private bool isFounderInfoEditMode;
     private bool isManagingTrusteeInfoEditMode;
 
@@ -78,6 +82,12 @@ public partial class HomePageManagement : ComponentBase
         set => managingTrusteeInfoForm.Active = value ? 1 : 0;
     }
 
+    private bool aboutUsDetailActiveValue
+    {
+        get => (aboutUsDetailForm.Active ?? 0) == 1;
+        set => aboutUsDetailForm.Active = value ? 1 : 0;
+    }
+
     protected override async Task OnInitializedAsync()
     {
         await LoadAllAsync();
@@ -88,9 +98,11 @@ public partial class HomePageManagement : ComponentBase
         bannerTexts = await HomePageApiClient.GetBannerTextsAsync();
         numericDashboards = await HomePageApiClient.GetNumericDashboardsAsync();
         aboutUsItems = await HomePageApiClient.GetAboutUsAsync();
+        aboutUsDetails = await AboutUsApiClient.GetAboutUsDetailsAsync();
         founderInfos = await HomePageApiClient.GetFounderInfosAsync();
         managingTrusteeInfos = await HomePageApiClient.GetManagingTrusteeInfosAsync();
 
+        SyncAboutUsFormWithStoredRecord();
         SyncFounderFormWithStoredRecord();
         SyncManagingTrusteeFormWithStoredRecord();
     }
@@ -280,21 +292,52 @@ public partial class HomePageManagement : ComponentBase
         isNumericDashboardEditMode = false;
     }
 
-    private void EditAboutUs(AboutU item)
+    private void SyncAboutUsFormWithStoredRecord()
     {
-        aboutUsForm = new AboutU
+        var storedAboutUs = aboutUsItems.OrderBy(x => x.Id).FirstOrDefault();
+        if (storedAboutUs is null)
         {
-            Id = item.Id,
-            AboutUsTitle = item.AboutUsTitle,
-            AbouUsText = item.AbouUsText,
-            Active = item.Active
+            aboutUsForm = CreateAboutUsForm();
+            isAboutUsEditMode = false;
+        }
+        else
+        {
+            aboutUsForm = new AboutU
+            {
+                Id = storedAboutUs.Id,
+                AboutUsTitle = storedAboutUs.AboutUsTitle,
+                AbouUsText = storedAboutUs.AbouUsText,
+                Active = storedAboutUs.Active
+            };
+            isAboutUsEditMode = true;
+        }
+
+        var storedAboutUsDetail = aboutUsDetails.OrderBy(x => x.Id).FirstOrDefault();
+        if (storedAboutUsDetail is null)
+        {
+            aboutUsDetailForm = CreateAboutUsDetailForm();
+            isAboutUsDetailEditMode = false;
+            return;
+        }
+
+        aboutUsDetailForm = new AboutUsDetail
+        {
+            Id = storedAboutUsDetail.Id,
+            Heading1 = storedAboutUsDetail.Heading1,
+            Heading2 = storedAboutUsDetail.Heading2,
+            Heading3 = storedAboutUsDetail.Heading3,
+            Heading4 = storedAboutUsDetail.Heading4,
+            AboutUsDetails = storedAboutUsDetail.AboutUsDetails,
+            YearsOfJourney = storedAboutUsDetail.YearsOfJourney,
+            Active = storedAboutUsDetail.Active
         };
-        isAboutUsEditMode = true;
+        isAboutUsDetailEditMode = true;
     }
 
     private async Task SaveAboutUsAsync()
     {
-        if (!await ConfirmSaveAsync(isAboutUsEditMode, "about us section"))
+        var isEditMode = isAboutUsEditMode || isAboutUsDetailEditMode;
+        if (!await ConfirmSaveAsync(isEditMode, "about us section"))
         {
             return;
         }
@@ -304,14 +347,22 @@ public partial class HomePageManagement : ComponentBase
             if (isAboutUsEditMode)
             {
                 await HomePageApiClient.UpdateAboutUsAsync(aboutUsForm);
-                Notify(NotificationSeverity.Success, "Success", "About us content updated successfully.");
             }
             else
             {
                 await HomePageApiClient.CreateAboutUsAsync(aboutUsForm);
-                Notify(NotificationSeverity.Success, "Success", "About us content created successfully.");
             }
 
+            if (isAboutUsDetailEditMode)
+            {
+                await AboutUsApiClient.UpdateAboutUsDetailAsync(aboutUsDetailForm);
+            }
+            else
+            {
+                await AboutUsApiClient.CreateAboutUsDetailAsync(aboutUsDetailForm);
+            }
+
+            Notify(NotificationSeverity.Success, "Success", isEditMode ? "About us content updated successfully." : "About us content created successfully.");
             await LoadAllAsync();
             ResetAboutUsFormState();
         }
@@ -321,33 +372,9 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private async Task DeleteAboutUsAsync(AboutU item)
-    {
-        if (!await ConfirmDeleteAsync($"Delete about us record '{item.AboutUsTitle}'?"))
-        {
-            return;
-        }
-
-        try
-        {
-            await HomePageApiClient.DeleteAboutUsAsync(item.Id);
-            Notify(NotificationSeverity.Success, "Success", "About us content deleted successfully.");
-            await LoadAllAsync();
-            if (isAboutUsEditMode && aboutUsForm.Id == item.Id)
-            {
-                ResetAboutUsFormState();
-            }
-        }
-        catch (Exception ex)
-        {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to delete about us content. {ex.Message}");
-        }
-    }
-
     private void ResetAboutUsFormState()
     {
-        aboutUsForm = CreateAboutUsForm();
-        isAboutUsEditMode = false;
+        SyncAboutUsFormWithStoredRecord();
     }
 
     private async Task SaveFounderInfoAsync()
@@ -698,6 +725,8 @@ public partial class HomePageManagement : ComponentBase
     private static NumericDashboard CreateNumericDashboardForm() => new() { Active = 1 };
 
     private static AboutU CreateAboutUsForm() => new() { Active = 1 };
+
+    private static AboutUsDetail CreateAboutUsDetailForm() => new() { Active = 1 };
 
     private static FounderInfo CreateFounderInfoForm() => new() { Active = 1 };
 

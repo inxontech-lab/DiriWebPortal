@@ -1,6 +1,7 @@
 using DataAccess.Repository;
 using DiriAPI.Auth;
 using DiriAPI.Services;
+using DiriAPI.Services.AboutUs;
 using DiriAPI.Services.ConferenceSchemaService;
 using DiriAPI.Services.Homepage;
 using DiriAPI.Services.JournalSchemaService;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IDataRepository, DataRepository>();
 builder.Services.AddScoped<IDiriContextDataRepo, DiriContextDataRepo>();
 builder.Services.AddScoped<HomePageService>();
 builder.Services.AddScoped<HomePageSchemaService>();
+builder.Services.AddScoped<AboutUsSchemaService>();
 builder.Services.AddScoped<ContactU>();
 builder.Services.AddScoped<MasterInfoService>();
 builder.Services.AddScoped<AboutUsPageService>();
