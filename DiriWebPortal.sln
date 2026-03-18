@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiriWebAdmin", "DiriWebAdmin\DiriWebAdmin.csproj", "{C0BFC2EE-EA9B-475B-8BAD-D482E554520B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{BB4C1931-64AE-4DCA-A55A-FCAC99EAC026}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C0BFC2EE-EA9B-475B-8BAD-D482E554520B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0BFC2EE-EA9B-475B-8BAD-D482E554520B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0BFC2EE-EA9B-475B-8BAD-D482E554520B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB4C1931-64AE-4DCA-A55A-FCAC99EAC026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB4C1931-64AE-4DCA-A55A-FCAC99EAC026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB4C1931-64AE-4DCA-A55A-FCAC99EAC026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB4C1931-64AE-4DCA-A55A-FCAC99EAC026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
