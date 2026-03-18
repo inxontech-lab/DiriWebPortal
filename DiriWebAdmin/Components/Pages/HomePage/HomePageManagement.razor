@@ -89,6 +89,12 @@
                                         <small class="form-text text-muted">The image will be saved to the portal <code>wwwroot/HomePage</code> folder when you save this banner.</small>
                                         <div class="file-selection-note mt-2">@GetBannerImageStatusText()</div>
                                     </div>
+                                    @if (!string.IsNullOrWhiteSpace(bannerForm.BannerImageLocation))
+                                    {
+                                        <div class="image-preview-shell mb-3">
+                                            <img src="@ResolveImageUrl(bannerForm.BannerImageLocation)" alt="Banner preview" class="img-fluid rounded" />
+                                        </div>
+                                    }
                                     <div class="form-check mb-3">
                                         <InputCheckbox class="form-check-input" @bind-Value="bannerActiveValue" />
                                         <label class="form-check-label">Active</label>

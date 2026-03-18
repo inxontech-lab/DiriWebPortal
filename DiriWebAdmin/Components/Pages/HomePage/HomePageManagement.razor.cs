@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -396,7 +397,7 @@ public partial class HomePageManagement : ComponentBase
         return Task.CompletedTask;
     }
 
-    private void ResetFounderInfoForm()
+    private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
     {
         pendingFounderImageFile = null;
         pendingFounderImageFileName = null;
