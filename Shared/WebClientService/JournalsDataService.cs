@@ -3,8 +3,9 @@ using Domain.DTO.JournalSchemaDTO;
 using Domain.RespDTO.JournalSchemaRespDTO;
 using Domain.RespDTO.PublicationsRespDTO;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
-namespace DiriWebPortal.Data
+namespace Shared.WebClientService
 {
     public class JournalsDataService
     {

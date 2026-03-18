@@ -1,4 +1,4 @@
-﻿using DiriWebPortal.Data;
+﻿using Shared.WebClientService;
 using Domain.DTO.JournalSchemaDTO;
 using Microsoft.AspNetCore.Components;
 

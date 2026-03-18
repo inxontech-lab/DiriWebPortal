@@ -3,7 +3,7 @@ using Domain.RespDTO.HomepageRespDTO;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace DiriWebPortal.Data
+namespace Shared.WebClientService
 {
     public class HomePageDataService
     {

@@ -3,9 +3,10 @@ using Domain.DTO.PublicationShemaDTO;
 using Domain.RespDTO.AboutUsPageRespDTO;
 using Domain.RespDTO.PublicationsRespDTO;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 using System.Runtime.InteropServices;
 
-namespace DiriWebPortal.Data
+namespace Shared.WebClientService
 {
     public class PublicationsPageDataService
     {

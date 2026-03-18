@@ -1,8 +1,9 @@
 ﻿using Domain.DBModels;
 using Domain.RespDTO.AboutUsPageRespDTO;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
-namespace DiriWebPortal.Data
+namespace Shared.WebClientService
 {
     public class ManagingTrusteeDataService
     {
