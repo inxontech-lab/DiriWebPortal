@@ -1,4 +1,5 @@
 using DataAccess.Core;
+using DiriAPI.Services.Security;
 using Domain.DBModels;
 using Domain.DTO.MasterSchemaDTO;
 using Domain.RespDTO.MasterSchemaRespDTO;
@@ -9,10 +10,12 @@ namespace DiriAPI.Services.MasterSchemaServices
     public class UserWithRolesService
     {
         private readonly DiriWebPortalContext _context;
+        private readonly PasswordHashingService _passwordHashingService;
 
-        public UserWithRolesService(DiriWebPortalContext context)
+        public UserWithRolesService(DiriWebPortalContext context, PasswordHashingService passwordHashingService)
         {
             _context = context;
+            _passwordHashingService = passwordHashingService;
         }
 
         public UserWithRolesRespDTO GetAll()
@@ -75,12 +78,19 @@ namespace DiriAPI.Services.MasterSchemaServices
             using var trx = _context.Database.BeginTransaction();
             try
             {
+                if (string.IsNullOrWhiteSpace(dto.PasswordHash))
+                {
+                    resp.RESPONSE_CODE = ConfigClass.ERROR;
+                    resp.RESPONSE_DESCRPTION = "Password is required.";
+                    return resp;
+                }
+
                 var user = new User
                 {
                     UserName = dto.UserName,
                     Email = dto.Email,
                     MobileNo = dto.MobileNo,
-                    PasswordHash = dto.PasswordHash,
+                    PasswordHash = _passwordHashingService.HashPassword(dto.PasswordHash),
                     IsActive = dto.IsActive,
                     IsLocked = dto.IsLocked,
                     LastLoginDate = dto.LastLoginDate,
@@ -131,7 +141,10 @@ namespace DiriAPI.Services.MasterSchemaServices
                 user.UserName = dto.UserName;
                 user.Email = dto.Email;
                 user.MobileNo = dto.MobileNo;
-                user.PasswordHash = dto.PasswordHash;
+                if (!string.IsNullOrWhiteSpace(dto.PasswordHash))
+                {
+                    user.PasswordHash = _passwordHashingService.HashPassword(dto.PasswordHash);
+                }
                 user.IsActive = dto.IsActive;
                 user.IsLocked = dto.IsLocked;
                 user.LastLoginDate = dto.LastLoginDate;
@@ -214,7 +227,7 @@ namespace DiriAPI.Services.MasterSchemaServices
                 UserName = user.UserName,
                 Email = user.Email,
                 MobileNo = user.MobileNo,
-                PasswordHash = user.PasswordHash,
+                PasswordHash = string.Empty,
                 IsActive = user.IsActive,
                 IsLocked = user.IsLocked,
                 LastLoginDate = user.LastLoginDate,

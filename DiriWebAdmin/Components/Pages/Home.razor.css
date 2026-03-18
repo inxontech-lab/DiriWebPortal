@@ -1,0 +1,115 @@
+.admin-home-page {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.admin-home-hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 28px;
+    color: #f6fffd;
+    background: linear-gradient(135deg, #083b3c 0%, #0d5f5d 50%, #139088 100%);
+    box-shadow: 0 24px 54px rgba(8, 59, 60, 0.24);
+}
+
+.admin-home-badge {
+    display: inline-flex;
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.admin-home-hero h1 {
+    margin-bottom: 0.6rem;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.admin-home-hero p {
+    max-width: 620px;
+    margin-bottom: 0;
+    color: rgba(246, 255, 253, 0.86);
+}
+
+.admin-home-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.admin-home-primary-btn,
+.admin-home-secondary-btn {
+    min-width: 220px;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 24px rgba(4, 25, 26, 0.16);
+}
+
+.admin-home-secondary-btn {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+.admin-home-card {
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 16px 36px rgba(10, 61, 62, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-home-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 42px rgba(10, 61, 62, 0.13);
+}
+
+.admin-home-card h3 {
+    margin-bottom: 0.6rem;
+    color: #0a3d3e;
+    font-size: 1.2rem;
+}
+
+.admin-home-card p {
+    margin-bottom: 0;
+    color: #5e7677;
+}
+
+.admin-home-card-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 18px;
+    font-size: 1.4rem;
+}
+
+.icon-users {
+    background: rgba(19, 144, 136, 0.14);
+}
+
+.icon-roles {
+    background: rgba(243, 200, 110, 0.22);
+}
+
+.icon-content {
+    background: rgba(8, 59, 60, 0.12);
+}
+
+@media (max-width: 991.98px) {
+    .admin-home-hero {
+        flex-direction: column;
+    }
+
+    .admin-home-actions {
+        align-items: flex-start;
+    }
+}
