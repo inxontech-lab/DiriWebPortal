@@ -68,6 +68,7 @@ namespace Domain.DBModels
         public virtual DbSet<NumericDashboard> NumericDashboards { get; set; } = null!;
         public virtual DbSet<OccupationalDesignation> OccupationalDesignations { get; set; } = null!;
         public virtual DbSet<OrganizingMemberMaster> OrganizingMemberMasters { get; set; } = null!;
+        public virtual DbSet<OurWebsite> OurWebsites { get; set; } = null!;
         public virtual DbSet<ParticipantsMaster> ParticipantsMasters { get; set; } = null!;
         public virtual DbSet<PlatformMaster> PlatformMasters { get; set; } = null!;
         public virtual DbSet<PublicationTypeMaster> PublicationTypeMasters { get; set; } = null!;
@@ -453,7 +454,13 @@ namespace Domain.DBModels
 
                 entity.ToTable("ContactUs", "HomePage");
 
-                entity.Property(e => e.Address).HasMaxLength(300);
+                entity.Property(e => e.Address1).HasMaxLength(300);
+
+                entity.Property(e => e.Address2).HasMaxLength(300);
+
+                entity.Property(e => e.Address3).HasMaxLength(300);
+
+                entity.Property(e => e.Address4).HasMaxLength(300);
 
                 entity.Property(e => e.District).HasMaxLength(50);
 
@@ -463,13 +470,11 @@ namespace Domain.DBModels
 
                 entity.Property(e => e.Email2).HasMaxLength(50);
 
-                entity.Property(e => e.FacebookLink).HasMaxLength(100);
+                entity.Property(e => e.FacebookLink).HasMaxLength(200);
 
-                entity.Property(e => e.InstagramLink).HasMaxLength(100);
+                entity.Property(e => e.InstagramLink).HasMaxLength(200);
 
-                entity.Property(e => e.LinkedinLink).HasMaxLength(100);
-
-                entity.Property(e => e.LocationMap).HasMaxLength(250);
+                entity.Property(e => e.LinkedinLink).HasMaxLength(200);
 
                 entity.Property(e => e.LogoLocation).HasMaxLength(200);
 
@@ -485,7 +490,9 @@ namespace Domain.DBModels
 
                 entity.Property(e => e.PostOffice).HasMaxLength(100);
 
-                entity.Property(e => e.TwitterLink).HasMaxLength(100);
+                entity.Property(e => e.TwitterLink).HasMaxLength(200);
+
+                entity.Property(e => e.YoutubeLink).HasMaxLength(200);
             });
 
             modelBuilder.Entity<Country>(entity =>
@@ -771,6 +778,19 @@ namespace Domain.DBModels
                 entity.Property(e => e.MemberNameBn).HasMaxLength(100);
 
                 entity.Property(e => e.MemberNameEng).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<OurWebsite>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("OurWebsites", "HomePage");
+
+                entity.Property(e => e.Url)
+                    .HasMaxLength(200)
+                    .HasColumnName("URL");
+
+                entity.Property(e => e.WebsiteTittle).HasMaxLength(100);
             });
 
             modelBuilder.Entity<ParticipantsMaster>(entity =>
