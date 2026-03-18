@@ -1,3 +1,4 @@
+using DiriWebAdmin.Services;
 using Shared.AdminClientService.MasterService;
 using Microsoft.AspNetCore.Components;
 using Radzen;
@@ -9,6 +10,7 @@ public partial class UserMaster : ComponentBase
     [Inject] private UserWithRolesApiClient UserWithRolesApiClient { get; set; } = default!;
     [Inject] private DialogService DialogService { get; set; } = default!;
     [Inject] private NotificationService NotificationService { get; set; } = default!;
+    [Inject] private AdminSessionService AdminSessionService { get; set; } = default!;
 
     private List<UserWithRolesDto> users = new();
     private List<RoleMasterDto> availableRoles = new();
@@ -52,7 +54,7 @@ public partial class UserMaster : ComponentBase
             UserName = user.UserName,
             Email = user.Email,
             MobileNo = user.MobileNo,
-            PasswordHash = user.PasswordHash,
+            PasswordHash = string.Empty,
             IsActive = user.IsActive,
             IsLocked = user.IsLocked,
             LastLoginDate = user.LastLoginDate,
@@ -68,6 +70,12 @@ public partial class UserMaster : ComponentBase
 
     private async Task SaveUserAsync()
     {
+        if (!isEditMode && string.IsNullOrWhiteSpace(userForm.PasswordHash))
+        {
+            Notify(NotificationSeverity.Warning, "Validation", "Password is required when creating a user.");
+            return;
+        }
+
         var confirmed = await DialogService.Confirm(
             isEditMode ? "Do you want to update this user?" : "Do you want to save this user?",
             "Confirmation",
@@ -80,14 +88,22 @@ public partial class UserMaster : ComponentBase
 
         try
         {
+            var session = await AdminSessionService.GetSessionAsync();
             if (isEditMode)
             {
+                if (string.IsNullOrWhiteSpace(userForm.PasswordHash))
+                {
+                    userForm.PasswordHash = string.Empty;
+                }
+
+                userForm.ModifiedBy = session?.UserName;
                 userForm.ModifiedDate = DateTime.Now;
                 await UserWithRolesApiClient.UpdateAsync(userForm);
                 Notify(NotificationSeverity.Success, "Success", "User updated successfully.");
             }
             else
             {
+                userForm.CreatedBy = session?.UserName;
                 userForm.CreatedDate = DateTime.Now;
                 await UserWithRolesApiClient.CreateAsync(userForm);
                 Notify(NotificationSeverity.Success, "Success", "User created successfully.");

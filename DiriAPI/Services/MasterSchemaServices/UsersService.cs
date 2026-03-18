@@ -1,4 +1,5 @@
 using DataAccess.Core;
+using DiriAPI.Services.Security;
 using Domain.DBModels;
 using Domain.RespDTO.MasterSchemaRespDTO;
 
@@ -7,10 +8,12 @@ namespace DiriAPI.Services.MasterSchemaServices
     public class UsersService
     {
         private readonly DiriWebPortalContext _context;
+        private readonly PasswordHashingService _passwordHashingService;
 
-        public UsersService(DiriWebPortalContext context)
+        public UsersService(DiriWebPortalContext context, PasswordHashingService passwordHashingService)
         {
             _context = context;
+            _passwordHashingService = passwordHashingService;
         }
 
         public UserRespDTO GetAll()
@@ -21,7 +24,7 @@ namespace DiriAPI.Services.MasterSchemaServices
                 var users = _context.Users.OrderBy(x => x.UserName).ToList();
                 resp.RESPONSE_CODE = ConfigClass.SUCCESS;
                 resp.RESPONSE_DESCRPTION = ConfigClass.SUCCESS_MESSAGE;
-                resp.lstData = users;
+                resp.lstData = users.Select(MapWithoutPasswordHash).ToList();
             }
             catch (Exception ex)
             {
@@ -47,7 +50,7 @@ namespace DiriAPI.Services.MasterSchemaServices
 
                 resp.RESPONSE_CODE = ConfigClass.SUCCESS;
                 resp.RESPONSE_DESCRPTION = ConfigClass.SUCCESS_MESSAGE;
-                resp.data = user;
+                resp.data = MapWithoutPasswordHash(user);
             }
             catch (Exception ex)
             {
@@ -64,12 +67,13 @@ namespace DiriAPI.Services.MasterSchemaServices
             try
             {
                 user.CreatedDate ??= DateTime.Now;
+                user.PasswordHash = _passwordHashingService.HashPassword(user.PasswordHash);
                 _context.Users.Add(user);
                 _context.SaveChanges();
 
                 resp.RESPONSE_CODE = ConfigClass.SUCCESS;
                 resp.RESPONSE_DESCRPTION = ConfigClass.SUCCESS_MESSAGE;
-                resp.data = user;
+                resp.data = MapWithoutPasswordHash(user);
             }
             catch (Exception ex)
             {
@@ -96,7 +100,10 @@ namespace DiriAPI.Services.MasterSchemaServices
                 existing.UserName = user.UserName;
                 existing.Email = user.Email;
                 existing.MobileNo = user.MobileNo;
-                existing.PasswordHash = user.PasswordHash;
+                if (!string.IsNullOrWhiteSpace(user.PasswordHash))
+                {
+                    existing.PasswordHash = _passwordHashingService.HashPassword(user.PasswordHash);
+                }
                 existing.IsActive = user.IsActive;
                 existing.IsLocked = user.IsLocked;
                 existing.LastLoginDate = user.LastLoginDate;
@@ -107,7 +114,7 @@ namespace DiriAPI.Services.MasterSchemaServices
 
                 resp.RESPONSE_CODE = ConfigClass.SUCCESS;
                 resp.RESPONSE_DESCRPTION = ConfigClass.SUCCESS_MESSAGE;
-                resp.data = existing;
+                resp.data = MapWithoutPasswordHash(existing);
             }
             catch (Exception ex)
             {
@@ -144,6 +151,25 @@ namespace DiriAPI.Services.MasterSchemaServices
             }
 
             return resp;
+        }
+
+        private static User MapWithoutPasswordHash(User user)
+        {
+            return new User
+            {
+                UserId = user.UserId,
+                UserName = user.UserName,
+                Email = user.Email,
+                MobileNo = user.MobileNo,
+                PasswordHash = string.Empty,
+                IsActive = user.IsActive,
+                IsLocked = user.IsLocked,
+                LastLoginDate = user.LastLoginDate,
+                CreatedDate = user.CreatedDate,
+                CreatedBy = user.CreatedBy,
+                ModifiedDate = user.ModifiedDate,
+                ModifiedBy = user.ModifiedBy
+            };
         }
     }
 }

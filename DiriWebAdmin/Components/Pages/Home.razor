@@ -1,15 +1,44 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Admin Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="admin-home-page">
+    <div class="admin-home-hero">
+        <div>
+            <span class="admin-home-badge">DIRI Web Admin</span>
+            <h1>Administration Dashboard</h1>
+            <p>
+                Manage user accounts, roles, and portal content from a single secure workspace.
+            </p>
+        </div>
 
-Welcome to your new app.
+        <div class="admin-home-actions">
+            <a href="/masterforms/usermaster" class="btn admin-home-primary-btn">Manage Users</a>
+            <a href="/homepage" class="btn admin-home-secondary-btn">Manage Home Page</a>
+        </div>
+    </div>
 
-<RadzenButton Click="@ButtonClicked" Text="Hi"></RadzenButton>
-@code {
-    void ButtonClicked()
-    {
-        // Handle the Click event of RadzenButton
-    }
-}
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="admin-home-card">
+                <div class="admin-home-card-icon icon-users">👤</div>
+                <h3>User Administration</h3>
+                <p>Create users with hashed passwords and assign roles securely.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-home-card">
+                <div class="admin-home-card-icon icon-roles">🛡️</div>
+                <h3>Role Management</h3>
+                <p>Keep access levels organized with validated role CRUD operations.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-home-card">
+                <div class="admin-home-card-icon icon-content">✨</div>
+                <h3>Content Updates</h3>
+                <p>Publish homepage banners and portal details after signing in.</p>
+            </div>
+        </div>
+    </div>
+</div>
