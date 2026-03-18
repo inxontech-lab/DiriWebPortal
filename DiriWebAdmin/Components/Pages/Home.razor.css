@@ -37,6 +37,28 @@
     color: rgba(246, 255, 253, 0.86);
 }
 
+<<<<<<< codex/fix-password-hashing-in-create-user-gr55tp
+=======
+.admin-home-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.admin-home-primary-btn,
+.admin-home-secondary-btn {
+    min-width: 220px;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 24px rgba(4, 25, 26, 0.16);
+}
+
+.admin-home-secondary-btn {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+>>>>>>> main
 .admin-home-card {
     height: 100%;
     padding: 1.5rem;
@@ -89,4 +111,11 @@
     .admin-home-hero {
         flex-direction: column;
     }
+<<<<<<< codex/fix-password-hashing-in-create-user-gr55tp
+=======
+
+    .admin-home-actions {
+        align-items: flex-start;
+    }
+>>>>>>> main
 }
