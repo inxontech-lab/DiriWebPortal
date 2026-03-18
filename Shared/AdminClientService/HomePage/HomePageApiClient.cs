@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 using Domain.DBModels;
 using Domain.RespDTO.HomepageRespDTO;
 
-namespace Shared.HomePage;
+namespace Shared.AdminClientService.HomePage;
 
 public class HomePageApiClient
 {
