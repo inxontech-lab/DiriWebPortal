@@ -20,7 +20,8 @@ namespace DiriAPI.Services
             try
             {
                 var websites = _diriWebPortalContext.OurWebsites
-                    .Where(x => x.Active == 1)
+                    .Where(x => x.Active == 1 && !string.IsNullOrWhiteSpace(x.WebsiteTittle) && !string.IsNullOrWhiteSpace(x.Url))
+                    .OrderBy(x => x.SerialNumber ?? int.MaxValue)
                     .ToList();
 
                 if (websites.Any())
