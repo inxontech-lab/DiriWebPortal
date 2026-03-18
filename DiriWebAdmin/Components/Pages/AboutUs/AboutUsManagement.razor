@@ -6,42 +6,7 @@
     <div class="aboutus-admin-hero mb-4">
         <div>
             <h3 class="mb-2">About Us Management</h3>
-            <p class="mb-0">Manage leadership messages and DIRI-at-a-glance content from one consolidated workspace.</p>
-        </div>
-        <div class="aboutus-hero-meta">
-            <span>@GetActiveRecordCount() active records</span>
-            <span>4 future sections parked for later</span>
-        </div>
-    </div>
-
-    <div class="row g-3 mb-4">
-        <div class="col-md-6 col-xl-3">
-            <div class="aboutus-summary-card">
-                <span class="summary-label">Founder</span>
-                <strong>@founderInfos.Count</strong>
-                <span class="summary-meta">Message from Trustee & Founder</span>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-3">
-            <div class="aboutus-summary-card">
-                <span class="summary-label">Managing Trustee</span>
-                <strong>@(managingTrusteeInfos.Count + managingTrusteeDesignations.Count + managingTrusteeArticles.Count + managingTrusteePublications.Count)</strong>
-                <span class="summary-meta">Profile, designations, articles and publications</span>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-3">
-            <div class="aboutus-summary-card">
-                <span class="summary-label">DIRI At a Glance</span>
-                <strong>@aboutUsDetails.Count</strong>
-                <span class="summary-meta">AboutUsDetails records</span>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-3">
-            <div class="aboutus-summary-card aboutus-summary-card-muted">
-                <span class="summary-label">Coming Later</span>
-                <strong>4</strong>
-                <span class="summary-meta">Vision, Committee, Research Cell, Collaborations placeholders</span>
-            </div>
+            <p class="mb-0">Manage Founder, Managing Trustee, and DIRI At a Glance content from one place.</p>
         </div>
     </div>
 
@@ -51,52 +16,27 @@
                 <div class="aboutus-single-form mt-3">
                     <EditForm Model="founderInfoForm" OnSubmit="SaveFounderInfoAsync" class="aboutus-form-shell">
                         <div class="card aboutus-form-card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <span>@(isFounderInfoEditMode ? "Update Founder Message" : "Create Founder Message")</span>
-                                <span class="badge text-bg-light">Trustee & Founder</span>
-                            </div>
+                            <div class="card-header">Update Founder Message</div>
                             <div class="card-body">
                                 <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label class="form-label">Founder Name</label>
-                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderName" />
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderName" readonly />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <label class="form-label">Title Line 1</label>
-                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle1" />
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle1" readonly />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <label class="form-label">Title Line 2</label>
-                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle2" />
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Message From Trustee & Founder</label>
-                                        <InputTextArea class="form-control" rows="6" @bind-Value="founderInfoForm.FounderMessage" />
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle2" readonly />
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">About Founder</label>
-                                        <InputTextArea class="form-control" rows="5" @bind-Value="founderInfoForm.AboutFounder" />
+                                        <RadzenHtmlEditor @bind-Value="founderInfoForm.AboutFounder"
+                                                          class="aboutus-html-editor"
+                                                          Style="height: 320px" />
                                     </div>
-                                    <div class="col-md-8">
-                                        <label class="form-label">Founder Image</label>
-                                        <InputFile class="form-control" OnChange="@OnFounderImageFileChanged" accept="image/*" />
-                                        <small class="form-text text-muted">The uploaded image is copied into both admin and portal <code>wwwroot/HomePage</code> folders.</small>
-                                        <div class="file-selection-note mt-2">@GetFounderImageStatusText()</div>
-                                    </div>
-                                    <div class="col-md-4 d-flex align-items-end">
-                                        <div class="form-check mb-2">
-                                            <InputCheckbox class="form-check-input" @bind-Value="founderInfoActiveValue" />
-                                            <label class="form-check-label">Active</label>
-                                        </div>
-                                    </div>
-                                    @if (!string.IsNullOrWhiteSpace(founderInfoForm.FounderImagePath))
-                                    {
-                                        <div class="col-12">
-                                            <div class="image-preview-shell">
-                                                <img src="@ResolveImageUrl(founderInfoForm.FounderImagePath)" alt="Founder preview" class="img-fluid rounded" />
-                                            </div>
-                                        </div>
-                                    }
                                 </div>
                                 <div class="d-flex gap-2 mt-4 flex-wrap">
                                     <RadzenButton Icon="save" Text="Save Founder" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
@@ -116,52 +56,34 @@
                 <div class="row g-3 mt-1">
                     <div class="col-12">
                         <EditForm Model="managingTrusteeInfoForm" OnSubmit="SaveManagingTrusteeInfoAsync">
-                            <div class="card aboutus-form-card mb-3">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <span>@(isManagingTrusteeInfoEditMode ? "Update Managing Trustee Profile" : "Create Managing Trustee Profile")</span>
-                                    <span class="badge text-bg-light">Managing Trustee & Chairman</span>
-                                </div>
+                            <div class="card aboutus-form-card">
+                                <div class="card-header">Update Managing Trustee Profile</div>
                                 <div class="card-body">
                                     <div class="row g-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="form-label">Name</label>
-                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeName" />
+                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeName" readonly />
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <label class="form-label">Title Line 1</label>
-                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle1" />
+                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle1" readonly />
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <label class="form-label">Title Line 2</label>
-                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle2" />
+                                            <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle2" readonly />
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Message From Managing Trustee & Chairman</label>
-                                            <InputTextArea class="form-control" rows="6" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeMessage" />
+                                            <RadzenHtmlEditor @bind-Value="managingTrusteeInfoForm.ManagingTrusteeMessage"
+                                                              class="aboutus-html-editor"
+                                                              Style="height: 280px" />
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">About Managing Trustee</label>
-                                            <InputTextArea class="form-control" rows="5" @bind-Value="managingTrusteeInfoForm.AboutManagingTrustee" />
+                                            <RadzenHtmlEditor @bind-Value="managingTrusteeInfoForm.AboutManagingTrustee"
+                                                              class="aboutus-html-editor"
+                                                              Style="height: 280px" />
                                         </div>
-                                        <div class="col-md-8">
-                                            <label class="form-label">Profile Image</label>
-                                            <InputFile class="form-control" OnChange="@OnManagingTrusteeImageFileChanged" accept="image/*" />
-                                            <div class="file-selection-note mt-2">@GetManagingTrusteeImageStatusText()</div>
-                                        </div>
-                                        <div class="col-md-4 d-flex align-items-end">
-                                            <div class="form-check mb-2">
-                                                <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeInfoActiveValue" />
-                                                <label class="form-check-label">Active</label>
-                                            </div>
-                                        </div>
-                                        @if (!string.IsNullOrWhiteSpace(managingTrusteeInfoForm.ManagingTrusteeImagePath))
-                                        {
-                                            <div class="col-12">
-                                                <div class="image-preview-shell">
-                                                    <img src="@ResolveImageUrl(managingTrusteeInfoForm.ManagingTrusteeImagePath)" alt="Managing trustee preview" class="img-fluid rounded" />
-                                                </div>
-                                            </div>
-                                        }
                                     </div>
                                     <div class="d-flex gap-2 mt-4 flex-wrap">
                                         <RadzenButton Icon="save" Text="Save Profile" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
@@ -177,183 +99,36 @@
                     </div>
 
                     <div class="col-lg-4">
-                        @RenderSimpleGridCard("Designations", managingTrusteeDesignations.Count, @<div>
-                            <EditForm Model="managingTrusteeDesignationForm" OnSubmit="SaveManagingTrusteeDesignationAsync">
-                                <div class="mb-3">
-                                    <label class="form-label">Designation Details</label>
-                                    <InputTextArea class="form-control" rows="4" @bind-Value="managingTrusteeDesignationForm.DesignationDetails" />
-                                </div>
-                                <div class="form-check mb-3">
-                                    <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeDesignationActiveValue" />
-                                    <label class="form-check-label">Active</label>
-                                </div>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
-                                    <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteeDesignationFormState">Clear</button>
-                                </div>
-                            </EditForm>
-                            <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteeDesignations" TItem="ManagingTrusteeDesignation" AllowPaging="true" PageSize="5">
-                                <Columns>
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Property="DesignationDetails" Title="Designation" />
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Title="Active" Width="80px">
-                                        <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
-                                    </RadzenDataGridColumn>
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Title="Actions" Width="120px">
-                                        <Template Context="item">
-                                            <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteeDesignation(item)" />
-                                            <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteeDesignationAsync(item)" />
-                                        </Template>
-                                    </RadzenDataGridColumn>
-                                </Columns>
-                            </RadzenDataGrid>
-                        </div>)
-                    </div>
-
-                    <div class="col-lg-4">
-                        @RenderSimpleGridCard("Articles", managingTrusteeArticles.Count, @<div>
-                            <EditForm Model="managingTrusteeArticleForm" OnSubmit="SaveManagingTrusteeArticleAsync">
-                                <div class="mb-3">
-                                    <label class="form-label">Article Name</label>
-                                    <InputText class="form-control" @bind-Value="managingTrusteeArticleForm.ArticleName" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Short Description</label>
-                                    <InputTextArea class="form-control" rows="3" @bind-Value="managingTrusteeArticleForm.ShortDescription" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Article Link</label>
-                                    <InputText class="form-control" @bind-Value="managingTrusteeArticleForm.ArticleLink" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Published Date</label>
-                                    <InputDate class="form-control" @bind-Value="managingTrusteeArticleForm.PublishedDate" />
-                                </div>
-                                <div class="form-check mb-3">
-                                    <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeArticleActiveValue" />
-                                    <label class="form-check-label">Active</label>
-                                </div>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
-                                    <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteeArticleFormState">Clear</button>
-                                </div>
-                            </EditForm>
-                            <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteeArticles" TItem="ManagingTrusteeArticle" AllowPaging="true" PageSize="5">
-                                <Columns>
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Property="ArticleName" Title="Article" />
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Property="PublishedDate" Title="Published" FormatString="{0:dd-MMM-yyyy}" Width="120px" />
-                                    <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Title="Actions" Width="120px">
-                                        <Template Context="item">
-                                            <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteeArticle(item)" />
-                                            <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteeArticleAsync(item)" />
-                                        </Template>
-                                    </RadzenDataGridColumn>
-                                </Columns>
-                            </RadzenDataGrid>
-                        </div>)
-                    </div>
-
-                    <div class="col-lg-4">
-                        @RenderSimpleGridCard("Publications", managingTrusteePublications.Count, @<div>
-                            <EditForm Model="managingTrusteePublicationForm" OnSubmit="SaveManagingTrusteePublicationAsync">
-                                <div class="mb-3">
-                                    <label class="form-label">Publication Name</label>
-                                    <InputText class="form-control" @bind-Value="managingTrusteePublicationForm.PublicationName" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Short Description</label>
-                                    <InputTextArea class="form-control" rows="3" @bind-Value="managingTrusteePublicationForm.ShortDescription" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Publication Link</label>
-                                    <InputText class="form-control" @bind-Value="managingTrusteePublicationForm.PublicationLink" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Published Date</label>
-                                    <InputDate class="form-control" @bind-Value="managingTrusteePublicationForm.PublishedDate" />
-                                </div>
-                                <div class="form-check mb-3">
-                                    <InputCheckbox class="form-check-input" @bind-Value="managingTrusteePublicationActiveValue" />
-                                    <label class="form-check-label">Active</label>
-                                </div>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
-                                    <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteePublicationFormState">Clear</button>
-                                </div>
-                            </EditForm>
-                            <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteePublications" TItem="ManagingTrusteePublication" AllowPaging="true" PageSize="5">
-                                <Columns>
-                                    <RadzenDataGridColumn TItem="ManagingTrusteePublication" Property="PublicationName" Title="Publication" />
-                                    <RadzenDataGridColumn TItem="ManagingTrusteePublication" Property="PublishedDate" Title="Published" FormatString="{0:dd-MMM-yyyy}" Width="120px" />
-                                    <RadzenDataGridColumn TItem="ManagingTrusteePublication" Title="Actions" Width="120px">
-                                        <Template Context="item">
-                                            <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteePublication(item)" />
-                                            <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteePublicationAsync(item)" />
-                                        </Template>
-                                    </RadzenDataGridColumn>
-                                </Columns>
-                            </RadzenDataGrid>
-                        </div>)
-                    </div>
-                </div>
-            </RadzenTabsItem>
-
-            <RadzenTabsItem Text="DIRI At a Glance">
-                <div class="row g-3 mt-1">
-                    <div class="col-lg-4">
-                        <EditForm Model="aboutUsDetailForm" OnSubmit="SaveAboutUsDetailAsync">
-                            <div class="card aboutus-form-card h-100">
-                                <div class="card-header">@(isAboutUsDetailEditMode ? "Update DIRI At a Glance" : "Create DIRI At a Glance")</div>
-                                <div class="card-body">
+                        <div class="card aboutus-form-card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Designations</span>
+                                <span class="badge text-bg-light">@managingTrusteeDesignations.Count</span>
+                            </div>
+                            <div class="card-body">
+                                <EditForm Model="managingTrusteeDesignationForm" OnSubmit="SaveManagingTrusteeDesignationAsync">
                                     <div class="mb-3">
-                                        <label class="form-label">Heading 1</label>
-                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading1" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Heading 2</label>
-                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading2" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Heading 3</label>
-                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading3" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Heading 4</label>
-                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading4" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Years Of Journey</label>
-                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.YearsOfJourney" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">About Us Details</label>
-                                        <InputTextArea class="form-control" rows="7" @bind-Value="aboutUsDetailForm.AboutUsDetails" />
+                                        <label class="form-label">Designation Details</label>
+                                        <InputTextArea class="form-control" rows="4" @bind-Value="managingTrusteeDesignationForm.DesignationDetails" />
                                     </div>
                                     <div class="form-check mb-3">
-                                        <InputCheckbox class="form-check-input" @bind-Value="aboutUsDetailActiveValue" />
+                                        <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeDesignationActiveValue" />
                                         <label class="form-check-label">Active</label>
                                     </div>
                                     <div class="d-flex gap-2 flex-wrap">
                                         <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
-                                        <button class="btn aboutus-clear-btn" type="button" @onclick="ResetAboutUsDetailFormState">Clear</button>
+                                        <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteeDesignationFormState">Clear</button>
                                     </div>
-                                </div>
-                            </div>
-                        </EditForm>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="card aboutus-form-card h-100">
-                            <div class="card-header">Existing DIRI At a Glance Records</div>
-                            <div class="card-body">
-                                <RadzenDataGrid class="aboutus-grid" Data="aboutUsDetails" TItem="AboutUsDetail" AllowPaging="true" PageSize="8" AllowSorting="true">
+                                </EditForm>
+                                <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteeDesignations" TItem="ManagingTrusteeDesignation" AllowPaging="true" PageSize="5">
                                     <Columns>
-                                        <RadzenDataGridColumn TItem="AboutUsDetail" Property="Id" Title="Id" Width="70px" />
-                                        <RadzenDataGridColumn TItem="AboutUsDetail" Property="Heading1" Title="Heading 1" />
-                                        <RadzenDataGridColumn TItem="AboutUsDetail" Property="YearsOfJourney" Title="Years" Width="120px" />
-                                        <RadzenDataGridColumn TItem="AboutUsDetail" Property="AboutUsDetails" Title="Details" />
-                                        <RadzenDataGridColumn TItem="AboutUsDetail" Title="Actions" Width="130px">
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Property="DesignationDetails" Title="Designation" />
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Title="Active" Width="80px">
+                                            <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
+                                        </RadzenDataGridColumn>
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeDesignation" Title="Actions" Width="120px">
                                             <Template Context="item">
-                                                <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditAboutUsDetail(item)" />
-                                                <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteAboutUsDetailAsync(item)" />
+                                                <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteeDesignation(item)" />
+                                                <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteeDesignationAsync(item)" />
                                             </Template>
                                         </RadzenDataGridColumn>
                                     </Columns>
@@ -361,6 +136,158 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-4">
+                        <div class="card aboutus-form-card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Articles</span>
+                                <span class="badge text-bg-light">@managingTrusteeArticles.Count</span>
+                            </div>
+                            <div class="card-body">
+                                <EditForm Model="managingTrusteeArticleForm" OnSubmit="SaveManagingTrusteeArticleAsync">
+                                    <div class="mb-3">
+                                        <label class="form-label">Article Name</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeArticleForm.ArticleName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Short Description</label>
+                                        <InputTextArea class="form-control" rows="3" @bind-Value="managingTrusteeArticleForm.ShortDescription" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Article Link</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeArticleForm.ArticleLink" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Published Date</label>
+                                        <InputDate class="form-control" @bind-Value="managingTrusteeArticleForm.PublishedDate" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeArticleActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
+                                        <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteeArticleFormState">Clear</button>
+                                    </div>
+                                </EditForm>
+                                <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteeArticles" TItem="ManagingTrusteeArticle" AllowPaging="true" PageSize="5">
+                                    <Columns>
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Property="ArticleName" Title="Article" />
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Property="PublishedDate" Title="Published" FormatString="{0:dd-MMM-yyyy}" Width="120px" />
+                                        <RadzenDataGridColumn TItem="ManagingTrusteeArticle" Title="Actions" Width="120px">
+                                            <Template Context="item">
+                                                <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteeArticle(item)" />
+                                                <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteeArticleAsync(item)" />
+                                            </Template>
+                                        </RadzenDataGridColumn>
+                                    </Columns>
+                                </RadzenDataGrid>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card aboutus-form-card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Publications</span>
+                                <span class="badge text-bg-light">@managingTrusteePublications.Count</span>
+                            </div>
+                            <div class="card-body">
+                                <EditForm Model="managingTrusteePublicationForm" OnSubmit="SaveManagingTrusteePublicationAsync">
+                                    <div class="mb-3">
+                                        <label class="form-label">Publication Name</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteePublicationForm.PublicationName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Short Description</label>
+                                        <InputTextArea class="form-control" rows="3" @bind-Value="managingTrusteePublicationForm.ShortDescription" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Publication Link</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteePublicationForm.PublicationLink" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Published Date</label>
+                                        <InputDate class="form-control" @bind-Value="managingTrusteePublicationForm.PublishedDate" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="managingTrusteePublicationActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
+                                        <button class="btn aboutus-clear-btn" type="button" @onclick="ResetManagingTrusteePublicationFormState">Clear</button>
+                                    </div>
+                                </EditForm>
+                                <RadzenDataGrid class="aboutus-grid mt-3" Data="managingTrusteePublications" TItem="ManagingTrusteePublication" AllowPaging="true" PageSize="5">
+                                    <Columns>
+                                        <RadzenDataGridColumn TItem="ManagingTrusteePublication" Property="PublicationName" Title="Publication" />
+                                        <RadzenDataGridColumn TItem="ManagingTrusteePublication" Property="PublishedDate" Title="Published" FormatString="{0:dd-MMM-yyyy}" Width="120px" />
+                                        <RadzenDataGridColumn TItem="ManagingTrusteePublication" Title="Actions" Width="120px">
+                                            <Template Context="item">
+                                                <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 aboutus-action-edit" Click="() => EditManagingTrusteePublication(item)" />
+                                                <RadzenButton Icon="delete" Size="ButtonSize.Small" class="aboutus-action-delete" Click="() => DeleteManagingTrusteePublicationAsync(item)" />
+                                            </Template>
+                                        </RadzenDataGridColumn>
+                                    </Columns>
+                                </RadzenDataGrid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+
+            <RadzenTabsItem Text="DIRI At a Glance">
+                <div class="aboutus-single-form mt-3">
+                    <EditForm Model="aboutUsDetailForm" OnSubmit="SaveAboutUsDetailAsync" class="aboutus-form-shell">
+                        <div class="card aboutus-form-card">
+                            <div class="card-header">Update DIRI At a Glance</div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 1</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading1" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 2</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading2" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 3</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading3" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Heading 4</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.Heading4" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Years Of Journey</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsDetailForm.YearsOfJourney" />
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-end">
+                                        <div class="form-check mb-3">
+                                            <InputCheckbox class="form-check-input" @bind-Value="aboutUsDetailActiveValue" />
+                                            <label class="form-check-label">Active</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">About Us Details</label>
+                                        <RadzenHtmlEditor @bind-Value="aboutUsDetailForm.AboutUsDetails"
+                                                          class="aboutus-html-editor"
+                                                          Style="height: 340px" />
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2 mt-4 flex-wrap">
+                                    <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="aboutus-save-btn" />
+                                    <button class="btn aboutus-clear-btn" type="button" @onclick="ResetAboutUsDetailFormState">Clear</button>
+                                    @if (isAboutUsDetailEditMode)
+                                    {
+                                        <button class="btn aboutus-delete-btn" type="button" @onclick="DeleteCurrentAboutUsDetailAsync">Delete</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </EditForm>
                 </div>
             </RadzenTabsItem>
 

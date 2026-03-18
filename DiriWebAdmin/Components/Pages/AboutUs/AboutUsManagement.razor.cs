@@ -1,7 +1,5 @@
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Hosting;
 using Radzen;
 using Shared.AdminClientService.AboutUs;
 
@@ -9,12 +7,9 @@ namespace DiriWebAdmin.Components.Pages.AboutUs;
 
 public partial class AboutUsManagement : ComponentBase
 {
-    private const long MaxUploadSize = 10 * 1024 * 1024;
-
     [Inject] private AboutUsApiClient AboutUsApiClient { get; set; } = default!;
     [Inject] private DialogService DialogService { get; set; } = default!;
     [Inject] private NotificationService NotificationService { get; set; } = default!;
-    [Inject] private IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
 
     private readonly List<PlannedSection> plannedSections =
     [
@@ -38,29 +33,12 @@ public partial class AboutUsManagement : ComponentBase
     private ManagingTrusteePublication managingTrusteePublicationForm = CreateManagingTrusteePublicationForm();
     private AboutUsDetail aboutUsDetailForm = CreateAboutUsDetailForm();
 
-    private IBrowserFile? pendingFounderImageFile;
-    private IBrowserFile? pendingManagingTrusteeImageFile;
-    private string? pendingFounderImageFileName;
-    private string? pendingManagingTrusteeImageFileName;
-
     private bool isFounderInfoEditMode;
     private bool isManagingTrusteeInfoEditMode;
     private bool isManagingTrusteeDesignationEditMode;
     private bool isManagingTrusteeArticleEditMode;
     private bool isManagingTrusteePublicationEditMode;
     private bool isAboutUsDetailEditMode;
-
-    private bool founderInfoActiveValue
-    {
-        get => (founderInfoForm.Active ?? 0) == 1;
-        set => founderInfoForm.Active = value ? 1 : 0;
-    }
-
-    private bool managingTrusteeInfoActiveValue
-    {
-        get => (managingTrusteeInfoForm.Active ?? 0) == 1;
-        set => managingTrusteeInfoForm.Active = value ? 1 : 0;
-    }
 
     private bool managingTrusteeDesignationActiveValue
     {
@@ -102,6 +80,7 @@ public partial class AboutUsManagement : ComponentBase
 
         SyncFounderFormWithStoredRecord();
         SyncManagingTrusteeFormWithStoredRecord();
+        SyncAboutUsDetailFormWithStoredRecord();
     }
 
     private async Task SaveFounderInfoAsync()
@@ -113,34 +92,23 @@ public partial class AboutUsManagement : ComponentBase
 
         try
         {
-            FounderInfo savedFounderInfo;
+            founderInfoForm.ModifiedDate = DateTime.Now;
             if (isFounderInfoEditMode)
             {
-                founderInfoForm.ModifiedDate = DateTime.Now;
-                savedFounderInfo = await AboutUsApiClient.UpdateFounderInfoAsync(founderInfoForm)
-                    ?? throw new InvalidOperationException("Founder info update did not return data.");
+                await AboutUsApiClient.UpdateFounderInfoAsync(founderInfoForm);
             }
             else
             {
                 founderInfoForm.CreatedDate = DateTime.Now;
-                savedFounderInfo = await AboutUsApiClient.CreateFounderInfoAsync(founderInfoForm)
-                    ?? throw new InvalidOperationException("Founder info create did not return data.");
+                await AboutUsApiClient.CreateFounderInfoAsync(founderInfoForm);
             }
 
-            if (pendingFounderImageFile is not null)
-            {
-                savedFounderInfo.FounderImagePath = await SaveHomePageImageAsync(pendingFounderImageFile, $"FounderInfo_{savedFounderInfo.Id}");
-                savedFounderInfo = await AboutUsApiClient.UpdateFounderInfoAsync(savedFounderInfo)
-                    ?? throw new InvalidOperationException("Founder image update did not return data.");
-            }
-
-            Notify(NotificationSeverity.Success, "Success", isFounderInfoEditMode ? "Founder message updated successfully." : "Founder message created successfully.");
+            Notify(NotificationSeverity.Success, "Success", isFounderInfoEditMode ? "Founder content updated successfully." : "Founder content created successfully.");
             await LoadAllAsync();
-            ResetFounderInfoFormState();
         }
         catch (Exception ex)
         {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to save founder message. {ex.Message}");
+            Notify(NotificationSeverity.Error, "Failed", $"Unable to save founder content. {ex.Message}");
         }
     }
 
@@ -151,7 +119,7 @@ public partial class AboutUsManagement : ComponentBase
             return;
         }
 
-        if (!await ConfirmDeleteAsync($"Delete founder message '{founderInfoForm.FounderName}'?"))
+        if (!await ConfirmDeleteAsync($"Delete founder content for '{founderInfoForm.FounderName}'?"))
         {
             return;
         }
@@ -159,29 +127,16 @@ public partial class AboutUsManagement : ComponentBase
         try
         {
             await AboutUsApiClient.DeleteFounderInfoAsync(founderInfoForm.Id);
-            Notify(NotificationSeverity.Success, "Success", "Founder message deleted successfully.");
+            Notify(NotificationSeverity.Success, "Success", "Founder content deleted successfully.");
             await LoadAllAsync();
-            ResetFounderInfoFormState();
         }
         catch (Exception ex)
         {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to delete founder message. {ex.Message}");
+            Notify(NotificationSeverity.Error, "Failed", $"Unable to delete founder content. {ex.Message}");
         }
     }
 
-    private Task OnFounderImageFileChanged(InputFileChangeEventArgs args)
-    {
-        pendingFounderImageFile = args.File;
-        pendingFounderImageFileName = args.File?.Name;
-        return Task.CompletedTask;
-    }
-
-    private void ResetFounderInfoFormState()
-    {
-        pendingFounderImageFile = null;
-        pendingFounderImageFileName = null;
-        SyncFounderFormWithStoredRecord();
-    }
+    private void ResetFounderInfoFormState() => SyncFounderFormWithStoredRecord();
 
     private void SyncFounderFormWithStoredRecord()
     {
@@ -206,30 +161,19 @@ public partial class AboutUsManagement : ComponentBase
 
         try
         {
-            ManagingTrusteeInfo savedManagingTrusteeInfo;
+            managingTrusteeInfoForm.ModifiedDate = DateTime.Now;
             if (isManagingTrusteeInfoEditMode)
             {
-                managingTrusteeInfoForm.ModifiedDate = DateTime.Now;
-                savedManagingTrusteeInfo = await AboutUsApiClient.UpdateManagingTrusteeInfoAsync(managingTrusteeInfoForm)
-                    ?? throw new InvalidOperationException("Managing trustee info update did not return data.");
+                await AboutUsApiClient.UpdateManagingTrusteeInfoAsync(managingTrusteeInfoForm);
             }
             else
             {
                 managingTrusteeInfoForm.CreatedDate = DateTime.Now;
-                savedManagingTrusteeInfo = await AboutUsApiClient.CreateManagingTrusteeInfoAsync(managingTrusteeInfoForm)
-                    ?? throw new InvalidOperationException("Managing trustee info create did not return data.");
-            }
-
-            if (pendingManagingTrusteeImageFile is not null)
-            {
-                savedManagingTrusteeInfo.ManagingTrusteeImagePath = await SaveHomePageImageAsync(pendingManagingTrusteeImageFile, $"ManagingTrusteeInfo_{savedManagingTrusteeInfo.Id}");
-                savedManagingTrusteeInfo = await AboutUsApiClient.UpdateManagingTrusteeInfoAsync(savedManagingTrusteeInfo)
-                    ?? throw new InvalidOperationException("Managing trustee image update did not return data.");
+                await AboutUsApiClient.CreateManagingTrusteeInfoAsync(managingTrusteeInfoForm);
             }
 
             Notify(NotificationSeverity.Success, "Success", isManagingTrusteeInfoEditMode ? "Managing trustee profile updated successfully." : "Managing trustee profile created successfully.");
             await LoadAllAsync();
-            ResetManagingTrusteeInfoFormState();
         }
         catch (Exception ex)
         {
@@ -244,7 +188,7 @@ public partial class AboutUsManagement : ComponentBase
             return;
         }
 
-        if (!await ConfirmDeleteAsync($"Delete managing trustee profile '{managingTrusteeInfoForm.ManagingTrusteeName}'?"))
+        if (!await ConfirmDeleteAsync($"Delete managing trustee profile for '{managingTrusteeInfoForm.ManagingTrusteeName}'?"))
         {
             return;
         }
@@ -254,7 +198,6 @@ public partial class AboutUsManagement : ComponentBase
             await AboutUsApiClient.DeleteManagingTrusteeInfoAsync(managingTrusteeInfoForm.Id);
             Notify(NotificationSeverity.Success, "Success", "Managing trustee profile deleted successfully.");
             await LoadAllAsync();
-            ResetManagingTrusteeInfoFormState();
         }
         catch (Exception ex)
         {
@@ -262,19 +205,7 @@ public partial class AboutUsManagement : ComponentBase
         }
     }
 
-    private Task OnManagingTrusteeImageFileChanged(InputFileChangeEventArgs args)
-    {
-        pendingManagingTrusteeImageFile = args.File;
-        pendingManagingTrusteeImageFileName = args.File?.Name;
-        return Task.CompletedTask;
-    }
-
-    private void ResetManagingTrusteeInfoFormState()
-    {
-        pendingManagingTrusteeImageFile = null;
-        pendingManagingTrusteeImageFileName = null;
-        SyncManagingTrusteeFormWithStoredRecord();
-    }
+    private void ResetManagingTrusteeInfoFormState() => SyncManagingTrusteeFormWithStoredRecord();
 
     private void SyncManagingTrusteeFormWithStoredRecord()
     {
@@ -308,14 +239,13 @@ public partial class AboutUsManagement : ComponentBase
             if (isManagingTrusteeDesignationEditMode)
             {
                 await AboutUsApiClient.UpdateManagingTrusteeDesignationAsync(managingTrusteeDesignationForm);
-                Notify(NotificationSeverity.Success, "Success", "Designation updated successfully.");
             }
             else
             {
                 await AboutUsApiClient.CreateManagingTrusteeDesignationAsync(managingTrusteeDesignationForm);
-                Notify(NotificationSeverity.Success, "Success", "Designation created successfully.");
             }
 
+            Notify(NotificationSeverity.Success, "Success", isManagingTrusteeDesignationEditMode ? "Designation updated successfully." : "Designation created successfully.");
             managingTrusteeDesignations = await AboutUsApiClient.GetManagingTrusteeDesignationsAsync();
             ResetManagingTrusteeDesignationFormState();
         }
@@ -335,12 +265,12 @@ public partial class AboutUsManagement : ComponentBase
         try
         {
             await AboutUsApiClient.DeleteManagingTrusteeDesignationAsync(item.Id);
+            Notify(NotificationSeverity.Success, "Success", "Designation deleted successfully.");
             managingTrusteeDesignations = await AboutUsApiClient.GetManagingTrusteeDesignationsAsync();
             if (isManagingTrusteeDesignationEditMode && managingTrusteeDesignationForm.Id == item.Id)
             {
                 ResetManagingTrusteeDesignationFormState();
             }
-            Notify(NotificationSeverity.Success, "Success", "Designation deleted successfully.");
         }
         catch (Exception ex)
         {
@@ -372,14 +302,13 @@ public partial class AboutUsManagement : ComponentBase
             if (isManagingTrusteeArticleEditMode)
             {
                 await AboutUsApiClient.UpdateManagingTrusteeArticleAsync(managingTrusteeArticleForm);
-                Notify(NotificationSeverity.Success, "Success", "Article updated successfully.");
             }
             else
             {
                 await AboutUsApiClient.CreateManagingTrusteeArticleAsync(managingTrusteeArticleForm);
-                Notify(NotificationSeverity.Success, "Success", "Article created successfully.");
             }
 
+            Notify(NotificationSeverity.Success, "Success", isManagingTrusteeArticleEditMode ? "Article updated successfully." : "Article created successfully.");
             managingTrusteeArticles = await AboutUsApiClient.GetManagingTrusteeArticlesAsync();
             ResetManagingTrusteeArticleFormState();
         }
@@ -399,12 +328,12 @@ public partial class AboutUsManagement : ComponentBase
         try
         {
             await AboutUsApiClient.DeleteManagingTrusteeArticleAsync(item.Id);
+            Notify(NotificationSeverity.Success, "Success", "Article deleted successfully.");
             managingTrusteeArticles = await AboutUsApiClient.GetManagingTrusteeArticlesAsync();
             if (isManagingTrusteeArticleEditMode && managingTrusteeArticleForm.Id == item.Id)
             {
                 ResetManagingTrusteeArticleFormState();
             }
-            Notify(NotificationSeverity.Success, "Success", "Article deleted successfully.");
         }
         catch (Exception ex)
         {
@@ -436,14 +365,13 @@ public partial class AboutUsManagement : ComponentBase
             if (isManagingTrusteePublicationEditMode)
             {
                 await AboutUsApiClient.UpdateManagingTrusteePublicationAsync(managingTrusteePublicationForm);
-                Notify(NotificationSeverity.Success, "Success", "Publication updated successfully.");
             }
             else
             {
                 await AboutUsApiClient.CreateManagingTrusteePublicationAsync(managingTrusteePublicationForm);
-                Notify(NotificationSeverity.Success, "Success", "Publication created successfully.");
             }
 
+            Notify(NotificationSeverity.Success, "Success", isManagingTrusteePublicationEditMode ? "Publication updated successfully." : "Publication created successfully.");
             managingTrusteePublications = await AboutUsApiClient.GetManagingTrusteePublicationsAsync();
             ResetManagingTrusteePublicationFormState();
         }
@@ -463,12 +391,12 @@ public partial class AboutUsManagement : ComponentBase
         try
         {
             await AboutUsApiClient.DeleteManagingTrusteePublicationAsync(item.Id);
+            Notify(NotificationSeverity.Success, "Success", "Publication deleted successfully.");
             managingTrusteePublications = await AboutUsApiClient.GetManagingTrusteePublicationsAsync();
             if (isManagingTrusteePublicationEditMode && managingTrusteePublicationForm.Id == item.Id)
             {
                 ResetManagingTrusteePublicationFormState();
             }
-            Notify(NotificationSeverity.Success, "Success", "Publication deleted successfully.");
         }
         catch (Exception ex)
         {
@@ -480,12 +408,6 @@ public partial class AboutUsManagement : ComponentBase
     {
         managingTrusteePublicationForm = CreateManagingTrusteePublicationForm();
         isManagingTrusteePublicationEditMode = false;
-    }
-
-    private void EditAboutUsDetail(AboutUsDetail item)
-    {
-        aboutUsDetailForm = CloneAboutUsDetail(item);
-        isAboutUsDetailEditMode = true;
     }
 
     private async Task SaveAboutUsDetailAsync()
@@ -500,16 +422,14 @@ public partial class AboutUsManagement : ComponentBase
             if (isAboutUsDetailEditMode)
             {
                 await AboutUsApiClient.UpdateAboutUsDetailAsync(aboutUsDetailForm);
-                Notify(NotificationSeverity.Success, "Success", "DIRI at a glance updated successfully.");
             }
             else
             {
                 await AboutUsApiClient.CreateAboutUsDetailAsync(aboutUsDetailForm);
-                Notify(NotificationSeverity.Success, "Success", "DIRI at a glance created successfully.");
             }
 
-            aboutUsDetails = await AboutUsApiClient.GetAboutUsDetailsAsync();
-            ResetAboutUsDetailFormState();
+            Notify(NotificationSeverity.Success, "Success", isAboutUsDetailEditMode ? "DIRI at a glance updated successfully." : "DIRI at a glance created successfully.");
+            await LoadAllAsync();
         }
         catch (Exception ex)
         {
@@ -517,22 +437,23 @@ public partial class AboutUsManagement : ComponentBase
         }
     }
 
-    private async Task DeleteAboutUsDetailAsync(AboutUsDetail item)
+    private async Task DeleteCurrentAboutUsDetailAsync()
     {
-        if (!await ConfirmDeleteAsync($"Delete DIRI at a glance record #{item.Id}?"))
+        if (!isAboutUsDetailEditMode || aboutUsDetailForm.Id <= 0)
+        {
+            return;
+        }
+
+        if (!await ConfirmDeleteAsync($"Delete DIRI at a glance record #{aboutUsDetailForm.Id}?"))
         {
             return;
         }
 
         try
         {
-            await AboutUsApiClient.DeleteAboutUsDetailAsync(item.Id);
-            aboutUsDetails = await AboutUsApiClient.GetAboutUsDetailsAsync();
-            if (isAboutUsDetailEditMode && aboutUsDetailForm.Id == item.Id)
-            {
-                ResetAboutUsDetailFormState();
-            }
+            await AboutUsApiClient.DeleteAboutUsDetailAsync(aboutUsDetailForm.Id);
             Notify(NotificationSeverity.Success, "Success", "DIRI at a glance deleted successfully.");
+            await LoadAllAsync();
         }
         catch (Exception ex)
         {
@@ -540,80 +461,22 @@ public partial class AboutUsManagement : ComponentBase
         }
     }
 
-    private void ResetAboutUsDetailFormState()
-    {
-        aboutUsDetailForm = CreateAboutUsDetailForm();
-        isAboutUsDetailEditMode = false;
-    }
+    private void ResetAboutUsDetailFormState() => SyncAboutUsDetailFormWithStoredRecord();
 
-    private string GetFounderImageStatusText()
+    private void SyncAboutUsDetailFormWithStoredRecord()
     {
-        if (!string.IsNullOrWhiteSpace(pendingFounderImageFileName))
+        var storedAboutUsDetail = aboutUsDetails.OrderBy(x => x.Id).FirstOrDefault();
+        if (storedAboutUsDetail is null)
         {
-            return $"Selected image: {pendingFounderImageFileName}";
+            aboutUsDetailForm = CreateAboutUsDetailForm();
+            isAboutUsDetailEditMode = false;
+            return;
         }
 
-        return string.IsNullOrWhiteSpace(founderInfoForm.FounderImagePath)
-            ? "No image selected."
-            : $"Current image: {founderInfoForm.FounderImagePath}";
+        aboutUsDetailForm = CloneAboutUsDetail(storedAboutUsDetail);
+        isAboutUsDetailEditMode = true;
     }
 
-    private string GetManagingTrusteeImageStatusText()
-    {
-        if (!string.IsNullOrWhiteSpace(pendingManagingTrusteeImageFileName))
-        {
-            return $"Selected image: {pendingManagingTrusteeImageFileName}";
-        }
-
-        return string.IsNullOrWhiteSpace(managingTrusteeInfoForm.ManagingTrusteeImagePath)
-            ? "No image selected."
-            : $"Current image: {managingTrusteeInfoForm.ManagingTrusteeImagePath}";
-    }
-
-    private async Task<string> SaveHomePageImageAsync(IBrowserFile file, string fileStem)
-    {
-        var extension = Path.GetExtension(file.Name);
-        if (string.IsNullOrWhiteSpace(extension))
-        {
-            extension = ".png";
-        }
-
-        var fileName = $"{fileStem}{extension.ToLowerInvariant()}";
-        var relativePath = $"HomePage/{fileName}";
-        var portalTargetFolder = GetPortalHomePageFolderPath();
-        var adminTargetFolder = GetAdminHomePageFolderPath();
-
-        Directory.CreateDirectory(portalTargetFolder);
-        Directory.CreateDirectory(adminTargetFolder);
-        DeleteExistingEntityImages(portalTargetFolder, fileStem);
-        DeleteExistingEntityImages(adminTargetFolder, fileStem);
-
-        await using var fileStream = file.OpenReadStream(MaxUploadSize);
-        await using var memoryStream = new MemoryStream();
-        await fileStream.CopyToAsync(memoryStream);
-        var buffer = memoryStream.ToArray();
-
-        await File.WriteAllBytesAsync(Path.Combine(portalTargetFolder, fileName), buffer);
-        await File.WriteAllBytesAsync(Path.Combine(adminTargetFolder, fileName), buffer);
-
-        return relativePath;
-    }
-
-    private void DeleteExistingEntityImages(string folderPath, string fileStem)
-    {
-        foreach (var existingFile in Directory.GetFiles(folderPath, $"{fileStem}.*"))
-        {
-            File.Delete(existingFile);
-        }
-    }
-
-    private string GetPortalWwwRootPath() => Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "..", "DiriWebPortal", "wwwroot"));
-
-    private string GetPortalHomePageFolderPath() => Path.Combine(GetPortalWwwRootPath(), "HomePage");
-
-    private string GetAdminWwwRootPath() => WebHostEnvironment.WebRootPath ?? Path.Combine(WebHostEnvironment.ContentRootPath, "wwwroot");
-
-    private string GetAdminHomePageFolderPath() => Path.Combine(GetAdminWwwRootPath(), "HomePage");
 
     private async Task<bool> ConfirmSaveAsync(bool isEditMode, string entityName)
     {
@@ -645,35 +508,6 @@ public partial class AboutUsManagement : ComponentBase
             Duration = 4000
         });
     }
-
-    private int GetActiveRecordCount()
-    {
-        return founderInfos.Count(x => x.Active == 1)
-            + managingTrusteeInfos.Count(x => x.Active == 1)
-            + managingTrusteeDesignations.Count(x => x.Active == 1)
-            + managingTrusteeArticles.Count(x => x.Active == 1)
-            + managingTrusteePublications.Count(x => x.Active == 1)
-            + aboutUsDetails.Count(x => x.Active == 1);
-    }
-
-    private RenderFragment RenderSimpleGridCard(string title, int count, RenderFragment content) => builder =>
-    {
-        builder.OpenElement(0, "div");
-        builder.AddAttribute(1, "class", "card aboutus-form-card h-100");
-        builder.OpenElement(2, "div");
-        builder.AddAttribute(3, "class", "card-header d-flex justify-content-between align-items-center");
-        builder.AddContent(4, title);
-        builder.OpenElement(5, "span");
-        builder.AddAttribute(6, "class", "badge text-bg-light");
-        builder.AddContent(7, count);
-        builder.CloseElement();
-        builder.CloseElement();
-        builder.OpenElement(8, "div");
-        builder.AddAttribute(9, "class", "card-body");
-        builder.AddContent(10, content);
-        builder.CloseElement();
-        builder.CloseElement();
-    };
 
     private static FounderInfo CloneFounderInfo(FounderInfo item) => new()
     {
@@ -745,21 +579,6 @@ public partial class AboutUsManagement : ComponentBase
         YearsOfJourney = item.YearsOfJourney,
         Active = item.Active
     };
-
-    private static string ResolveImageUrl(string? path)
-    {
-        if (string.IsNullOrWhiteSpace(path))
-        {
-            return string.Empty;
-        }
-
-        if (Uri.TryCreate(path, UriKind.Absolute, out _))
-        {
-            return path;
-        }
-
-        return path.StartsWith('/') ? path : $"/{path.TrimStart('~', '/')}";
-    }
 
     private static FounderInfo CreateFounderInfoForm() => new() { Active = 1 };
     private static ManagingTrusteeInfo CreateManagingTrusteeInfoForm() => new() { Active = 1 };
