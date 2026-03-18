@@ -141,7 +141,7 @@ public partial class HomePageManagement : ComponentBase
 
             Notify(NotificationSeverity.Success, "Success", isBannerEditMode ? "Banner slide updated successfully." : "Banner slide created successfully.");
             await LoadAllAsync();
-            ResetBannerForm();
+            ResetBannerFormState();
         }
         catch (Exception ex)
         {
@@ -163,7 +163,7 @@ public partial class HomePageManagement : ComponentBase
             await LoadAllAsync();
             if (isBannerEditMode && bannerForm.Id == item.Id)
             {
-                ResetBannerForm();
+                ResetBannerFormState();
             }
         }
         catch (Exception ex)
@@ -179,9 +179,9 @@ public partial class HomePageManagement : ComponentBase
         return Task.CompletedTask;
     }
 
-    private async Task OnBannerViewRequestedAsync(BannerText item)
+    private void OpenBannerImagePopup(BannerText item)
     {
-        var imageSource = await BuildPopupImageSourceAsync(item.BannerImageLocation);
+        var imageSource = BuildPopupImageSource(item.BannerImageLocation);
         if (string.IsNullOrWhiteSpace(imageSource))
         {
             Notify(NotificationSeverity.Warning, "Image unavailable", "The selected banner image could not be loaded.");
@@ -200,7 +200,7 @@ public partial class HomePageManagement : ComponentBase
         bannerPopupImageSource = string.Empty;
     }
 
-    private void ResetBannerForm()
+    private void ResetBannerFormState()
     {
         bannerForm = CreateBannerForm();
         pendingBannerImageFile = null;
@@ -243,7 +243,7 @@ public partial class HomePageManagement : ComponentBase
             }
 
             await LoadAllAsync();
-            ResetNumericDashboardForm();
+            ResetNumericDashboardFormState();
         }
         catch (Exception ex)
         {
@@ -265,7 +265,7 @@ public partial class HomePageManagement : ComponentBase
             await LoadAllAsync();
             if (isNumericDashboardEditMode && numericDashboardForm.Id == item.Id)
             {
-                ResetNumericDashboardForm();
+                ResetNumericDashboardFormState();
             }
         }
         catch (Exception ex)
@@ -274,7 +274,7 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private void ResetNumericDashboardForm()
+    private void ResetNumericDashboardFormState()
     {
         numericDashboardForm = CreateNumericDashboardForm();
         isNumericDashboardEditMode = false;
@@ -313,7 +313,7 @@ public partial class HomePageManagement : ComponentBase
             }
 
             await LoadAllAsync();
-            ResetAboutUsForm();
+            ResetAboutUsFormState();
         }
         catch (Exception ex)
         {
@@ -335,7 +335,7 @@ public partial class HomePageManagement : ComponentBase
             await LoadAllAsync();
             if (isAboutUsEditMode && aboutUsForm.Id == item.Id)
             {
-                ResetAboutUsForm();
+                ResetAboutUsFormState();
             }
         }
         catch (Exception ex)
@@ -344,7 +344,7 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private void ResetAboutUsForm()
+    private void ResetAboutUsFormState()
     {
         aboutUsForm = CreateAboutUsForm();
         isAboutUsEditMode = false;
@@ -382,7 +382,7 @@ public partial class HomePageManagement : ComponentBase
 
             Notify(NotificationSeverity.Success, "Success", isFounderInfoEditMode ? "Founder info updated successfully." : "Founder info created successfully.");
             await LoadAllAsync();
-            ResetFounderInfoForm();
+            ResetFounderInfoFormState();
         }
         catch (Exception ex)
         {
@@ -397,7 +397,7 @@ public partial class HomePageManagement : ComponentBase
         return Task.CompletedTask;
     }
 
-    private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
+    private void ResetFounderInfoFormState()
     {
         pendingFounderImageFile = null;
         pendingFounderImageFileName = null;
@@ -436,7 +436,7 @@ public partial class HomePageManagement : ComponentBase
 
             Notify(NotificationSeverity.Success, "Success", isManagingTrusteeInfoEditMode ? "Managing trustee info updated successfully." : "Managing trustee info created successfully.");
             await LoadAllAsync();
-            ResetManagingTrusteeInfoForm();
+            ResetManagingTrusteeInfoFormState();
         }
         catch (Exception ex)
         {
@@ -451,7 +451,7 @@ public partial class HomePageManagement : ComponentBase
         return Task.CompletedTask;
     }
 
-    private void ResetManagingTrusteeInfoForm()
+    private void ResetManagingTrusteeInfoFormState()
     {
         pendingManagingTrusteeImageFile = null;
         pendingManagingTrusteeImageFileName = null;
@@ -486,7 +486,7 @@ public partial class HomePageManagement : ComponentBase
         isManagingTrusteeInfoEditMode = true;
     }
 
-    private async Task<string?> BuildPopupImageSourceAsync(string? storedPath)
+    private string? BuildPopupImageSource(string? storedPath)
     {
         if (string.IsNullOrWhiteSpace(storedPath))
         {
@@ -497,14 +497,14 @@ public partial class HomePageManagement : ComponentBase
         var portalFilePath = Path.Combine(GetPortalWwwRootPath(), normalizedPath);
         if (File.Exists(portalFilePath))
         {
-            var bytes = await File.ReadAllBytesAsync(portalFilePath);
+            var bytes = File.ReadAllBytes(portalFilePath);
             return $"data:{GetContentType(portalFilePath)};base64,{Convert.ToBase64String(bytes)}";
         }
 
         var adminFilePath = Path.Combine(GetAdminWwwRootPath(), normalizedPath);
         if (File.Exists(adminFilePath))
         {
-            var bytes = await File.ReadAllBytesAsync(adminFilePath);
+            var bytes = File.ReadAllBytes(adminFilePath);
             return $"data:{GetContentType(adminFilePath)};base64,{Convert.ToBase64String(bytes)}";
         }
 
@@ -591,6 +591,17 @@ public partial class HomePageManagement : ComponentBase
     private string GetAdminWwwRootPath() => WebHostEnvironment.WebRootPath ?? Path.Combine(WebHostEnvironment.ContentRootPath, "wwwroot");
 
     private string GetAdminHomePageFolderPath() => Path.Combine(GetAdminWwwRootPath(), "HomePage");
+
+
+    private void OnResetBannerClicked(MouseEventArgs _) => ResetBannerFormState();
+
+    private void OnResetNumericDashboardClicked(MouseEventArgs _) => ResetNumericDashboardFormState();
+
+    private void OnResetAboutUsClicked(MouseEventArgs _) => ResetAboutUsFormState();
+
+    private void OnResetFounderInfoClicked(MouseEventArgs _) => ResetFounderInfoFormState();
+
+    private void OnResetManagingTrusteeInfoClicked(MouseEventArgs _) => ResetManagingTrusteeInfoFormState();
 
     private async Task<bool> ConfirmSaveAsync(bool isEditMode, string entityName)
     {
