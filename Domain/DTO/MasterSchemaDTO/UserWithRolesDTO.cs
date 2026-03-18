@@ -14,8 +14,6 @@ namespace Domain.DTO.MasterSchemaDTO
         public string? Email { get; set; }
 
         public string? MobileNo { get; set; }
-
-        [Required(ErrorMessage = "Password is required.")]
         public string PasswordHash { get; set; } = string.Empty;
 
         public bool? IsActive { get; set; } = true;
