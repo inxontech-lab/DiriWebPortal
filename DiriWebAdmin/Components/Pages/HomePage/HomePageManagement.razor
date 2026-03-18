@@ -1,0 +1,338 @@
+@page "/homepage"
+
+<PageTitle>Home Page Management</PageTitle>
+
+<div class="homepage-admin-page">
+    <div class="homepage-admin-hero mb-4">
+        <div>
+            <h3 class="mb-2">Home Page Content Management</h3>
+            <p class="mb-0">Manage the same data blocks rendered on the public <code>Index.razor</code> page: banner slides, numeric dashboard, about us, founder info, and managing trustee info.</p>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3">
+            <div class="homepage-summary-card">
+                <span class="summary-label">Banner Slides</span>
+                <strong>@bannerTexts.Count</strong>
+                <span class="summary-meta">Carousel records available</span>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="homepage-summary-card">
+                <span class="summary-label">Numeric Dashboards</span>
+                <strong>@numericDashboards.Count</strong>
+                <span class="summary-meta">Counters for journals, research, universities, conferences</span>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="homepage-summary-card">
+                <span class="summary-label">About Us</span>
+                <strong>@aboutUsItems.Count</strong>
+                <span class="summary-meta">Intro section records</span>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="homepage-summary-card">
+                <span class="summary-label">Leadership Cards</span>
+                <strong>@(founderInfos.Count + managingTrusteeInfos.Count)</strong>
+                <span class="summary-meta">Founder and managing trustee records</span>
+            </div>
+        </div>
+    </div>
+
+    <RadzenTabs RenderMode="TabRenderMode.Client" class="homepage-tabs">
+        <Tabs>
+            <RadzenTabsItem Text="Banner Text">
+                <div class="row g-3 mt-1">
+                    <div class="col-lg-8">
+                        <RadzenDataGrid class="homepage-grid" Data="bannerTexts" TItem="BannerText" AllowPaging="true" PageSize="8" AllowSorting="true" AllowFiltering="true">
+                            <Columns>
+                                <RadzenDataGridColumn TItem="BannerText" Property="Id" Title="Id" Width="70px" />
+                                <RadzenDataGridColumn TItem="BannerText" Property="TitleText" Title="Title" />
+                                <RadzenDataGridColumn TItem="BannerText" Property="Subtitle" Title="Subtitle" />
+                                <RadzenDataGridColumn TItem="BannerText" Property="BannerImageLocation" Title="Image Path" />
+                                <RadzenDataGridColumn TItem="BannerText" Title="Active" Width="90px">
+                                    <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
+                                </RadzenDataGridColumn>
+                                <RadzenDataGridColumn TItem="BannerText" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                                    <Template Context="item">
+                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditBannerText(item)" />
+                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteBannerTextAsync(item)" />
+                                    </Template>
+                                </RadzenDataGridColumn>
+                            </Columns>
+                        </RadzenDataGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <EditForm Model="bannerForm" OnSubmit="SaveBannerTextAsync">
+                            <div class="card homepage-form-card">
+                                <div class="card-header">@(isBannerEditMode ? "Edit Banner Slide" : "Create Banner Slide")</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Title Text</label>
+                                        <InputTextArea class="form-control" @bind-Value="bannerForm.TitleText" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Subtitle</label>
+                                        <InputTextArea class="form-control" @bind-Value="bannerForm.Subtitle" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Banner Image Path</label>
+                                        <InputText class="form-control" @bind-Value="bannerForm.BannerImageLocation" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="bannerActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                        <button class="btn homepage-clear-btn" type="button" @onclick="ResetBannerForm">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+
+            <RadzenTabsItem Text="Numeric Dashboard">
+                <div class="row g-3 mt-1">
+                    <div class="col-lg-8">
+                        <RadzenDataGrid class="homepage-grid" Data="numericDashboards" TItem="NumericDashboard" AllowPaging="true" PageSize="8" AllowSorting="true">
+                            <Columns>
+                                <RadzenDataGridColumn TItem="NumericDashboard" Property="Id" Title="Id" Width="70px" />
+                                <RadzenDataGridColumn TItem="NumericDashboard" Property="TotalJournal" Title="Journals" />
+                                <RadzenDataGridColumn TItem="NumericDashboard" Property="ResearchTittle" Title="Research Titles" />
+                                <RadzenDataGridColumn TItem="NumericDashboard" Property="UniversityInvolved" Title="Universities" />
+                                <RadzenDataGridColumn TItem="NumericDashboard" Property="Conference" Title="Conferences" />
+                                <RadzenDataGridColumn TItem="NumericDashboard" Title="Active" Width="90px">
+                                    <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
+                                </RadzenDataGridColumn>
+                                <RadzenDataGridColumn TItem="NumericDashboard" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                                    <Template Context="item">
+                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditNumericDashboard(item)" />
+                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteNumericDashboardAsync(item)" />
+                                    </Template>
+                                </RadzenDataGridColumn>
+                            </Columns>
+                        </RadzenDataGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <EditForm Model="numericDashboardForm" OnSubmit="SaveNumericDashboardAsync">
+                            <div class="card homepage-form-card">
+                                <div class="card-header">@(isNumericDashboardEditMode ? "Edit Numeric Dashboard" : "Create Numeric Dashboard")</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Journals Published</label>
+                                        <InputNumber class="form-control" @bind-Value="numericDashboardForm.TotalJournal" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Research Titles</label>
+                                        <InputNumber class="form-control" @bind-Value="numericDashboardForm.ResearchTittle" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Universities Involved</label>
+                                        <InputNumber class="form-control" @bind-Value="numericDashboardForm.UniversityInvolved" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">International Conferences</label>
+                                        <InputNumber class="form-control" @bind-Value="numericDashboardForm.Conference" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="numericDashboardActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                        <button class="btn homepage-clear-btn" type="button" @onclick="ResetNumericDashboardForm">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+
+            <RadzenTabsItem Text="About Us">
+                <div class="row g-3 mt-1">
+                    <div class="col-lg-8">
+                        <RadzenDataGrid class="homepage-grid" Data="aboutUsItems" TItem="AboutU" AllowPaging="true" PageSize="8" AllowSorting="true">
+                            <Columns>
+                                <RadzenDataGridColumn TItem="AboutU" Property="Id" Title="Id" Width="70px" />
+                                <RadzenDataGridColumn TItem="AboutU" Property="AboutUsTitle" Title="Title" />
+                                <RadzenDataGridColumn TItem="AboutU" Property="AbouUsText" Title="Description" />
+                                <RadzenDataGridColumn TItem="AboutU" Title="Active" Width="90px">
+                                    <Template Context="item">@(item.Active == 1 ? "Yes" : "No")</Template>
+                                </RadzenDataGridColumn>
+                                <RadzenDataGridColumn TItem="AboutU" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                                    <Template Context="item">
+                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditAboutUs(item)" />
+                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteAboutUsAsync(item)" />
+                                    </Template>
+                                </RadzenDataGridColumn>
+                            </Columns>
+                        </RadzenDataGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <EditForm Model="aboutUsForm" OnSubmit="SaveAboutUsAsync">
+                            <div class="card homepage-form-card">
+                                <div class="card-header">@(isAboutUsEditMode ? "Edit About Us" : "Create About Us")</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Title</label>
+                                        <InputText class="form-control" @bind-Value="aboutUsForm.AboutUsTitle" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <InputTextArea class="form-control" @bind-Value="aboutUsForm.AbouUsText" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="aboutUsActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                        <button class="btn homepage-clear-btn" type="button" @onclick="ResetAboutUsForm">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+
+            <RadzenTabsItem Text="Founder Info">
+                <div class="row g-3 mt-1">
+                    <div class="col-lg-8">
+                        <RadzenDataGrid class="homepage-grid" Data="founderInfos" TItem="FounderInfo" AllowPaging="true" PageSize="8" AllowSorting="true">
+                            <Columns>
+                                <RadzenDataGridColumn TItem="FounderInfo" Property="Id" Title="Id" Width="70px" />
+                                <RadzenDataGridColumn TItem="FounderInfo" Property="FounderName" Title="Founder Name" />
+                                <RadzenDataGridColumn TItem="FounderInfo" Property="FounderTittle1" Title="Title 1" />
+                                <RadzenDataGridColumn TItem="FounderInfo" Property="FounderTittle2" Title="Title 2" />
+                                <RadzenDataGridColumn TItem="FounderInfo" Property="FounderImagePath" Title="Image Path" />
+                                <RadzenDataGridColumn TItem="FounderInfo" Title="Active" Width="90px">
+                                    <Template Context="item">@((item.Active ?? 0) == 1 ? "Yes" : "No")</Template>
+                                </RadzenDataGridColumn>
+                                <RadzenDataGridColumn TItem="FounderInfo" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                                    <Template Context="item">
+                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditFounderInfo(item)" />
+                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteFounderInfoAsync(item)" />
+                                    </Template>
+                                </RadzenDataGridColumn>
+                            </Columns>
+                        </RadzenDataGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <EditForm Model="founderInfoForm" OnSubmit="SaveFounderInfoAsync">
+                            <div class="card homepage-form-card">
+                                <div class="card-header">@(isFounderInfoEditMode ? "Edit Founder Info" : "Create Founder Info")</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Founder Name</label>
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Title 1</label>
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle1" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Title 2</label>
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderTittle2" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Profile Message</label>
+                                        <InputTextArea class="form-control" @bind-Value="founderInfoForm.FounderMessage" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">About Founder</label>
+                                        <InputTextArea class="form-control" @bind-Value="founderInfoForm.AboutFounder" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Image Path</label>
+                                        <InputText class="form-control" @bind-Value="founderInfoForm.FounderImagePath" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="founderInfoActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                        <button class="btn homepage-clear-btn" type="button" @onclick="ResetFounderInfoForm">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+
+            <RadzenTabsItem Text="Managing Trustee Info">
+                <div class="row g-3 mt-1">
+                    <div class="col-lg-8">
+                        <RadzenDataGrid class="homepage-grid" Data="managingTrusteeInfos" TItem="ManagingTrusteeInfo" AllowPaging="true" PageSize="8" AllowSorting="true">
+                            <Columns>
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Property="Id" Title="Id" Width="70px" />
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Property="ManagingTrusteeName" Title="Name" />
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Property="ManagingTrusteeNameTittle1" Title="Title 1" />
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Property="ManagingTrusteeNameTittle2" Title="Title 2" />
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Property="ManagingTrusteeImagePath" Title="Image Path" />
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Title="Active" Width="90px">
+                                    <Template Context="item">@((item.Active ?? 0) == 1 ? "Yes" : "No")</Template>
+                                </RadzenDataGridColumn>
+                                <RadzenDataGridColumn TItem="ManagingTrusteeInfo" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                                    <Template Context="item">
+                                        <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditManagingTrusteeInfo(item)" />
+                                        <RadzenButton Icon="delete" Size="ButtonSize.Small" class="homepage-action-delete" Click="() => DeleteManagingTrusteeInfoAsync(item)" />
+                                    </Template>
+                                </RadzenDataGridColumn>
+                            </Columns>
+                        </RadzenDataGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <EditForm Model="managingTrusteeInfoForm" OnSubmit="SaveManagingTrusteeInfoAsync">
+                            <div class="card homepage-form-card">
+                                <div class="card-header">@(isManagingTrusteeInfoEditMode ? "Edit Managing Trustee Info" : "Create Managing Trustee Info")</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Managing Trustee Name</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Title 1</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle1" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Title 2</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeNameTittle2" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Profile Message</label>
+                                        <InputTextArea class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeMessage" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">About Managing Trustee</label>
+                                        <InputTextArea class="form-control" @bind-Value="managingTrusteeInfoForm.AboutManagingTrustee" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Image Path</label>
+                                        <InputText class="form-control" @bind-Value="managingTrusteeInfoForm.ManagingTrusteeImagePath" />
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <InputCheckbox class="form-check-input" @bind-Value="managingTrusteeInfoActiveValue" />
+                                        <label class="form-check-label">Active</label>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <RadzenButton Icon="save" Text="Save" ButtonType="ButtonType.Submit" class="homepage-save-btn" />
+                                        <button class="btn homepage-clear-btn" type="button" @onclick="ResetManagingTrusteeInfoForm">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </RadzenTabsItem>
+        </Tabs>
+    </RadzenTabs>
+</div>
