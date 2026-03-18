@@ -31,6 +31,7 @@
     <div class="col-lg-4">
         <EditForm Model="userForm" OnValidSubmit="SaveUserAsync">
             <DataAnnotationsValidator />
+            <ValidationSummary />
 
             <div class="card user-form-card">
                 <div class="card-header">@(isEditMode ? "Edit User" : "Create User")</div>
@@ -42,9 +43,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Password <span class="text-danger">*</span></label>
+                        <label class="form-label">Password @if (!isEditMode)
+                            {
+                                <span class="text-danger">*</span>
+                            }</label>
                         <InputText class="form-control" type="password" @bind-Value="userForm.PasswordHash" />
-                        <ValidationMessage For="@(() => userForm.PasswordHash)" />
+                        <small class="form-text text-muted">
+                            @(isEditMode ? "Leave blank to keep the existing password." : "Enter a password for the new user.")
+                        </small>
                     </div>
 
                     <div class="mb-3">

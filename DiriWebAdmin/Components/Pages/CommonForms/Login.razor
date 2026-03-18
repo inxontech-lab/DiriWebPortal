@@ -1,0 +1,73 @@
+@page "/login"
+@layout DiriWebAdmin.Components.Layout.LoginLayout
+
+<PageTitle>Admin Login</PageTitle>
+
+<div class="login-page-shell">
+    <div class="login-page-background"></div>
+
+    <div class="container login-page-container">
+        <div class="row justify-content-center align-items-center min-vh-100 py-4">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+                <div class="login-card">
+                    <div class="login-card-side">
+                        <img src="assets/images/diri.webp" alt="DIRI logo" class="login-logo" />
+                        <span class="login-badge">DiriWebAdmin</span>
+                        <h1>Welcome back</h1>
+                        <p>
+                            Sign in to continue managing users, roles, and the home page content for the DIRI portal.
+                        </p>
+                        <div class="login-highlight-list">
+                            <div class="login-highlight-item">
+                                <span class="login-highlight-icon" aria-hidden="true">🛡️</span>
+                                <span>Secure session-based access for admin pages</span>
+                            </div>
+                            <div class="login-highlight-item">
+                                <span class="login-highlight-icon" aria-hidden="true">🏠</span>
+                                <span>Quick access to the admin dashboard after login</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-card-form">
+                        <EditForm Model="loginRequest" OnValidSubmit="HandleLoginAsync">
+                            <DataAnnotationsValidator />
+
+                            <div class="login-form-header">
+                                <h2>Sign In</h2>
+                                <p>Use your admin credentials to open the portal dashboard.</p>
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(errorMessage))
+                            {
+                                <div class="alert alert-danger login-alert" role="alert">
+                                    @errorMessage
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <label class="form-label">User Name</label>
+                                <InputText class="form-control login-input" @bind-Value="loginRequest.UserName" />
+                                <ValidationMessage For="@(() => loginRequest.UserName)" />
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Password</label>
+                                <InputText class="form-control login-input" type="password" @bind-Value="loginRequest.Password" />
+                                <ValidationMessage For="@(() => loginRequest.Password)" />
+                            </div>
+
+                            <RadzenButton class="login-submit-btn"
+                                          ButtonStyle="ButtonStyle.Primary"
+                                          ButtonType="ButtonType.Submit"
+                                          Icon="login"
+                                          IsBusy="@isSubmitting"
+                                          BusyText="Signing in..."
+                                          Text="Login" />
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

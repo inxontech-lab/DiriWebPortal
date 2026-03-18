@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
-
+@using DiriWebAdmin.Services
+@using Domain.DTO.Auth
 
 <HeadContent>
     <link href="css/app.css" rel="stylesheet" />
@@ -9,91 +10,131 @@
 <RadzenNotification />
 <RadzenContextMenu />
 <RadzenTooltip />
-<RadzenLayout>
-    <RadzenHeader>
-        <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0" class="topbar-row">
-            <RadzenColumn Size="8" SizeMD="8" SizeLG="8">
-                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" Gap="0.75rem" class="topbar-brand-wrap">
-                    <RadzenSidebarToggle Click="@SidebarToggleClick" class="topbar-toggle"></RadzenSidebarToggle>
-                    <RadzenStack AlignItems="AlignItems.Start" Gap="0" class="topbar-brand-text">
-                        <RadzenText Text="DIRI Admin Panel" class="app-subtitle" Style="font-size:large; font-weight:bold" />
+
+@if (!isAuthStateResolved)
+{
+    <div class="d-flex min-vh-100 align-items-center justify-content-center">
+        <div class="text-center">
+            <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate" ShowValue="false" />
+            <p class="mt-3 text-muted">Loading admin session...</p>
+        </div>
+    </div>
+}
+else if (currentSession is not null)
+{
+    <RadzenLayout>
+        <RadzenHeader>
+            <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0" class="topbar-row">
+                <RadzenColumn Size="8" SizeMD="8" SizeLG="8">
+                    <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" Gap="0.75rem" class="topbar-brand-wrap">
+                        <RadzenSidebarToggle Click="@SidebarToggleClick" class="topbar-toggle"></RadzenSidebarToggle>
+                        <RadzenStack AlignItems="AlignItems.Start" Gap="0" class="topbar-brand-text">
+                            <RadzenText Text="DIRI Admin Panel" class="app-subtitle" Style="font-size:large; font-weight:bold" />
+                        </RadzenStack>
                     </RadzenStack>
-                </RadzenStack>
-            </RadzenColumn>
-            <RadzenColumn Size="4" SizeMD="4" SizeLG="4">
-                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.6rem" class="topbar-actions">
-                    <RadzenText Text="Username" class="app-user-badge" />
-                    <RadzenProfileMenu Click="@ProfileMenuClick" class="topbar-profile-menu">
-                        <ChildContent>
-                            <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
-                        </ChildContent>
-                        <Template>
-                        </Template>
-                    </RadzenProfileMenu>
-                </RadzenStack>
-            </RadzenColumn>
-        </RadzenRow>
-    </RadzenHeader>
+                </RadzenColumn>
+                <RadzenColumn Size="4" SizeMD="4" SizeLG="4">
+                    <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.6rem" class="topbar-actions">
+                        <RadzenButton Text="Dashboard"
+                                      Icon="dashboard"
+                                      ButtonStyle="ButtonStyle.Light"
+                                      Shade="Shade.Lighter"
+                                      Variant="Variant.Flat"
+                                      class="topbar-dashboard-btn"
+                                      Click="@NavigateToDashboard" />
+                        <RadzenText Text="@currentSession.UserName" class="app-user-badge" />
+                        <RadzenProfileMenu Click="@OnProfileMenuClick" class="topbar-profile-menu">
+                            <ChildContent>
+                                <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
+                            </ChildContent>
+                            <Template>
+                            </Template>
+                        </RadzenProfileMenu>
+                    </RadzenStack>
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenHeader>
 
 
-    <RadzenBody>
-        @Body
-    </RadzenBody>
+        <RadzenBody>
+            @Body
+        </RadzenBody>
 
-    <RadzenSidebar Expanded="@sidebarExpanded">
-        <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6">
-            <RadzenImage Path="assets/images/diri.webp" Alt="DIRI logo" Style="max-width: 90px; height: auto;" />
-        </RadzenStack>
-        <RadzenPanelMenu Multiple="true">
-            <RadzenPanelMenuItem Text="Master Forms" Icon="label" IconColor="@Colors.Primary">
-                <RadzenPanelMenuItem Text="User Master" Path="/masterforms/usermaster" Icon="account_circle" IconColor="@Colors.Success" />
-                <RadzenPanelMenuItem Text="Role Master" Path="/masterforms/rolemaster" Icon="badge" IconColor="@Colors.Success" />
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="Home Page" Path="/homepage" Icon="home" IconColor="@Colors.Info" />
-        </RadzenPanelMenu>
-        <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
-            <RadzenText Text="Application Name v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
-            <RadzenText Text="Copyright Ⓒ 2025" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
-        </RadzenStack>
-    </RadzenSidebar>
-</RadzenLayout>
+        <RadzenSidebar Expanded="@sidebarExpanded">
+            <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6">
+                <RadzenImage Path="assets/images/diri.webp" Alt="DIRI logo" Style="max-width: 90px; height: auto;" />
+            </RadzenStack>
+            <RadzenPanelMenu Multiple="true">
+                <RadzenPanelMenuItem Text="Master Forms" Icon="label" IconColor="@Colors.Primary">
+                    <RadzenPanelMenuItem Text="User Master" Path="/masterforms/usermaster" Icon="account_circle" IconColor="@Colors.Success" />
+                    <RadzenPanelMenuItem Text="Role Master" Path="/masterforms/rolemaster" Icon="badge" IconColor="@Colors.Success" />
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Home Page" Path="/homepage" Icon="home" IconColor="@Colors.Info" />
+            </RadzenPanelMenu>
+            <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
+                <RadzenText Text="Application Name v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+                <RadzenText Text="Copyright Ⓒ 2025" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            </RadzenStack>
+        </RadzenSidebar>
+    </RadzenLayout>
+}
 
 @code {
     [Inject]
-    protected IJSRuntime JSRuntime { get; set; }
+    protected IJSRuntime JSRuntime { get; set; } = default!;
     [Inject]
-    protected NavigationManager NavigationManager { get; set; }
+    protected NavigationManager NavigationManager { get; set; } = default!;
     [Inject]
-    protected DialogService DialogService { get; set; }
+    protected DialogService DialogService { get; set; } = default!;
     [Inject]
-    protected TooltipService TooltipService { get; set; }
+    protected TooltipService TooltipService { get; set; } = default!;
     [Inject]
-    protected ContextMenuService ContextMenuService { get; set; }
+    protected ContextMenuService ContextMenuService { get; set; } = default!;
     [Inject]
-    protected NotificationService NotificationService { get; set; }
+    protected NotificationService NotificationService { get; set; } = default!;
+    [Inject]
+    protected AdminSessionService AdminSessionService { get; set; } = default!;
+
     private bool sidebarExpanded = true;
+    private bool isAuthStateResolved;
+    private AdminSessionDTO? currentSession;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        currentSession = await AdminSessionService.GetSessionAsync();
+        isAuthStateResolved = true;
+
+        if (currentSession is null)
+        {
+            NavigationManager.NavigateTo("/login", forceLoad: true);
+            return;
+        }
+
+        StateHasChanged();
+    }
 
     void SidebarToggleClick()
     {
         sidebarExpanded = !sidebarExpanded;
     }
 
-    protected void ProfileMenuClick(RadzenProfileMenuItem args)
+    void NavigateToDashboard(MouseEventArgs _)
     {
-        if (args.Value?.ToString() == "User")
-        {
-            NavigationManager.NavigateTo("/User");
-            return;
-        }
-
-        if (args.Value?.ToString() == "Logout")
-        {
-            NavigationManager.NavigateTo("Account/Logout", true);
-        }
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
 
-    void NavigateToPage(string pageUrl)
+    protected async Task OnProfileMenuClick(RadzenProfileMenuItem args)
     {
-        NavigationManager.NavigateTo(pageUrl, true);
+        if (args.Value?.ToString() == "Logout")
+        {
+            await AdminSessionService.ClearSessionAsync();
+            currentSession = null;
+            NavigationManager.NavigateTo("/login", forceLoad: true);
+        }
     }
 }
