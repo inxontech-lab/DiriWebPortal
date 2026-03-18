@@ -8,7 +8,6 @@ namespace Domain.DBModels
         public int? SerialNumber { get; set; }
         public string? WebsiteTittle { get; set; }
         public string? Url { get; set; }
-        public int? SerialNumber { get; set; }
         public int? Active { get; set; }
     }
 }
