@@ -1,5 +1,8 @@
+using System.Text.RegularExpressions;
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Hosting;
 using Radzen;
 using Shared.AdminClientService.HomePage;
 
@@ -7,9 +10,12 @@ namespace DiriWebAdmin.Components.Pages.HomePage;
 
 public partial class HomePageManagement : ComponentBase
 {
+    private const long MaxUploadSize = 10 * 1024 * 1024;
+
     [Inject] private HomePageApiClient HomePageApiClient { get; set; } = default!;
     [Inject] private DialogService DialogService { get; set; } = default!;
     [Inject] private NotificationService NotificationService { get; set; } = default!;
+    [Inject] private IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
 
     private List<BannerText> bannerTexts = new();
     private List<NumericDashboard> numericDashboards = new();
@@ -71,6 +77,9 @@ public partial class HomePageManagement : ComponentBase
         aboutUsItems = await HomePageApiClient.GetAboutUsAsync();
         founderInfos = await HomePageApiClient.GetFounderInfosAsync();
         managingTrusteeInfos = await HomePageApiClient.GetManagingTrusteeInfosAsync();
+
+        SyncFounderFormWithStoredRecord();
+        SyncManagingTrusteeFormWithStoredRecord();
     }
 
     private void EditBannerText(BannerText item)
@@ -136,6 +145,11 @@ public partial class HomePageManagement : ComponentBase
         {
             Notify(NotificationSeverity.Error, "Failed", $"Unable to delete banner slide. {ex.Message}");
         }
+    }
+
+    private async Task HandleBannerImageSelected(InputFileChangeEventArgs args)
+    {
+        await UploadImageAsync(args.File, savedPath => bannerForm.BannerImageLocation = savedPath, "banner", "Banner image uploaded successfully.");
     }
 
     private void ResetBannerForm()
@@ -288,21 +302,7 @@ public partial class HomePageManagement : ComponentBase
 
     private void EditFounderInfo(FounderInfo item)
     {
-        founderInfoForm = new FounderInfo
-        {
-            Id = item.Id,
-            FounderName = item.FounderName,
-            FounderTittle1 = item.FounderTittle1,
-            FounderTittle2 = item.FounderTittle2,
-            FounderMessage = item.FounderMessage,
-            AboutFounder = item.AboutFounder,
-            FounderImagePath = item.FounderImagePath,
-            Active = item.Active,
-            CreatedBy = item.CreatedBy,
-            CreatedDate = item.CreatedDate,
-            ModifiedBy = item.ModifiedBy,
-            ModifiedDate = item.ModifiedDate
-        };
+        founderInfoForm = CloneFounderInfo(item);
         isFounderInfoEditMode = true;
     }
 
@@ -360,29 +360,19 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
+    private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
+    {
+        await UploadImageAsync(args.File, savedPath => founderInfoForm.FounderImagePath = savedPath, "founder", "Founder image uploaded successfully.");
+    }
+
     private void ResetFounderInfoForm()
     {
-        founderInfoForm = CreateFounderInfoForm();
-        isFounderInfoEditMode = false;
+        SyncFounderFormWithStoredRecord();
     }
 
     private void EditManagingTrusteeInfo(ManagingTrusteeInfo item)
     {
-        managingTrusteeInfoForm = new ManagingTrusteeInfo
-        {
-            Id = item.Id,
-            ManagingTrusteeName = item.ManagingTrusteeName,
-            ManagingTrusteeNameTittle1 = item.ManagingTrusteeNameTittle1,
-            ManagingTrusteeNameTittle2 = item.ManagingTrusteeNameTittle2,
-            ManagingTrusteeMessage = item.ManagingTrusteeMessage,
-            AboutManagingTrustee = item.AboutManagingTrustee,
-            ManagingTrusteeImagePath = item.ManagingTrusteeImagePath,
-            Active = item.Active,
-            CreatedBy = item.CreatedBy,
-            CreatedDate = item.CreatedDate,
-            ModifiedBy = item.ModifiedBy,
-            ModifiedDate = item.ModifiedDate
-        };
+        managingTrusteeInfoForm = CloneManagingTrusteeInfo(item);
         isManagingTrusteeInfoEditMode = true;
     }
 
@@ -440,10 +430,92 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
+    private async Task HandleManagingTrusteeImageSelected(InputFileChangeEventArgs args)
+    {
+        await UploadImageAsync(args.File, savedPath => managingTrusteeInfoForm.ManagingTrusteeImagePath = savedPath, "managing-trustee", "Managing trustee image uploaded successfully.");
+    }
+
     private void ResetManagingTrusteeInfoForm()
     {
-        managingTrusteeInfoForm = CreateManagingTrusteeInfoForm();
-        isManagingTrusteeInfoEditMode = false;
+        SyncManagingTrusteeFormWithStoredRecord();
+    }
+
+    private void SyncFounderFormWithStoredRecord()
+    {
+        var storedFounderInfo = founderInfos.OrderBy(x => x.Id).FirstOrDefault();
+        if (storedFounderInfo is null)
+        {
+            founderInfoForm = CreateFounderInfoForm();
+            isFounderInfoEditMode = false;
+            return;
+        }
+
+        founderInfoForm = CloneFounderInfo(storedFounderInfo);
+        isFounderInfoEditMode = true;
+    }
+
+    private void SyncManagingTrusteeFormWithStoredRecord()
+    {
+        var storedManagingTrusteeInfo = managingTrusteeInfos.OrderBy(x => x.Id).FirstOrDefault();
+        if (storedManagingTrusteeInfo is null)
+        {
+            managingTrusteeInfoForm = CreateManagingTrusteeInfoForm();
+            isManagingTrusteeInfoEditMode = false;
+            return;
+        }
+
+        managingTrusteeInfoForm = CloneManagingTrusteeInfo(storedManagingTrusteeInfo);
+        isManagingTrusteeInfoEditMode = true;
+    }
+
+    private async Task UploadImageAsync(IBrowserFile? file, Action<string> setPath, string sectionName, string successMessage)
+    {
+        if (file is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var savedPath = await SaveBrowserFileAsync(file, sectionName);
+            setPath(savedPath);
+            Notify(NotificationSeverity.Success, "Success", successMessage);
+        }
+        catch (Exception ex)
+        {
+            Notify(NotificationSeverity.Error, "Failed", $"Unable to upload image. {ex.Message}");
+        }
+    }
+
+    private async Task<string> SaveBrowserFileAsync(IBrowserFile file, string sectionName)
+    {
+        var fileExtension = Path.GetExtension(file.Name);
+        var originalFileName = Path.GetFileNameWithoutExtension(file.Name);
+        var safeFileName = Regex.Replace(originalFileName, "[^a-zA-Z0-9_-]", "-").Trim('-');
+
+        if (string.IsNullOrWhiteSpace(safeFileName))
+        {
+            safeFileName = sectionName;
+        }
+
+        var uniqueFileName = $"{safeFileName}-{DateTime.UtcNow:yyyyMMddHHmmssfff}{fileExtension}";
+        var relativeUrl = $"/uploads/homepage/{sectionName}/{uniqueFileName}";
+        var relativeFolder = Path.Combine("wwwroot", "uploads", "homepage", sectionName);
+        var adminTargetFolder = Path.Combine(WebHostEnvironment.ContentRootPath, relativeFolder);
+        var portalTargetFolder = Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "..", "DiriWebPortal", relativeFolder));
+
+        Directory.CreateDirectory(adminTargetFolder);
+        Directory.CreateDirectory(portalTargetFolder);
+
+        await using var fileStream = file.OpenReadStream(MaxUploadSize);
+        await using var memoryStream = new MemoryStream();
+        await fileStream.CopyToAsync(memoryStream);
+        var buffer = memoryStream.ToArray();
+
+        await File.WriteAllBytesAsync(Path.Combine(adminTargetFolder, uniqueFileName), buffer);
+        await File.WriteAllBytesAsync(Path.Combine(portalTargetFolder, uniqueFileName), buffer);
+
+        return relativeUrl;
     }
 
     private async Task<bool> ConfirmSaveAsync(bool isEditMode, string entityName)
@@ -475,6 +547,53 @@ public partial class HomePageManagement : ComponentBase
             Detail = detail,
             Duration = 4000
         });
+    }
+
+    private static FounderInfo CloneFounderInfo(FounderInfo item) => new()
+    {
+        Id = item.Id,
+        FounderName = item.FounderName,
+        FounderTittle1 = item.FounderTittle1,
+        FounderTittle2 = item.FounderTittle2,
+        FounderMessage = item.FounderMessage,
+        AboutFounder = item.AboutFounder,
+        FounderImagePath = item.FounderImagePath,
+        Active = item.Active,
+        CreatedBy = item.CreatedBy,
+        CreatedDate = item.CreatedDate,
+        ModifiedBy = item.ModifiedBy,
+        ModifiedDate = item.ModifiedDate
+    };
+
+    private static ManagingTrusteeInfo CloneManagingTrusteeInfo(ManagingTrusteeInfo item) => new()
+    {
+        Id = item.Id,
+        ManagingTrusteeName = item.ManagingTrusteeName,
+        ManagingTrusteeNameTittle1 = item.ManagingTrusteeNameTittle1,
+        ManagingTrusteeNameTittle2 = item.ManagingTrusteeNameTittle2,
+        ManagingTrusteeMessage = item.ManagingTrusteeMessage,
+        AboutManagingTrustee = item.AboutManagingTrustee,
+        ManagingTrusteeImagePath = item.ManagingTrusteeImagePath,
+        Active = item.Active,
+        CreatedBy = item.CreatedBy,
+        CreatedDate = item.CreatedDate,
+        ModifiedBy = item.ModifiedBy,
+        ModifiedDate = item.ModifiedDate
+    };
+
+    private static string ResolveImageUrl(string? path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return string.Empty;
+        }
+
+        if (Uri.TryCreate(path, UriKind.Absolute, out _))
+        {
+            return path;
+        }
+
+        return path.StartsWith('/') ? path : $"/{path.TrimStart('~', '/')}";
     }
 
     private static BannerText CreateBannerForm() => new() { Active = 1 };
