@@ -105,12 +105,18 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-3 col-md-3col-sm-6 footer-widget">
+                        <div class="col-lg-3 col-md-3 col-sm-6 footer-widget">
                             <h6 class="footer-widget__title mb-20">Quick Links</h6>
                             <ul class="footer-widget__list">
-                                <li><a href="#" class="hover-style-link">Maizbhandar Darbar Sharif</a></li>
-                                <li><a href="https://msebdg.org" target="_blank" class="hover-style-link">Shah Emdadia Blood Donors Group</a></li>
-                                <!--<li><a href="#" class="hover-style-link">Location Map</a></li>-->
+                                @if (ourWebsites != null && ourWebsites.Any())
+                                {
+                                    @foreach (var website in ourWebsites)
+                                    {
+                                        <li>
+                                            <a href="@website.Url" target="_blank" rel="noopener" class="hover-style-link">@website.WebsiteTittle</a>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                     </div>
