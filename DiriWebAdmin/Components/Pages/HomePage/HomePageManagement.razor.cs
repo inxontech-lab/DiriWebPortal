@@ -29,11 +29,23 @@ public partial class HomePageManagement : ComponentBase
     private FounderInfo founderInfoForm = CreateFounderInfoForm();
     private ManagingTrusteeInfo managingTrusteeInfoForm = CreateManagingTrusteeInfoForm();
 
+    private IBrowserFile? pendingBannerImageFile;
+    private IBrowserFile? pendingFounderImageFile;
+    private IBrowserFile? pendingManagingTrusteeImageFile;
+
+    private string? pendingBannerImageFileName;
+    private string? pendingFounderImageFileName;
+    private string? pendingManagingTrusteeImageFileName;
+
     private bool isBannerEditMode;
     private bool isNumericDashboardEditMode;
     private bool isAboutUsEditMode;
     private bool isFounderInfoEditMode;
     private bool isManagingTrusteeInfoEditMode;
+
+    private bool isBannerImagePopupVisible;
+    private string bannerPopupTitle = string.Empty;
+    private string bannerPopupImageSource = string.Empty;
 
     private bool bannerActiveValue
     {
@@ -92,6 +104,9 @@ public partial class HomePageManagement : ComponentBase
             Subtitle = item.Subtitle,
             Active = item.Active
         };
+
+        pendingBannerImageFile = null;
+        pendingBannerImageFileName = null;
         isBannerEditMode = true;
     }
 
@@ -104,17 +119,26 @@ public partial class HomePageManagement : ComponentBase
 
         try
         {
+            BannerText savedBanner;
             if (isBannerEditMode)
             {
-                await HomePageApiClient.UpdateBannerTextAsync(bannerForm);
-                Notify(NotificationSeverity.Success, "Success", "Banner slide updated successfully.");
+                savedBanner = await HomePageApiClient.UpdateBannerTextAsync(bannerForm)
+                    ?? throw new InvalidOperationException("Banner update did not return data.");
             }
             else
             {
-                await HomePageApiClient.CreateBannerTextAsync(bannerForm);
-                Notify(NotificationSeverity.Success, "Success", "Banner slide created successfully.");
+                savedBanner = await HomePageApiClient.CreateBannerTextAsync(bannerForm)
+                    ?? throw new InvalidOperationException("Banner create did not return data.");
             }
 
+            if (pendingBannerImageFile is not null)
+            {
+                savedBanner.BannerImageLocation = await SaveHomePageImageAsync(pendingBannerImageFile, $"BannerText_{savedBanner.Id}");
+                savedBanner = await HomePageApiClient.UpdateBannerTextAsync(savedBanner)
+                    ?? throw new InvalidOperationException("Banner image update did not return data.");
+            }
+
+            Notify(NotificationSeverity.Success, "Success", isBannerEditMode ? "Banner slide updated successfully." : "Banner slide created successfully.");
             await LoadAllAsync();
             ResetBannerForm();
         }
@@ -147,14 +171,39 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private async Task HandleBannerImageSelected(InputFileChangeEventArgs args)
+    private Task HandleBannerImageSelected(InputFileChangeEventArgs args)
     {
-        await UploadImageAsync(args.File, savedPath => bannerForm.BannerImageLocation = savedPath, "banner", "Banner image uploaded successfully.");
+        pendingBannerImageFile = args.File;
+        pendingBannerImageFileName = args.File?.Name;
+        return Task.CompletedTask;
+    }
+
+    private async Task OpenBannerImagePopupAsync(BannerText item)
+    {
+        var imageSource = await BuildPopupImageSourceAsync(item.BannerImageLocation);
+        if (string.IsNullOrWhiteSpace(imageSource))
+        {
+            Notify(NotificationSeverity.Warning, "Image unavailable", "The selected banner image could not be loaded.");
+            return;
+        }
+
+        bannerPopupTitle = string.IsNullOrWhiteSpace(item.TitleText) ? $"Banner #{item.Id}" : item.TitleText;
+        bannerPopupImageSource = imageSource;
+        isBannerImagePopupVisible = true;
+    }
+
+    private void CloseBannerImagePopup()
+    {
+        isBannerImagePopupVisible = false;
+        bannerPopupTitle = string.Empty;
+        bannerPopupImageSource = string.Empty;
     }
 
     private void ResetBannerForm()
     {
         bannerForm = CreateBannerForm();
+        pendingBannerImageFile = null;
+        pendingBannerImageFileName = null;
         isBannerEditMode = false;
     }
 
@@ -300,12 +349,6 @@ public partial class HomePageManagement : ComponentBase
         isAboutUsEditMode = false;
     }
 
-    private void EditFounderInfo(FounderInfo item)
-    {
-        founderInfoForm = CloneFounderInfo(item);
-        isFounderInfoEditMode = true;
-    }
-
     private async Task SaveFounderInfoAsync()
     {
         if (!await ConfirmSaveAsync(isFounderInfoEditMode, "founder info"))
@@ -315,19 +358,28 @@ public partial class HomePageManagement : ComponentBase
 
         try
         {
+            FounderInfo savedFounderInfo;
             if (isFounderInfoEditMode)
             {
                 founderInfoForm.ModifiedDate = DateTime.Now;
-                await HomePageApiClient.UpdateFounderInfoAsync(founderInfoForm);
-                Notify(NotificationSeverity.Success, "Success", "Founder info updated successfully.");
+                savedFounderInfo = await HomePageApiClient.UpdateFounderInfoAsync(founderInfoForm)
+                    ?? throw new InvalidOperationException("Founder info update did not return data.");
             }
             else
             {
                 founderInfoForm.CreatedDate = DateTime.Now;
-                await HomePageApiClient.CreateFounderInfoAsync(founderInfoForm);
-                Notify(NotificationSeverity.Success, "Success", "Founder info created successfully.");
+                savedFounderInfo = await HomePageApiClient.CreateFounderInfoAsync(founderInfoForm)
+                    ?? throw new InvalidOperationException("Founder info create did not return data.");
             }
 
+            if (pendingFounderImageFile is not null)
+            {
+                savedFounderInfo.FounderImagePath = await SaveHomePageImageAsync(pendingFounderImageFile, $"FounderInfo_{savedFounderInfo.Id}");
+                savedFounderInfo = await HomePageApiClient.UpdateFounderInfoAsync(savedFounderInfo)
+                    ?? throw new InvalidOperationException("Founder image update did not return data.");
+            }
+
+            Notify(NotificationSeverity.Success, "Success", isFounderInfoEditMode ? "Founder info updated successfully." : "Founder info created successfully.");
             await LoadAllAsync();
             ResetFounderInfoForm();
         }
@@ -337,27 +389,11 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private async Task DeleteFounderInfoAsync(FounderInfo item)
+    private Task HandleFounderImageSelected(InputFileChangeEventArgs args)
     {
-        if (!await ConfirmDeleteAsync($"Delete founder record '{item.FounderName}'?"))
-        {
-            return;
-        }
-
-        try
-        {
-            await HomePageApiClient.DeleteFounderInfoAsync(item.Id);
-            Notify(NotificationSeverity.Success, "Success", "Founder info deleted successfully.");
-            await LoadAllAsync();
-            if (isFounderInfoEditMode && founderInfoForm.Id == item.Id)
-            {
-                ResetFounderInfoForm();
-            }
-        }
-        catch (Exception ex)
-        {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to delete founder info. {ex.Message}");
-        }
+        pendingFounderImageFile = args.File;
+        pendingFounderImageFileName = args.File?.Name;
+        return Task.CompletedTask;
     }
 
     private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
@@ -367,13 +403,9 @@ public partial class HomePageManagement : ComponentBase
 
     private void ResetFounderInfoForm()
     {
+        pendingFounderImageFile = null;
+        pendingFounderImageFileName = null;
         SyncFounderFormWithStoredRecord();
-    }
-
-    private void EditManagingTrusteeInfo(ManagingTrusteeInfo item)
-    {
-        managingTrusteeInfoForm = CloneManagingTrusteeInfo(item);
-        isManagingTrusteeInfoEditMode = true;
     }
 
     private async Task SaveManagingTrusteeInfoAsync()
@@ -385,19 +417,28 @@ public partial class HomePageManagement : ComponentBase
 
         try
         {
+            ManagingTrusteeInfo savedManagingTrusteeInfo;
             if (isManagingTrusteeInfoEditMode)
             {
                 managingTrusteeInfoForm.ModifiedDate = DateTime.Now;
-                await HomePageApiClient.UpdateManagingTrusteeInfoAsync(managingTrusteeInfoForm);
-                Notify(NotificationSeverity.Success, "Success", "Managing trustee info updated successfully.");
+                savedManagingTrusteeInfo = await HomePageApiClient.UpdateManagingTrusteeInfoAsync(managingTrusteeInfoForm)
+                    ?? throw new InvalidOperationException("Managing trustee info update did not return data.");
             }
             else
             {
                 managingTrusteeInfoForm.CreatedDate = DateTime.Now;
-                await HomePageApiClient.CreateManagingTrusteeInfoAsync(managingTrusteeInfoForm);
-                Notify(NotificationSeverity.Success, "Success", "Managing trustee info created successfully.");
+                savedManagingTrusteeInfo = await HomePageApiClient.CreateManagingTrusteeInfoAsync(managingTrusteeInfoForm)
+                    ?? throw new InvalidOperationException("Managing trustee info create did not return data.");
             }
 
+            if (pendingManagingTrusteeImageFile is not null)
+            {
+                savedManagingTrusteeInfo.ManagingTrusteeImagePath = await SaveHomePageImageAsync(pendingManagingTrusteeImageFile, $"ManagingTrusteeInfo_{savedManagingTrusteeInfo.Id}");
+                savedManagingTrusteeInfo = await HomePageApiClient.UpdateManagingTrusteeInfoAsync(savedManagingTrusteeInfo)
+                    ?? throw new InvalidOperationException("Managing trustee image update did not return data.");
+            }
+
+            Notify(NotificationSeverity.Success, "Success", isManagingTrusteeInfoEditMode ? "Managing trustee info updated successfully." : "Managing trustee info created successfully.");
             await LoadAllAsync();
             ResetManagingTrusteeInfoForm();
         }
@@ -407,36 +448,17 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private async Task DeleteManagingTrusteeInfoAsync(ManagingTrusteeInfo item)
+    private Task HandleManagingTrusteeImageSelected(InputFileChangeEventArgs args)
     {
-        if (!await ConfirmDeleteAsync($"Delete managing trustee record '{item.ManagingTrusteeName}'?"))
-        {
-            return;
-        }
-
-        try
-        {
-            await HomePageApiClient.DeleteManagingTrusteeInfoAsync(item.Id);
-            Notify(NotificationSeverity.Success, "Success", "Managing trustee info deleted successfully.");
-            await LoadAllAsync();
-            if (isManagingTrusteeInfoEditMode && managingTrusteeInfoForm.Id == item.Id)
-            {
-                ResetManagingTrusteeInfoForm();
-            }
-        }
-        catch (Exception ex)
-        {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to delete managing trustee info. {ex.Message}");
-        }
-    }
-
-    private async Task HandleManagingTrusteeImageSelected(InputFileChangeEventArgs args)
-    {
-        await UploadImageAsync(args.File, savedPath => managingTrusteeInfoForm.ManagingTrusteeImagePath = savedPath, "managing-trustee", "Managing trustee image uploaded successfully.");
+        pendingManagingTrusteeImageFile = args.File;
+        pendingManagingTrusteeImageFileName = args.File?.Name;
+        return Task.CompletedTask;
     }
 
     private void ResetManagingTrusteeInfoForm()
     {
+        pendingManagingTrusteeImageFile = null;
+        pendingManagingTrusteeImageFileName = null;
         SyncManagingTrusteeFormWithStoredRecord();
     }
 
@@ -468,55 +490,111 @@ public partial class HomePageManagement : ComponentBase
         isManagingTrusteeInfoEditMode = true;
     }
 
-    private async Task UploadImageAsync(IBrowserFile? file, Action<string> setPath, string sectionName, string successMessage)
+    private async Task<string?> BuildPopupImageSourceAsync(string? storedPath)
     {
-        if (file is null)
+        if (string.IsNullOrWhiteSpace(storedPath))
         {
-            return;
+            return null;
         }
 
-        try
+        var normalizedPath = storedPath.TrimStart('~', '/').Replace('/', Path.DirectorySeparatorChar);
+        var portalFilePath = Path.Combine(GetPortalWwwRootPath(), normalizedPath);
+        if (File.Exists(portalFilePath))
         {
-            var savedPath = await SaveBrowserFileAsync(file, sectionName);
-            setPath(savedPath);
-            Notify(NotificationSeverity.Success, "Success", successMessage);
+            var bytes = await File.ReadAllBytesAsync(portalFilePath);
+            return $"data:{GetContentType(portalFilePath)};base64,{Convert.ToBase64String(bytes)}";
         }
-        catch (Exception ex)
+
+        var adminFilePath = Path.Combine(GetAdminWwwRootPath(), normalizedPath);
+        if (File.Exists(adminFilePath))
         {
-            Notify(NotificationSeverity.Error, "Failed", $"Unable to upload image. {ex.Message}");
+            var bytes = await File.ReadAllBytesAsync(adminFilePath);
+            return $"data:{GetContentType(adminFilePath)};base64,{Convert.ToBase64String(bytes)}";
         }
+
+        return ResolveImageUrl(storedPath);
     }
 
-    private async Task<string> SaveBrowserFileAsync(IBrowserFile file, string sectionName)
+    private async Task<string> SaveHomePageImageAsync(IBrowserFile file, string fileStem)
     {
-        var fileExtension = Path.GetExtension(file.Name);
-        var originalFileName = Path.GetFileNameWithoutExtension(file.Name);
-        var safeFileName = Regex.Replace(originalFileName, "[^a-zA-Z0-9_-]", "-").Trim('-');
-
-        if (string.IsNullOrWhiteSpace(safeFileName))
+        var extension = Path.GetExtension(file.Name);
+        if (string.IsNullOrWhiteSpace(extension))
         {
-            safeFileName = sectionName;
+            extension = ".png";
         }
 
-        var uniqueFileName = $"{safeFileName}-{DateTime.UtcNow:yyyyMMddHHmmssfff}{fileExtension}";
-        var relativeUrl = $"/uploads/homepage/{sectionName}/{uniqueFileName}";
-        var relativeFolder = Path.Combine("wwwroot", "uploads", "homepage", sectionName);
-        var adminTargetFolder = Path.Combine(WebHostEnvironment.ContentRootPath, relativeFolder);
-        var portalTargetFolder = Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "..", "DiriWebPortal", relativeFolder));
+        var fileName = $"{fileStem}{extension.ToLowerInvariant()}";
+        var relativePath = $"HomePage/{fileName}";
+        var portalTargetFolder = GetPortalHomePageFolderPath();
+        var adminTargetFolder = GetAdminHomePageFolderPath();
 
-        Directory.CreateDirectory(adminTargetFolder);
         Directory.CreateDirectory(portalTargetFolder);
+        Directory.CreateDirectory(adminTargetFolder);
+        DeleteExistingEntityImages(portalTargetFolder, fileStem);
+        DeleteExistingEntityImages(adminTargetFolder, fileStem);
 
         await using var fileStream = file.OpenReadStream(MaxUploadSize);
         await using var memoryStream = new MemoryStream();
         await fileStream.CopyToAsync(memoryStream);
         var buffer = memoryStream.ToArray();
 
-        await File.WriteAllBytesAsync(Path.Combine(adminTargetFolder, uniqueFileName), buffer);
-        await File.WriteAllBytesAsync(Path.Combine(portalTargetFolder, uniqueFileName), buffer);
+        await File.WriteAllBytesAsync(Path.Combine(portalTargetFolder, fileName), buffer);
+        await File.WriteAllBytesAsync(Path.Combine(adminTargetFolder, fileName), buffer);
 
-        return relativeUrl;
+        return relativePath;
     }
+
+    private void DeleteExistingEntityImages(string folderPath, string fileStem)
+    {
+        foreach (var existingFile in Directory.GetFiles(folderPath, $"{fileStem}.*"))
+        {
+            File.Delete(existingFile);
+        }
+    }
+
+    private string GetBannerImageStatusText()
+    {
+        if (!string.IsNullOrWhiteSpace(pendingBannerImageFileName))
+        {
+            return $"Selected image: {pendingBannerImageFileName}";
+        }
+
+        return string.IsNullOrWhiteSpace(bannerForm.BannerImageLocation)
+            ? "No image selected."
+            : $"Current image: {bannerForm.BannerImageLocation}";
+    }
+
+    private string GetFounderImageStatusText()
+    {
+        if (!string.IsNullOrWhiteSpace(pendingFounderImageFileName))
+        {
+            return $"Selected image: {pendingFounderImageFileName}";
+        }
+
+        return string.IsNullOrWhiteSpace(founderInfoForm.FounderImagePath)
+            ? "No image selected."
+            : $"Current image: {founderInfoForm.FounderImagePath}";
+    }
+
+    private string GetManagingTrusteeImageStatusText()
+    {
+        if (!string.IsNullOrWhiteSpace(pendingManagingTrusteeImageFileName))
+        {
+            return $"Selected image: {pendingManagingTrusteeImageFileName}";
+        }
+
+        return string.IsNullOrWhiteSpace(managingTrusteeInfoForm.ManagingTrusteeImagePath)
+            ? "No image selected."
+            : $"Current image: {managingTrusteeInfoForm.ManagingTrusteeImagePath}";
+    }
+
+    private string GetPortalWwwRootPath() => Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "..", "DiriWebPortal", "wwwroot"));
+
+    private string GetPortalHomePageFolderPath() => Path.Combine(GetPortalWwwRootPath(), "HomePage");
+
+    private string GetAdminWwwRootPath() => WebHostEnvironment.WebRootPath ?? Path.Combine(WebHostEnvironment.ContentRootPath, "wwwroot");
+
+    private string GetAdminHomePageFolderPath() => Path.Combine(GetAdminWwwRootPath(), "HomePage");
 
     private async Task<bool> ConfirmSaveAsync(bool isEditMode, string entityName)
     {
@@ -580,6 +658,18 @@ public partial class HomePageManagement : ComponentBase
         ModifiedBy = item.ModifiedBy,
         ModifiedDate = item.ModifiedDate
     };
+
+    private static string GetContentType(string filePath)
+    {
+        return Path.GetExtension(filePath).ToLowerInvariant() switch
+        {
+            ".png" => "image/png",
+            ".gif" => "image/gif",
+            ".webp" => "image/webp",
+            ".svg" => "image/svg+xml",
+            _ => "image/jpeg"
+        };
+    }
 
     private static string ResolveImageUrl(string? path)
     {
