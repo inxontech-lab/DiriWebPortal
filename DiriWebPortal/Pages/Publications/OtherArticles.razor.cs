@@ -1,4 +1,4 @@
-﻿using DiriWebPortal.Data;
+﻿using Shared.WebClientService;
 using Domain.DBModels;
 using Domain.DTO.JournalSchemaDTO;
 using Domain.DTO.PublicationShemaDTO;

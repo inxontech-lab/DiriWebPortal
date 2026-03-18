@@ -1,4 +1,4 @@
-﻿namespace DiriWebPortal.Data
+﻿namespace Shared.WebClientService
 {
     public class ServiceClient
     {

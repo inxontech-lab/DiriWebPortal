@@ -1,4 +1,4 @@
-﻿using DiriWebPortal.Data;
+﻿using Shared.WebClientService;
 using Domain.DBModels;
 using Domain.RespDTO.PublicationsRespDTO;
 using Microsoft.AspNetCore.Components;

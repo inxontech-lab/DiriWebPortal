@@ -3,8 +3,9 @@ using Domain.DTO.ConferenceSchemaDTO;
 using Domain.RespDTO.AboutUsPageRespDTO;
 using Domain.RespDTO.ConferenceSchemaRespDTO;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
-namespace DiriWebPortal.Data
+namespace Shared.WebClientService
 {
     public class ConferenceDataService
     {

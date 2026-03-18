@@ -1,4 +1,4 @@
-using DiriWebPortal.Data;
+using Shared.WebClientService;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.ResponseCompression;
