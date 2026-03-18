@@ -60,7 +60,7 @@
                                         <button type="button"
                                                 class="btn btn-sm homepage-action-view me-2"
                                                 disabled="@string.IsNullOrWhiteSpace(item.BannerImageLocation)"
-                                                @onclick="() => OpenBannerImagePopupAsync(item)">
+                                                @onclick="@(async (_) => await OnBannerViewRequestedAsync(item))">
                                             View
                                         </button>
                                         <RadzenButton Icon="edit" Size="ButtonSize.Small" class="me-2 homepage-action-edit" Click="() => EditBannerText(item)" />
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Banner Image</label>
-                                        <InputFile class="form-control" OnChange="HandleBannerImageSelected" accept="image/*" />
+                                        <InputFile class="form-control" OnChange="@OnBannerImageFileChanged" accept="image/*" />
                                         <small class="form-text text-muted">The image will be saved to the portal <code>wwwroot/HomePage</code> folder when you save this banner.</small>
                                         <div class="file-selection-note mt-2">@GetBannerImageStatusText()</div>
                                     </div>
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Image</label>
-                                        <InputFile class="form-control" OnChange="HandleFounderImageSelected" accept="image/*" />
+                                        <InputFile class="form-control" OnChange="@OnFounderImageFileChanged" accept="image/*" />
                                         <div class="file-selection-note mt-2">@GetFounderImageStatusText()</div>
                                     </div>
                                     <div class="col-md-6">
@@ -270,7 +270,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Image</label>
-                                        <InputFile class="form-control" OnChange="HandleManagingTrusteeImageSelected" accept="image/*" />
+                                        <InputFile class="form-control" OnChange="@OnManagingTrusteeImageFileChanged" accept="image/*" />
                                         <div class="file-selection-note mt-2">@GetManagingTrusteeImageStatusText()</div>
                                     </div>
                                     <div class="col-md-6">
@@ -302,11 +302,11 @@
 
     @if (isBannerImagePopupVisible)
     {
-        <div class="homepage-popup-backdrop" @onclick="CloseBannerImagePopup">
+        <div class="homepage-popup-backdrop" @onclick="CloseBannerImagePopupDialog">
             <div class="homepage-popup-card" @onclick:stopPropagation="true">
                 <div class="homepage-popup-header">
                     <h5 class="mb-0">@bannerPopupTitle</h5>
-                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseBannerImagePopup"></button>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseBannerImagePopupDialog"></button>
                 </div>
                 <div class="homepage-popup-body">
                     <img src="@bannerPopupImageSource" alt="Banner popup preview" class="img-fluid rounded" />

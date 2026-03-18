@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting;
 using Radzen;
 using Shared.AdminClientService.HomePage;
@@ -171,14 +172,14 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private Task HandleBannerImageSelected(InputFileChangeEventArgs args)
+    private Task OnBannerImageFileChanged(InputFileChangeEventArgs args)
     {
         pendingBannerImageFile = args.File;
         pendingBannerImageFileName = args.File?.Name;
         return Task.CompletedTask;
     }
 
-    private async Task OpenBannerImagePopupAsync(BannerText item)
+    private async Task OnBannerViewRequestedAsync(BannerText item)
     {
         var imageSource = await BuildPopupImageSourceAsync(item.BannerImageLocation);
         if (string.IsNullOrWhiteSpace(imageSource))
@@ -192,7 +193,7 @@ public partial class HomePageManagement : ComponentBase
         isBannerImagePopupVisible = true;
     }
 
-    private void CloseBannerImagePopup()
+    private void CloseBannerImagePopupDialog(MouseEventArgs _)
     {
         isBannerImagePopupVisible = false;
         bannerPopupTitle = string.Empty;
@@ -389,7 +390,7 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private Task HandleFounderImageSelected(InputFileChangeEventArgs args)
+    private Task OnFounderImageFileChanged(InputFileChangeEventArgs args)
     {
         pendingFounderImageFile = args.File;
         pendingFounderImageFileName = args.File?.Name;
@@ -397,11 +398,6 @@ public partial class HomePageManagement : ComponentBase
     }
 
     private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
-    {
-        await UploadImageAsync(args.File, savedPath => founderInfoForm.FounderImagePath = savedPath, "founder", "Founder image uploaded successfully.");
-    }
-
-    private void ResetFounderInfoForm()
     {
         pendingFounderImageFile = null;
         pendingFounderImageFileName = null;
@@ -448,7 +444,7 @@ public partial class HomePageManagement : ComponentBase
         }
     }
 
-    private Task HandleManagingTrusteeImageSelected(InputFileChangeEventArgs args)
+    private Task OnManagingTrusteeImageFileChanged(InputFileChangeEventArgs args)
     {
         pendingManagingTrusteeImageFile = args.File;
         pendingManagingTrusteeImageFileName = args.File?.Name;
