@@ -5,6 +5,7 @@ using DiriAPI.Services.ConferenceSchemaService;
 using DiriAPI.Services.Homepage;
 using DiriAPI.Services.JournalSchemaService;
 using DiriAPI.Services.MasterSchemaServices;
+using DiriAPI.Services.Security;
 using DiriAPI.Services.PublicationSchema;
 using Domain.DBModels;
 
@@ -38,6 +39,8 @@ builder.Services.AddScoped<RoleMasterService>();
 builder.Services.AddScoped<UsersService>();
 builder.Services.AddScoped<UserRolesService>();
 builder.Services.AddScoped<UserWithRolesService>();
+builder.Services.AddScoped<PasswordHashingService>();
+builder.Services.AddScoped<AdminAuthService>();
 
 var app = builder.Build();
 

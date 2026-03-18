@@ -1,7 +1,9 @@
 using DiriWebAdmin.Components;
+using DiriWebAdmin.Services;
 using Shared.AdminClientService.MasterService;
 using Radzen;
 using Shared.AdminClientService.HomePage;
+using Shared.AdminClientService.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddRadzenComponents();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<AdminSessionService>();
 
 var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5128/";
 builder.Services.AddHttpClient<RoleMasterApiClient>(client =>
@@ -22,6 +26,11 @@ builder.Services.AddHttpClient<UserWithRolesApiClient>(client =>
 });
 
 builder.Services.AddHttpClient<HomePageApiClient>(client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+});
+
+builder.Services.AddHttpClient<AdminAuthApiClient>(client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
 });
