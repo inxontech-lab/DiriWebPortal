@@ -21,6 +21,7 @@ builder.Services.AddScoped<DiriWebPortalContext>();
 builder.Services.AddScoped<IDataRepository, DataRepository>();
 builder.Services.AddScoped<IDiriContextDataRepo, DiriContextDataRepo>();
 builder.Services.AddScoped<HomePageService>();
+builder.Services.AddScoped<OurWebsiteService>();
 builder.Services.AddScoped<HomePageSchemaService>();
 builder.Services.AddScoped<AboutUsSchemaService>();
 builder.Services.AddScoped<ContactU>();

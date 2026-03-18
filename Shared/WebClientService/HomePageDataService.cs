@@ -19,6 +19,8 @@ namespace Shared.WebClientService
         private AboutU aboutUs { get; set; }
         private ManagingTrusteeInfoRespDTO ManagingTrusteeRespDTO { get; set; }
         private HighlightedEventRespDTO highlightedEventResp { get; set; }
+        private OurWebsiteRespDTO ourWebsiteRespDTO { get; set; } = new();
+        private List<OurWebsite> ourWebsites { get; set; } = new();
 
 
         private IConfiguration _configuration;
@@ -101,6 +103,19 @@ namespace Shared.WebClientService
                 contactUs = organizationDataDTO.ContactU;
             }
             return contactUs;
+        }
+
+        public async Task<List<OurWebsite>> GetOurWebsites()
+        {
+            ourWebsites = new();
+            string retrunString = null;
+            retrunString = await serviceClient.clientMethod(_configuration.GetSection("ApiEndpoints").GetSection("BaseAddress").Value + $"OurWebsite/GetOurWebsites");
+            ourWebsiteRespDTO = JsonConvert.DeserializeObject<OurWebsiteRespDTO>(retrunString);
+            if (ourWebsiteRespDTO?.RESPONSE_CODE == "000" && ourWebsiteRespDTO.OurWebsites != null)
+            {
+                ourWebsites = ourWebsiteRespDTO.OurWebsites;
+            }
+            return ourWebsites;
         }
     }
 }
