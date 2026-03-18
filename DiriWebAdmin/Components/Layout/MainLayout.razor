@@ -41,7 +41,7 @@ else if (currentSession is not null)
                                       Shade="Shade.Lighter"
                                       Variant="Variant.Flat"
                                       class="topbar-dashboard-btn"
-                                      Click="@(()=> NavigateToPage(\"/\"))" />
+                                      Click="@(()=> NavigateToPage("/home"))" />
                         <RadzenText Text="@currentSession.UserName" class="app-user-badge" />
                         <RadzenProfileMenu Click="@ProfileMenuClick" class="topbar-profile-menu">
                             <ChildContent>
