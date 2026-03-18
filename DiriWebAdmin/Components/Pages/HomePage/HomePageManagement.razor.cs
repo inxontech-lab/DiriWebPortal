@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -393,6 +394,11 @@ public partial class HomePageManagement : ComponentBase
         pendingFounderImageFile = args.File;
         pendingFounderImageFileName = args.File?.Name;
         return Task.CompletedTask;
+    }
+
+    private async Task HandleFounderImageSelected(InputFileChangeEventArgs args)
+    {
+        await UploadImageAsync(args.File, savedPath => founderInfoForm.FounderImagePath = savedPath, "founder", "Founder image uploaded successfully.");
     }
 
     private void ResetFounderInfoForm()

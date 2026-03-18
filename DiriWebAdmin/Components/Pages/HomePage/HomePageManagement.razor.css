@@ -133,6 +133,8 @@
 
 .homepage-admin-page :is(input, textarea, select) {
     border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ced4da;
 }
 
 .homepage-admin-page .file-selection-note {
