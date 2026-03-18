@@ -7,18 +7,18 @@
 
 <div class="row g-3 user-master-page">
     <div class="col-lg-8">
-        <RadzenDataGrid class="user-master-grid" Data="users" TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
+        <RadzenDataGrid class="user-master-grid" Data="users" TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
             <Columns>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserId" Title="User Id" Width="90px" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="UserName" Title="User Name" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Property="Email" Title="Email" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Roles">
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Property="UserId" Title="User Id" Width="90px" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Property="UserName" Title="User Name" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Property="Email" Title="Email" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Title="Roles">
                     <Template Context="user">@string.Join(", ", GetRoleNames(user.RoleIds))</Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Active" Width="90px">
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Title="Active" Width="90px">
                     <Template Context="user">@(user.IsActive == true ? "Yes" : "No")</Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.UserWithRolesDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.UserWithRolesDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
                     <Template Context="user">
                         <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="me-2 user-action-edit" Click="() => EditUser(user)" />
                         <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" Size="ButtonSize.Small" class="user-action-delete" Click="() => DeleteUserAsync(user)" />

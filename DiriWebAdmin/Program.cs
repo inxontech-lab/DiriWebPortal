@@ -1,7 +1,7 @@
 using DiriWebAdmin.Components;
-using DiriWebAdmin.Data.MasterService;
+using Shared.AdminClientService.MasterService;
 using Radzen;
-using Shared.HomePage;
+using Shared.AdminClientService.HomePage;
 
 var builder = WebApplication.CreateBuilder(args);
 

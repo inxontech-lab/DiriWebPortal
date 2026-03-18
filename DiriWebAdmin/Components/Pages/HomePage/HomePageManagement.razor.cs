@@ -1,7 +1,7 @@
 using Domain.DBModels;
 using Microsoft.AspNetCore.Components;
 using Radzen;
-using Shared.HomePage;
+using Shared.AdminClientService.HomePage;
 
 namespace DiriWebAdmin.Components.Pages.HomePage;
 

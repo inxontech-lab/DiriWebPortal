@@ -1,4 +1,4 @@
-using DiriWebAdmin.Data.MasterService;
+using Shared.AdminClientService.MasterService;
 using Microsoft.AspNetCore.Components;
 using Radzen;
 

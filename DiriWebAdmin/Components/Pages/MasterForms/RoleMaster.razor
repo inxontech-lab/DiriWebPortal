@@ -7,16 +7,16 @@
 
 <div class="row g-3 role-master-page">
     <div class="col-lg-8">
-        <RadzenDataGrid class="role-master-grid" Data="roles" TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
+        <RadzenDataGrid class="role-master-grid" Data="roles" TItem="Shared.AdminClientService.MasterService.RoleMasterDto" AllowPaging="true" PageSize="10" AllowSorting="true" AllowFiltering="true" FilterMode="FilterMode.Advanced" LogicalFilterOperator="LogicalFilterOperator.And">
             <Columns>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Property="RoleId" Title="Role Id" Width="100px" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Property="RoleName" Title="Role Name" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Property="RoleCode" Title="Role Code" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Property="Description" Title="Description" />
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Title="Active" Width="100px">
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Property="RoleId" Title="Role Id" Width="100px" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Property="RoleName" Title="Role Name" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Property="RoleCode" Title="Role Code" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Property="Description" Title="Description" />
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Title="Active" Width="100px">
                     <Template Context="role">@(role.IsActive == true ? "Yes" : "No")</Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DiriWebAdmin.Data.MasterService.RoleMasterDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="Shared.AdminClientService.MasterService.RoleMasterDto" Title="Actions" Width="130px" TextAlign="TextAlign.Center">
                     <Template Context="role">
                         <RadzenButton Icon="edit"
                                       ButtonStyle="ButtonStyle.Primary"

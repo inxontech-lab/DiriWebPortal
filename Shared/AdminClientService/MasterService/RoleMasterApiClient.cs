@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
 
-namespace DiriWebAdmin.Data.MasterService;
+namespace Shared.AdminClientService.MasterService;
 
 public class RoleMasterApiClient
 {
