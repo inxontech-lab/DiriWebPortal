@@ -1,0 +1,105 @@
+.homepage-admin-page {
+    --diri-logo-blue: #0a5ea8;
+    --diri-logo-blue-dark: #074a84;
+    --diri-logo-green: #64b32d;
+    --diri-logo-green-dark: #4d8a22;
+}
+
+.homepage-admin-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(10, 94, 168, 0.12), rgba(100, 179, 45, 0.12));
+    border: 1px solid rgba(10, 94, 168, 0.12);
+}
+
+.homepage-summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+    padding: 1.1rem 1.2rem;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid rgba(10, 94, 168, 0.12);
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.08);
+}
+
+.homepage-summary-card strong {
+    font-size: 1.8rem;
+    color: var(--diri-logo-blue);
+}
+
+.homepage-summary-card .summary-label {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.homepage-summary-card .summary-meta {
+    color: #6b7280;
+    font-size: 0.92rem;
+}
+
+.homepage-tabs {
+    background: transparent;
+}
+
+.homepage-admin-page .homepage-form-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.14);
+}
+
+.homepage-admin-page .homepage-form-card .card-header {
+    background: linear-gradient(135deg, var(--diri-logo-blue) 0%, #1f8fd5 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.homepage-admin-page ::deep .homepage-grid {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 6px 6px 14px rgba(10, 94, 168, 0.12);
+}
+
+.homepage-admin-page ::deep .homepage-grid table tbody tr:hover {
+    background-color: rgba(31, 143, 213, 0.1) !important;
+}
+
+.homepage-admin-page ::deep button.homepage-save-btn,
+.homepage-admin-page ::deep button.homepage-action-edit {
+    background-color: var(--diri-logo-blue) !important;
+    border-color: var(--diri-logo-blue) !important;
+    color: #ffffff !important;
+}
+
+.homepage-admin-page ::deep button.homepage-save-btn:hover,
+.homepage-admin-page ::deep button.homepage-action-edit:hover,
+.homepage-admin-page ::deep button.homepage-save-btn:focus,
+.homepage-admin-page ::deep button.homepage-action-edit:focus {
+    background-color: var(--diri-logo-blue-dark) !important;
+    border-color: var(--diri-logo-blue-dark) !important;
+    color: #ffffff !important;
+}
+
+.homepage-admin-page ::deep button.homepage-action-delete,
+.homepage-admin-page .homepage-clear-btn {
+    background-color: var(--diri-logo-green) !important;
+    border-color: var(--diri-logo-green) !important;
+    color: #ffffff !important;
+}
+
+.homepage-admin-page ::deep button.homepage-action-delete:hover,
+.homepage-admin-page ::deep button.homepage-action-delete:focus,
+.homepage-admin-page .homepage-clear-btn:hover,
+.homepage-admin-page .homepage-clear-btn:focus {
+    background-color: var(--diri-logo-green-dark) !important;
+    border-color: var(--diri-logo-green-dark) !important;
+    color: #ffffff !important;
+}
+
+.homepage-admin-page :is(input, textarea) {
+    border-radius: 10px;
+}

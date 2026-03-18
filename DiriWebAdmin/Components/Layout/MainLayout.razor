@@ -5,54 +5,12 @@
     <link href="css/app.css" rel="stylesheet" />
 </HeadContent>
 
-@* <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
-
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div> *@
-
 <RadzenDialog />
 <RadzenNotification />
 <RadzenContextMenu />
 <RadzenTooltip />
 <RadzenLayout>
     <RadzenHeader>
-        @* <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
-            <RadzenColumn Size="10">
-                <RadzenStack AlignItems="AlignItems.Start" Orientation="Orientation.Horizontal">
-                    <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
-                </RadzenStack>
-            </RadzenColumn>
-            <RadzenColumn Size="2">
-                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
-                    <RadzenProfileMenu Click="@ProfileMenuClick">
-                        <ChildContent>
-                            <RadzenProfileMenuItem Text="User" Value="User" Icon="account_circle" />
-                            <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
-                        </ChildContent>
-                        <Template>
-                        </Template>
-                    </RadzenProfileMenu>
-                </RadzenStack>
-            </RadzenColumn>
-        </RadzenRow> *@
-
         <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0" class="topbar-row">
             <RadzenColumn Size="8" SizeMD="8" SizeLG="8">
                 <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" Gap="0.75rem" class="topbar-brand-wrap">
@@ -64,10 +22,6 @@
             </RadzenColumn>
             <RadzenColumn Size="4" SizeMD="4" SizeLG="4">
                 <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.6rem" class="topbar-actions">
-                   @*@if (!string.IsNullOrWhiteSpace(UserBadgeText))
-                    {
-                        <RadzenText Text="@UserBadgeText" class="app-user-badge" />
-                    }*@
                     <RadzenText Text="Username" class="app-user-badge" />
                     <RadzenProfileMenu Click="@ProfileMenuClick" class="topbar-profile-menu">
                         <ChildContent>
@@ -86,15 +40,12 @@
         @Body
     </RadzenBody>
 
-
-    @* #F9F9F9 #FFFFFF  #f3f6f9 color: var(--rz-sidebar-color);*@
-    @* <RadzenImage Path="images/PHC_1.png" style="width: 200px; height: 180px;background-color:#f3f6f9"></RadzenImage> *@
     <RadzenSidebar Expanded="@sidebarExpanded">
         <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6">
             <RadzenImage Path="assets/images/diri.webp" Alt="DIRI logo" Style="max-width: 90px; height: auto;" />
         </RadzenStack>
         <RadzenPanelMenu Multiple="true">
-           @*  <RadzenPanelMenuItem Text="Dashboard" Path="/Dashboard" Icon="dashboard" IconColor="@Colors.Info" /> *@
+            <RadzenPanelMenuItem Text="Home Page" Path="/homepage" Icon="home" IconColor="@Colors.Info" />
             <RadzenPanelMenuItem Text="Master Forms" Icon="label" IconColor="@Colors.Primary">
                 <RadzenPanelMenuItem Text="User Master" Path="/masterforms/usermaster" Icon="account_circle" IconColor="@Colors.Success" />
                 <RadzenPanelMenuItem Text="Role Master" Path="/masterforms/rolemaster" Icon="badge" IconColor="@Colors.Success" />
