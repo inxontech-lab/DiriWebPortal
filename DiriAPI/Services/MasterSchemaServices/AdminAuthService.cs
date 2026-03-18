@@ -3,7 +3,6 @@ using Domain.DTO.Auth;
 using Domain.RespDTO.Auth;
 using Microsoft.EntityFrameworkCore;
 using DiriAPI.Services.Security;
-using Domain.DBModels;
 
 namespace DiriAPI.Services.MasterSchemaServices;
 

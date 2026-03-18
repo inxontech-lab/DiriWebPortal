@@ -41,9 +41,9 @@ else if (currentSession is not null)
                                       Shade="Shade.Lighter"
                                       Variant="Variant.Flat"
                                       class="topbar-dashboard-btn"
-                                      Click="@(()=> NavigateToPage("/home"))" />
+                                      Click="@NavigateToDashboard" />
                         <RadzenText Text="@currentSession.UserName" class="app-user-badge" />
-                        <RadzenProfileMenu Click="@ProfileMenuClick" class="topbar-profile-menu">
+                        <RadzenProfileMenu Click="@OnProfileMenuClick" class="topbar-profile-menu">
                             <ChildContent>
                                 <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
                             </ChildContent>
@@ -123,12 +123,12 @@ else if (currentSession is not null)
         sidebarExpanded = !sidebarExpanded;
     }
 
-    protected async Task ProfileMenuClick(RadzenProfileMenuItem args)
+    void NavigateToDashboard(MouseEventArgs _)
     {
-        NavigationManager.NavigateTo(pageUrl, forceLoad: true);
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
 
-    protected async Task ProfileMenuClick(RadzenProfileMenuItem args)
+    protected async Task OnProfileMenuClick(RadzenProfileMenuItem args)
     {
         if (args.Value?.ToString() == "Logout")
         {
